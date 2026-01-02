@@ -108,12 +108,12 @@ export function ExpandableCard({
             onClick={() => setActive(card)}
             className="p-4 flex flex-col md:flex-row justify-between items-center hover:bg-[hsl(var(--card-bg-to))] rounded-xl cursor-pointer border border-[hsl(var(--card-border))] hover:border-[hsl(var(--card-border-hover))] transition-all"
           >
-            <div className="flex gap-4 flex-col md:flex-row w-full">
+            <div className="flex gap-4 flex-col w-full">
               <motion.div layoutId={`image-${card.title}-${id}`}>
                 <img
                   src={card.src}
                   alt={card.title}
-                  className="h-40 w-40 md:h-14 md:w-14 rounded-lg object-cover object-top"
+                  className="h-40 w-full rounded-lg object-cover object-top"
                 />
               </motion.div>
               <div className="flex-1">
@@ -124,13 +124,13 @@ export function ExpandableCard({
                   {card.title}
                 </motion.h3>
               </div>
+              <motion.button
+                layoutId={`button-${card.title}-${id}`}
+                className="px-4 py-2 text-sm rounded-full font-bold bg-[hsl(var(--gradient-from))] hover:bg-[hsl(var(--gradient-to))] text-white mt-4 md:mt-0 transition-colors"
+              >
+                {card.ctaText}
+              </motion.button>
             </div>
-            <motion.button
-              layoutId={`button-${card.title}-${id}`}
-              className="px-4 py-2 text-sm rounded-full font-bold bg-[hsl(var(--gradient-from))] hover:bg-[hsl(var(--gradient-to))] text-white mt-4 md:mt-0 transition-colors"
-            >
-              {card.ctaText}
-            </motion.button>
           </motion.div>
         ))}
       </ul>

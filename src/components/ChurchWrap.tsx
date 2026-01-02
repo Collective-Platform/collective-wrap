@@ -15,6 +15,7 @@ import {
   PeopleCard,
   CTACard,
 } from "@/components/cards/CardComponents";
+import { BackgroundGradientAnimation } from "./ui/background-gradient-animation";
 
 const translations = {
   en: {
@@ -120,7 +121,7 @@ const ChurchWrap = () => {
 
   // Prepare timeline data
   const timelineData = wrapData.chapters.map((chapter, index) => ({
-    title: index === 0 ? "" : chapter.title[language],
+    title: index === 0 ? "2025" : chapter.title[language],
     content: (
       <div className="space-y-6">
         {chapter.cards.map((card) => (
@@ -131,7 +132,7 @@ const ChurchWrap = () => {
   }));
 
   return (
-    <div className="relative w-full min-h-screen bg-black text-white">
+    <div className="relative w-screen min-h-screen bg-black text-white">
       {/* Language Toggle */}
       <button
         onClick={toggleLanguage}

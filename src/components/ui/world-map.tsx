@@ -1,157 +1,193 @@
-import { useRef, useEffect, useState } from "react";
-import { motion } from "framer-motion";
-
-interface Church {
-  name: string;
-  location: string;
-  lat: number;
-  lng: number;
-}
-
-interface WorldMapProps {
-  churches: Church[];
-  mainChurch: Church;
+import { useEffect, useRef, useState } from "react";
+import { motion } from "motion/react";
+interface MapProps {
+  dots?: Array<{
+    start: { lat: number; lng: number; label?: string };
+    end: { lat: number; lng: number; label?: string };
+  }>;
   lineColor?: string;
-  dotColor?: string;
 }
 
-export function WorldMap({
-  churches,
-  mainChurch,
-  lineColor = "hsl(var(--gradient-from))",
-  dotColor = "hsl(var(--gradient-to))",
-}: WorldMapProps) {
+export default function WorldMap({ dots = [], lineColor = "white" }: MapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
-  const [dimensions, setDimensions] = useState({ width: 1000, height: 500 });
+  const [svgMap, setSvgMap] = useState<string | null>(null);
 
   useEffect(() => {
-    const updateDimensions = () => {
-      if (svgRef.current) {
-        const rect = svgRef.current.getBoundingClientRect();
-        setDimensions({ width: rect.width, height: rect.height });
-      }
-    };
-
-    updateDimensions();
-    window.addEventListener("resize", updateDimensions);
-    return () => window.removeEventListener("resize", updateDimensions);
+    (async () => {
+      const { default: DottedMap } = await import("dotted-map");
+      const map = new DottedMap({
+        height: 250, // more height for better resolution
+        grid: "diagonal",
+      });
+      const svg = map.getSVG({
+        radius: 0.22,
+        color: "#FFFFFF40",
+        shape: "circle",
+        backgroundColor: "black",
+      });
+      setSvgMap(svg);
+    })();
   }, []);
 
-  // Convert lat/lng to SVG coordinates
-  const latLngToXY = (lat: number, lng: number) => {
-    // Simple mercator projection
-    const x = ((lng + 180) / 360) * dimensions.width;
-    const latRad = (lat * Math.PI) / 180;
-    const mercN = Math.log(Math.tan(Math.PI / 4 + latRad / 2));
-    const y =
-      dimensions.height / 2 - (dimensions.width * mercN) / (2 * Math.PI);
+  if (!svgMap) return null;
+
+  // const ASIA_BOUNDS = {
+  //   minLng: 60, // Middle East
+  //   maxLng: 150, // Japan
+  //   minLat: -10, // Indonesia
+  //   maxLat: 55, // Siberia
+  // };
+
+  const WIDTH = 800;
+  const HEIGHT = 400;
+
+  const projectPoint = (lat: number, lng: number) => {
+    const x = (lng + 180) * (800 / 360);
+    const y = (90 - lat) * (400 / 180);
     return { x, y };
   };
 
-  const mainPos = latLngToXY(mainChurch.lat, mainChurch.lng);
+  // const projectPoint = (lat: number, lng: number) => {
+  //   const x =
+  //     ((lng - ASIA_BOUNDS.minLng) / (ASIA_BOUNDS.maxLng - ASIA_BOUNDS.minLng)) *
+  //     WIDTH;
+
+  //   const y =
+  //     ((ASIA_BOUNDS.maxLat - lat) / (ASIA_BOUNDS.maxLat - ASIA_BOUNDS.minLat)) *
+  //     HEIGHT;
+
+  //   return { x, y };
+  // };
+
+  const createCurvedPath = (
+    start: { x: number; y: number },
+    end: { x: number; y: number }
+  ) => {
+    const midX = (start.x + end.x) / 2;
+    const midY = Math.min(start.y, end.y) - 50;
+    return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`;
+  };
 
   return (
-    <div className="w-full h-125 relative bg-[hsl(var(--card-bg-from))] rounded-lg overflow-hidden border border-[hsl(var(--card-border))]">
+    <div className="w-full aspect-auto-1/2 bg-black relative font-sans">
+      <img
+        src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
+        className="h-full w-full pointer-events-none select-none"
+        alt="world map"
+        height="400"
+        width="800"
+        draggable={true}
+      />
       <svg
         ref={svgRef}
-        className="w-full h-full"
-        viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
+        viewBox="0 0 800 400"
+        className="w-full h-full absolute inset-0 pointer-events-none select-none"
       >
-        {/* Draw lines from main church to all other churches */}
-        {churches.map((church, index) => {
-          const churchPos = latLngToXY(church.lat, church.lng);
+        {dots.map((dot, i) => {
+          const startPoint = projectPoint(dot.start.lat, dot.start.lng);
+          const endPoint = projectPoint(dot.end.lat, dot.end.lng);
           return (
-            <motion.line
-              key={`line-${index}`}
-              x1={mainPos.x}
-              y1={mainPos.y}
-              x2={churchPos.x}
-              y2={churchPos.y}
-              stroke={lineColor}
-              strokeWidth="1"
-              strokeOpacity="0.3"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 1, delay: index * 0.05 }}
-            />
-          );
-        })}
-
-        {/* Main church dot */}
-        <motion.circle
-          cx={mainPos.x}
-          cy={mainPos.y}
-          r="8"
-          fill={dotColor}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.5 }}
-        >
-          <animate
-            attributeName="opacity"
-            values="1;0.5;1"
-            dur="2s"
-            repeatCount="indefinite"
-          />
-        </motion.circle>
-
-        {/* Other church dots */}
-        {churches.map((church, index) => {
-          const pos = latLngToXY(church.lat, church.lng);
-          return (
-            <g key={`church-${index}`}>
-              <motion.circle
-                cx={pos.x}
-                cy={pos.y}
-                r="5"
-                fill={lineColor}
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.5 + index * 0.05 }}
-              />
+            <g key={`path-group-${i}`}>
+              <motion.path
+                d={createCurvedPath(startPoint, endPoint)}
+                fill="none"
+                stroke="url(#path-gradient)"
+                strokeWidth="1"
+                initial={{
+                  pathLength: 0,
+                }}
+                animate={{
+                  pathLength: 1,
+                }}
+                transition={{
+                  duration: 1,
+                  delay: 0.5 * i,
+                  ease: "easeOut",
+                }}
+                key={`start-upper-${i}`}
+              ></motion.path>
             </g>
           );
         })}
+
+        <defs>
+          <linearGradient id="path-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="white" stopOpacity="0" />
+            <stop offset="5%" stopColor={lineColor} stopOpacity="1" />
+            <stop offset="95%" stopColor={lineColor} stopOpacity="1" />
+            <stop offset="100%" stopColor="white" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+
+        {dots.map((dot, i) => (
+          <g key={`points-group-${i}`}>
+            <g key={`start-${i}`}>
+              <circle
+                cx={projectPoint(dot.start.lat, dot.start.lng).x}
+                cy={projectPoint(dot.start.lat, dot.start.lng).y}
+                r="2"
+                fill={lineColor}
+              />
+              <circle
+                cx={projectPoint(dot.start.lat, dot.start.lng).x}
+                cy={projectPoint(dot.start.lat, dot.start.lng).y}
+                r="2"
+                fill={lineColor}
+                opacity="0.5"
+              >
+                <animate
+                  attributeName="r"
+                  from="2"
+                  to="8"
+                  dur="1.5s"
+                  begin="0s"
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="opacity"
+                  from="0.5"
+                  to="0"
+                  dur="1.5s"
+                  begin="0s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
+            <g key={`end-${i}`}>
+              <circle
+                cx={projectPoint(dot.end.lat, dot.end.lng).x}
+                cy={projectPoint(dot.end.lat, dot.end.lng).y}
+                r="2"
+                fill={lineColor}
+              />
+              <circle
+                cx={projectPoint(dot.end.lat, dot.end.lng).x}
+                cy={projectPoint(dot.end.lat, dot.end.lng).y}
+                r="2"
+                fill={lineColor}
+                opacity="0.5"
+              >
+                <animate
+                  attributeName="r"
+                  from="2"
+                  to="8"
+                  dur="1.5s"
+                  begin="0s"
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="opacity"
+                  from="0.5"
+                  to="0"
+                  dur="1.5s"
+                  begin="0s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
+          </g>
+        ))}
       </svg>
-
-      {/* Church labels */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Main church label */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6 }}
-          className="absolute text-xs font-bold text-[hsl(var(--card-title))] bg-[hsl(var(--card-bg-to))]/90 px-2 py-1 rounded border border-[hsl(var(--card-border))]"
-          style={{
-            left: `${mainPos.x}px`,
-            top: `${mainPos.y - 25}px`,
-            transform: "translateX(-50%)",
-          }}
-        >
-          {mainChurch.name}
-        </motion.div>
-
-        {/* Other church labels */}
-        {churches.map((church, index) => {
-          const pos = latLngToXY(church.lat, church.lng);
-          return (
-            <motion.div
-              key={`label-${index}`}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6 + index * 0.05 }}
-              className="absolute text-[10px] text-[hsl(var(--card-subtitle))] bg-[hsl(var(--card-bg-to))]/80 px-1.5 py-0.5 rounded whitespace-nowrap"
-              style={{
-                left: `${pos.x}px`,
-                top: `${pos.y - 20}px`,
-                transform: "translateX(-50%)",
-              }}
-            >
-              {church.name}
-            </motion.div>
-          );
-        })}
-      </div>
     </div>
   );
 }

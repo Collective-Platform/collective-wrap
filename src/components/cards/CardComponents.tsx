@@ -3,7 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { ExpandableCard } from "@/components/ui/expandable-card";
 import { HorizontalBarChart } from "@/components/cards/HorizontalBarChart";
-import { WorldMap } from "@/components/ui/world-map";
+import { WorldMapDemo } from "./test";
+import { CountingNumber } from "../ui/shadcn-io/counting-number";
 
 interface Language {
   en: string;
@@ -16,7 +17,7 @@ export const HeroCard: React.FC<{
   subtitle?: Language;
   lang: "en" | "cn";
 }> = ({ title, subtitle, lang }) => (
-  <div className="text-center py-12">
+  <div className="py-12 text-left">
     <h2 className="text-5xl font-bold mb-4 bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">
       {title[lang]}
     </h2>
@@ -50,7 +51,12 @@ export const StatCard: React.FC<{
     </CardHeader>
     <CardContent>
       <p className="text-6xl font-bold bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent mb-2">
-        {content.value}
+        <CountingNumber
+          number={content.value}
+          decimalSeparator=","
+          transition={{ stiffness: 100, damping: 30 }}
+        />
+        {/* {content.value} */}
       </p>
       <p className="text-[hsl(var(--card-subtitle))]">{content.label[lang]}</p>
       {content.progress && (
@@ -141,7 +147,7 @@ export const WorldMapCard: React.FC<{
           )}
         </div>
       )}
-      <WorldMap mainChurch={content.mainChurch} churches={content.churches} />
+      {/* <WorldMapDemo /> */}
     </div>
   );
 };
@@ -303,13 +309,13 @@ export const PeopleCard: React.FC<{
       </CardTitle>
     </CardHeader>
     <CardContent>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 xs:grid-cols-2 gap-4">
         {content.people.map((person: any, index: number) => (
           <div
             key={index}
             className="text-center p-4 bg-[hsl(var(--list-item-bg))] rounded-lg"
           >
-            <div className="mb-2 w-full h-32 flex items-center justify-center overflow-hidden rounded-lg">
+            <div className="mb-2 w-25 aspect-square flex items-center justify-center overflow-hidden rounded-lg">
               <img
                 src={person.image}
                 alt={person.name}

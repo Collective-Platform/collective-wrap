@@ -16,6 +16,8 @@ export interface Card {
     | "hero"
     | "stat"
     | "multistat"
+    | "barchart"
+    | "worldmap"
     | "quiz"
     | "story"
     | "list"
@@ -128,33 +130,32 @@ export const wrapData: WrapData = {
         },
         {
           id: "building-stats",
-          type: "multistat",
+          type: "barchart",
+          title: {
+            en: "Our Community Growth",
+            cn: "我们的社区成长",
+          },
           content: {
-            stats: [
+            bars: [
               {
-                value: "2,687",
-                label: {
-                  en: "Stepped foot into Collective",
-                  cn: "进入Collective",
-                },
+                label: { en: "Stepped into Collective", cn: "进入Collective" },
+                value: "9,784",
+                percentage: 90,
               },
               {
-                value: "273",
                 label: { en: "Accepted Christ", cn: "接受基督" },
+                value: "273",
+                percentage: 55,
               },
               {
+                label: { en: "Rooted in CG", cn: "扎根小组" },
                 value: "480",
-                label: {
-                  en: "Rooted in CG and Ministry",
-                  cn: "扎根于小组和事工",
-                },
+                percentage: 70,
               },
               {
+                label: { en: "Weekly Volunteers", cn: "每周志愿者" },
                 value: "150",
-                label: {
-                  en: "Volunteers actively serving weekly",
-                  cn: "每周积极服务的志愿者",
-                },
+                percentage: 45,
               },
             ],
           },
@@ -240,7 +241,6 @@ export const wrapData: WrapData = {
 • 38名志愿者与牙医共同服事`,
                 },
               },
-
               {
                 name: {
                   en: "Dental Mission — Sandakan Stateless Community",
@@ -265,7 +265,6 @@ export const wrapData: WrapData = {
 • 13名志愿者与牙医参与`,
                 },
               },
-
               {
                 name: {
                   en: "Starfish Youth Camp — Kudat",
@@ -288,10 +287,9 @@ export const wrapData: WrapData = {
 • 7名志愿者陪伴同行`,
                 },
               },
-
               {
                 name: {
-                  en: "Starfish Children’s Camp — Kudat",
+                  en: "Starfish Children's Camp — Kudat",
                   cn: "海星儿童营 — 古达",
                 },
                 icon: "🎨",
@@ -311,7 +309,6 @@ export const wrapData: WrapData = {
 • 13名志愿者服事`,
                 },
               },
-
               {
                 name: {
                   en: "Love Is A Verb — Gift Box Initiative",
@@ -334,7 +331,6 @@ export const wrapData: WrapData = {
 • 超过70名志愿者参与`,
                 },
               },
-
               {
                 name: {
                   en: "Love Is A Verb — Entrepreneurship Workshop",
@@ -357,7 +353,6 @@ export const wrapData: WrapData = {
 • 志愿者与青年领袖带领`,
                 },
               },
-
               {
                 name: {
                   en: "School Hall Makeover — Blessed Learning Center",
@@ -409,6 +404,114 @@ export const wrapData: WrapData = {
       subtitle: { en: "Expanding God's Kingdom", cn: "扩展神的国度" },
       cards: [
         {
+          id: "church-map",
+          type: "worldmap",
+          title: {
+            en: "Our Global Family",
+            cn: "我们的全球家庭",
+          },
+          subtitle: {
+            en: "17 Churches Across Asia",
+            cn: "遍布亚洲的17间教会",
+          },
+          content: {
+            mainChurch: {
+              name: "COLLECTIVE",
+              location: "Subang Jaya, Malaysia",
+              lat: 3.0738,
+              lng: 101.5883,
+            },
+            churches: [
+              {
+                name: "ALPHA COLORS",
+                location: "Shah Alam",
+                lat: 3.0733,
+                lng: 101.5185,
+              },
+              {
+                name: "CITY LIGHT",
+                location: "Penang",
+                lat: 5.4141,
+                lng: 100.3288,
+              },
+              {
+                name: "SOUL",
+                location: "Alor Setar",
+                lat: 6.1248,
+                lng: 100.3678,
+              },
+              {
+                name: "BORDERLESS",
+                location: "Malacca",
+                lat: 2.1896,
+                lng: 102.2501,
+              },
+              {
+                name: "OASIS",
+                location: "Johor Bahru",
+                lat: 1.4927,
+                lng: 103.7414,
+              },
+              {
+                name: "CITY ON A HILL",
+                location: "Sandakan",
+                lat: 5.8402,
+                lng: 118.1179,
+              },
+              {
+                name: "CREATIVE CITY",
+                location: "Jakarta",
+                lat: -6.2088,
+                lng: 106.8456,
+              },
+              { name: "ZEALOUS", location: "Pune", lat: 18.5204, lng: 73.8567 },
+              {
+                name: "BLESSED",
+                location: "Manila",
+                lat: 14.5995,
+                lng: 120.9842,
+              },
+              { name: "ASCENT", location: "Kedah", lat: 6.1184, lng: 100.3685 },
+              {
+                name: "BETHEL",
+                location: "Taiwan",
+                lat: 25.033,
+                lng: 121.5654,
+              },
+              {
+                name: "ZION CHURCH",
+                location: "Okinawa",
+                lat: 26.2124,
+                lng: 127.6809,
+              },
+              {
+                name: "CITY ROCK",
+                location: "India",
+                lat: 20.5937,
+                lng: 78.9629,
+              },
+              {
+                name: "XIAO LOU JIAN",
+                location: "KL",
+                lat: 3.139,
+                lng: 101.6869,
+              },
+              {
+                name: "CREATIVES",
+                location: "Manila",
+                lat: 14.6091,
+                lng: 121.0223,
+              },
+              {
+                name: "MATTER",
+                location: "Phnom Penh",
+                lat: 11.5564,
+                lng: 104.9282,
+              },
+            ],
+          },
+        },
+        {
           id: "new-pastors",
           type: "people",
           title: {
@@ -450,7 +553,7 @@ export const wrapData: WrapData = {
                 },
               },
               {
-                value: "13",
+                value: "17",
                 label: { en: "Total Churches", cn: "教会总数" },
               },
             ],

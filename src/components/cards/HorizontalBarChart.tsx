@@ -16,7 +16,7 @@ export const HorizontalBarChart: React.FC<HorizontalBarChartProps> = ({
   data,
 }) => {
   return (
-    <div className="w-full py-8">
+    <div className="w-full py-8 overflow-hidden">
       <div className="flex items-end justify-between gap-4 h-80">
         {data.map((item, index) => (
           <div
