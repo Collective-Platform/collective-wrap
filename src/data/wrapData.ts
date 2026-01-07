@@ -4,7 +4,7 @@ export interface WrapData {
 }
 
 export interface Chapter {
-  id: number;
+  id: string;
   title: { en: string; cn: string };
   subtitle: { en: string; cn: string };
   cards: Card[];
@@ -14,7 +14,9 @@ export interface Card {
   id: string;
   type:
     | "hero"
-    | "stat"
+    | "stat-building"
+    | "stat-giving"
+    | "stat-autrui"
     | "multistat"
     | "barchart"
     | "worldmap"
@@ -33,7 +35,7 @@ export interface Card {
 export const wrapData: WrapData = {
   chapters: [
     {
-      id: 0,
+      id: "hero",
       title: { en: "Welcome", cn: "欢迎" },
       subtitle: { en: "2025 Year in Review", cn: "2025年度回顾" },
       cards: [
@@ -59,13 +61,13 @@ export const wrapData: WrapData = {
         },
         {
           id: "giving-total",
-          type: "stat",
+          type: "stat-giving",
           title: {
             en: "Thank you for helping us raise this ENORMOUS amount!",
             cn: "感谢您帮助我们筹集了这笔巨款！",
           },
           content: {
-            value: "RM 1,688,244.50",
+            value: 1688244.5,
             label: { en: "Total Giving", cn: "总捐款" },
           },
         },
@@ -80,13 +82,13 @@ export const wrapData: WrapData = {
       ],
     },
     {
-      id: 1,
-      title: { en: "Autrui Clinic", cn: "澳萃诊所" },
+      id: "autrui",
+      title: { en: "Autrui", cn: "澳萃诊所" },
       subtitle: { en: "Caring for our community", cn: "关爱我们的社区" },
       cards: [
         {
           id: "autrui-babies",
-          type: "stat",
+          type: "stat-autrui",
           title: {
             en: "1,000 Day Project",
             cn: "1000天计划",
@@ -96,20 +98,20 @@ export const wrapData: WrapData = {
             cn: "我们通过1000天项目赞助了1000名婴儿",
           },
           content: {
-            value: "1,000",
+            value: 1_000,
             label: { en: "Babies Sponsored", cn: "赞助婴儿" },
           },
         },
       ],
     },
     {
-      id: 2,
+      id: "building",
       title: { en: "Building", cn: "教会建设" },
       subtitle: { en: "Growing our church", cn: "发展我们的教会" },
       cards: [
         {
           id: "loan-repayment",
-          type: "stat",
+          type: "stat-building",
           title: {
             en: "Loan Repayment Progress",
             cn: "贷款偿还进度",
@@ -119,7 +121,7 @@ export const wrapData: WrapData = {
             cn: "我们终于降到最后10%",
           },
           content: {
-            value: "RM 500,000",
+            value: 500_000,
             label: { en: "Paid Off", cn: "已还清" },
             progress: 90,
             description: {
@@ -163,7 +165,7 @@ export const wrapData: WrapData = {
       ],
     },
     {
-      id: 3,
+      id: "missions",
       title: { en: "Missions", cn: "宣教事工" },
       subtitle: { en: "Impacting lives globally", cn: "影响全球生命" },
       cards: [
@@ -176,10 +178,10 @@ export const wrapData: WrapData = {
           },
           content: {
             options: [
-              { value: "220", label: "a. 220" },
-              { value: "700", label: "b. 700" },
-              { value: "543", label: "c. 543" },
-              { value: "167", label: "d. 167" },
+              { value: "220", label: "A. 220" },
+              { value: "700", label: "B. 700" },
+              { value: "543", label: "C. 543" },
+              { value: "167", label: "D. 167" },
             ],
             correct: "700",
             reveal: {
@@ -399,7 +401,7 @@ export const wrapData: WrapData = {
       ],
     },
     {
-      id: 4,
+      id: "collective-global",
       title: { en: "Collective Global", cn: "全球集体" },
       subtitle: { en: "Expanding God's Kingdom", cn: "扩展神的国度" },
       cards: [
@@ -562,7 +564,7 @@ export const wrapData: WrapData = {
       ],
     },
     {
-      id: 5,
+      id: "future-2026",
       title: { en: "This Year 2026", cn: "2026年" },
       subtitle: { en: "Join us in doing more", cn: "与我们一起做更多" },
       cards: [

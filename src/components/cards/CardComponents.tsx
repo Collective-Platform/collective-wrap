@@ -29,8 +29,60 @@ export const HeroCard: React.FC<{
   </div>
 );
 
-// Stat Card
-export const StatCard: React.FC<{
+// Stat Card - Giving
+export const StatCardGiving: React.FC<{
+  title?: Language;
+  subtitle?: Language;
+  content: any;
+  lang: "en" | "cn";
+}> = ({ title, subtitle, content, lang }) => (
+  <Card className="bg-linear-to-br from-[hsl(var(--card-bg-from))] to-[hsl(var(--card-bg-to))] border-[hsl(var(--card-border))]">
+    <CardHeader>
+      {title && (
+        <CardTitle className="text-2xl text-[hsl(var(--card-title))]">
+          {title[lang]}
+        </CardTitle>
+      )}
+      {subtitle && (
+        <p className="text-sm text-[hsl(var(--card-subtitle))] mt-2">
+          {subtitle[lang]}
+        </p>
+      )}
+    </CardHeader>
+    <CardContent>
+      <p className="text-4xl xs:text-6xl font-bold bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent mb-2">
+        <span>
+          RM
+          <CountingNumber
+            number={content.value}
+            decimalPlaces={2}
+            decimalSeparator="."
+            transition={{ stiffness: 300, damping: 30, mass: 1 }}
+            inView={true}
+            inViewMargin="100px"
+          />
+        </span>
+      </p>
+      <p className="text-[hsl(var(--card-subtitle))]">{content.label[lang]}</p>
+      {content.progress && (
+        <div className="mt-4">
+          <Progress value={content.progress} className="h-2" />
+          <p className="text-sm text-[hsl(var(--card-subtitle))] mt-2">
+            {content.progress}% Complete
+          </p>
+        </div>
+      )}
+      {content.description && (
+        <p className="text-sm text-[hsl(var(--card-subtitle))] mt-4">
+          {content.description[lang]}
+        </p>
+      )}
+    </CardContent>
+  </Card>
+);
+
+// Stat Card - Autrui
+export const StatCardAutrui: React.FC<{
   title?: Language;
   subtitle?: Language;
   content: any;
@@ -53,10 +105,58 @@ export const StatCard: React.FC<{
       <p className="text-6xl font-bold bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent mb-2">
         <CountingNumber
           number={content.value}
-          decimalSeparator=","
-          transition={{ stiffness: 100, damping: 30 }}
+          transition={{ stiffness: 300, damping: 30, mass: 1 }}
+          inView={true}
         />
-        {/* {content.value} */}
+      </p>
+      <p className="text-[hsl(var(--card-subtitle))]">{content.label[lang]}</p>
+      {content.progress && (
+        <div className="mt-4">
+          <Progress value={content.progress} className="h-2" />
+          <p className="text-sm text-[hsl(var(--card-subtitle))] mt-2">
+            {content.progress}% Complete
+          </p>
+        </div>
+      )}
+      {content.description && (
+        <p className="text-sm text-[hsl(var(--card-subtitle))] mt-4">
+          {content.description[lang]}
+        </p>
+      )}
+    </CardContent>
+  </Card>
+);
+
+// Stat Card - Building
+export const StatCardBuilding: React.FC<{
+  title?: Language;
+  subtitle?: Language;
+  content: any;
+  lang: "en" | "cn";
+}> = ({ title, subtitle, content, lang }) => (
+  <Card className="bg-linear-to-br from-[hsl(var(--card-bg-from))] to-[hsl(var(--card-bg-to))] border-[hsl(var(--card-border))]">
+    <CardHeader>
+      {title && (
+        <CardTitle className="text-2xl text-[hsl(var(--card-title))]">
+          {title[lang]}
+        </CardTitle>
+      )}
+      {subtitle && (
+        <p className="text-sm text-[hsl(var(--card-subtitle))] mt-2">
+          {subtitle[lang]}
+        </p>
+      )}
+    </CardHeader>
+    <CardContent>
+      <p className="text-6xl font-bold bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent mb-2">
+        <span>
+          RM
+          <CountingNumber
+            number={content.value}
+            transition={{ stiffness: 300, damping: 30, mass: 1 }}
+            inView={true}
+          />
+        </span>
       </p>
       <p className="text-[hsl(var(--card-subtitle))]">{content.label[lang]}</p>
       {content.progress && (
@@ -313,9 +413,9 @@ export const PeopleCard: React.FC<{
         {content.people.map((person: any, index: number) => (
           <div
             key={index}
-            className="text-center p-4 bg-[hsl(var(--list-item-bg))] rounded-lg"
+            className="text-center flex-col justify-center py-4 bg-[hsl(var(--list-item-bg))] rounded-lg"
           >
-            <div className="mb-2 w-25 aspect-square flex items-center justify-center overflow-hidden rounded-lg">
+            <div className="mb-2 w-25 m-auto aspect-square overflow-hidden rounded-lg">
               <img
                 src={person.image}
                 alt={person.name}

@@ -4,7 +4,6 @@ import { wrapData } from "@/data/wrapData";
 import { Timeline } from "@/components/ui/timeline";
 import {
   HeroCard,
-  StatCard,
   MultiStatCard,
   BarChartCard,
   WorldMapCard,
@@ -14,8 +13,10 @@ import {
   ListCard,
   PeopleCard,
   CTACard,
+  StatCardAutrui,
+  StatCardGiving,
+  StatCardBuilding,
 } from "@/components/cards/CardComponents";
-import { BackgroundGradientAnimation } from "./ui/background-gradient-animation";
 
 const translations = {
   en: {
@@ -45,9 +46,27 @@ const ChurchWrap = () => {
             lang={language}
           />
         );
-      case "stat":
+      case "stat-autrui":
         return (
-          <StatCard
+          <StatCardAutrui
+            title={card.title}
+            subtitle={card.subtitle}
+            content={card.content}
+            lang={language}
+          />
+        );
+      case "stat-giving":
+        return (
+          <StatCardGiving
+            title={card.title}
+            subtitle={card.subtitle}
+            content={card.content}
+            lang={language}
+          />
+        );
+      case "stat-building":
+        return (
+          <StatCardBuilding
             title={card.title}
             subtitle={card.subtitle}
             content={card.content}
@@ -142,7 +161,6 @@ const ChurchWrap = () => {
         <span className="font-medium">{language.toUpperCase()}</span>
       </button>
 
-      {/* Hero Section */}
       <div className="h-screen flex flex-col items-center justify-center px-6 text-center">
         <h1 className="text-7xl font-bold mb-4 bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">
           2025
