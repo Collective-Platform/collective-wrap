@@ -57,7 +57,7 @@ const ChurchWrap = () => {
       {/* Language Toggle */}
       <button
         onClick={toggleLanguage}
-        className={`fixed top-6 right-6 flex items-center gap-2 bg-[hsl(var(--card-bg-from))] hover:bg-[hsl(var(--card-bg-to))] px-4 py-2 rounded-full transition-all duration-300 border border-[hsl(var(--card-border))] ${
+        className={`fixed top-8 right-6 flex items-center gap-2 bg-[hsl(var(--card-bg-from))] hover:bg-[hsl(var(--card-bg-to))] px-4 py-2 rounded-full transition-all duration-300 border border-[hsl(var(--card-border))] ${
           showStories ? "z-60" : "z-50"
         }`}
       >

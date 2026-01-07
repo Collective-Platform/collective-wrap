@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { ExpandableCard } from "@/components/ui/expandable-card";
-import { HorizontalBarChart } from "@/components/cards/HorizontalBarChart";
 import { WorldMapDemo } from "./test";
 import { CountingNumber } from "../ui/shadcn-io/counting-number";
 
@@ -219,9 +218,7 @@ export const BarChartCard: React.FC<{
           </CardTitle>
         </CardHeader>
       )}
-      <CardContent>
-        <HorizontalBarChart data={chartData} />
-      </CardContent>
+      <CardContent>{/* <HorizontalBarChart data={chartData} /> */}</CardContent>
     </Card>
   );
 };

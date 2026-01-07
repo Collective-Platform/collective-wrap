@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Progress } from "@/components/ui/progress";
 import { ChevronDown } from "lucide-react";
+import { CountingNumber } from "./ui/shadcn-io/counting-number";
 
 interface LandingPageProps {
   lang: "en" | "cn";
@@ -26,9 +27,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           transition={{ duration: 0.8 }}
           className="text-center space-y-4"
         >
-          <h1 className="text-2xl md:text-3xl font-bold text-[hsl(var(--card-title))] leading-tight">
+          <h1 className="text-xl md:text-3xl font-bold text-[hsl(var(--card-title))] leading-tight">
             {lang === "en"
-              ? "We're raising funds for church planting, building and mission"
+              ? "We're raising funds for church planting, building and Missions"
               : "我们正在为植堂、建造和宣教筹集资金"}
           </h1>
         </motion.div>
@@ -43,12 +44,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <p className="text-sm text-[hsl(var(--card-subtitle))] mb-2">
             {lang === "en" ? "Raised so far" : "目前筹集"}
           </p>
-          <h2 className="text-6xl md:text-7xl font-bold bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">
-            RM{" "}
-            {raised.toLocaleString("en-MY", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}
+          <h2 className="text-4xl md:text-7xl font-bold bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">
+            RM {raised.toLocaleString("en-MY")}
           </h2>
           <p className="text-sm text-[hsl(var(--card-subtitle))] mt-2">
             {lang === "en"

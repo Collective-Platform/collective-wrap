@@ -1,9 +1,10 @@
 export interface Story {
   id: string;
-  type: "stat" | "hero" | "quiz" | "image" | "cta";
+  type: "stat" | "hero" | "quiz" | "image" | "cta" | "multi-stat";
+  category?: { en: string; cn: string };
   title?: { en: string; cn: string };
   subtitle?: { en: string; cn: string };
-  value?: string;
+  value?: string | number;
   label?: { en: string; cn: string };
   description?: { en: string; cn: string };
   image?: string;
@@ -18,91 +19,109 @@ export interface Story {
 }
 
 export const stories: Story[] = [
-  // Welcome
+  // ACT 1 — BELONGING
   {
-    id: "welcome",
+    id: "hero-1",
     type: "hero",
-    title: { en: "2025 has been amazing", cn: "2025年太棒了" },
-    subtitle: {
-      en: "and we couldn't have done it without you",
-      cn: "没有你我们无法做到",
-    },
+    title: { en: "2025 was special", cn: "2025 很特别" },
+    subtitle: { en: "And you were part of it", cn: "因为有你" },
   },
 
-  // Total Giving
   {
-    id: "giving",
-    type: "stat",
-    title: {
-      en: "Thank you for helping us raise this ENORMOUS amount!",
-      cn: "感谢您帮助我们筹集了这笔巨款！",
+    id: "hero-2",
+    type: "hero",
+    title: { en: "Because you gave", cn: "因为你的奉献" },
+    subtitle: {
+      en: "We could do what mattered",
+      cn: "我们才能做重要的事",
     },
-    value: "RM 1,688,244.50",
-    label: { en: "Total Giving", cn: "总捐款" },
   },
 
-  // Autrui Clinic
+  // ACT 2 — PROOF
+  {
+    id: "giving-total",
+    type: "stat",
+    category: { en: "Overview", cn: "概览" },
+    title: { en: "Together, we gave", cn: "我们一起奉献" },
+    value: "RM1,688,244.50",
+    label: { en: "Total Giving", cn: "总奉献金额" },
+  },
+
+  {
+    id: "reframe",
+    type: "hero",
+    title: { en: "But money wasn’t the point", cn: "但重点不在金钱" },
+    subtitle: { en: "Lives were", cn: "而在生命" },
+  },
+
+  // ACT 3 — LOCAL IMPACT
   {
     id: "autrui",
     type: "stat",
-    title: { en: "1,000 Day Project", cn: "1000天计划" },
-    subtitle: { en: "We sponsored 1000 babies", cn: "我们赞助了1000名婴儿" },
+    category: { en: "Autrui Clinic", cn: "澳萃诊所" },
+    title: { en: "1,000 babies", cn: "1000 名婴儿" },
     value: "1,000",
-    label: { en: "Babies Sponsored", cn: "赞助婴儿" },
-  },
-
-  // Loan Repayment
-  {
-    id: "loan",
-    type: "stat",
-    title: { en: "Loan Repayment Progress", cn: "贷款偿还进度" },
+    label: { en: "Sponsored", cn: "得到赞助" },
     subtitle: {
-      en: "We're finally down to our last 10%",
-      cn: "我们终于降到最后10%",
+      en: "Through the 1,000 Day Project",
+      cn: "透过「1000 天计划」",
     },
-    value: "RM 500,000",
-    label: { en: "Paid Off", cn: "已还清" },
   },
 
-  // Building Stats - Attendance
   {
-    id: "attendance",
+    id: "loan-progress",
     type: "stat",
-    value: "2,687",
-    label: { en: "Stepped into Collective", cn: "进入Collective" },
+    category: { en: "Building", cn: "教会建设" },
+    title: { en: "Almost there", cn: "就快完成了" },
+    value: "10%",
+    label: { en: "Remaining", cn: "剩余贷款" },
+    subtitle: {
+      en: "Of our building loan",
+      cn: "教会建设贷款",
+    },
   },
 
-  // Accepted Christ
   {
-    id: "accepted-christ",
-    type: "stat",
-    value: "273",
-    label: { en: "Accepted Christ", cn: "接受基督" },
+    id: "community-growth",
+    type: "multi-stat",
+    category: { en: "Building", cn: "教会建设" },
+    title: { en: "A growing family", cn: "不断成长的属灵家庭" },
+    bars: [
+      {
+        label: { en: "Stepped into Collective", cn: "走进 Collective" },
+        value: "9,784",
+        percentage: 100,
+      },
+      {
+        label: { en: "Accepted Christ", cn: "接受基督" },
+        value: "273",
+        percentage: 70,
+      },
+      {
+        label: { en: "Rooted in CG", cn: "扎根小组" },
+        value: "480",
+        percentage: 85,
+      },
+    ],
   },
 
-  // Rooted in CG
-  {
-    id: "rooted",
-    type: "stat",
-    value: "480",
-    label: { en: "Rooted in CG", cn: "扎根小组" },
-  },
-
-  // Volunteers
   {
     id: "volunteers",
     type: "stat",
+    category: { en: "Building", cn: "教会建设" },
+    title: { en: "Served by many", cn: "许多人一起服事" },
     value: "150",
     label: { en: "Weekly Volunteers", cn: "每周志愿者" },
   },
 
-  // Missions Quiz
+  // ACT 4 — MISSIONS
   {
     id: "missions-quiz",
     type: "quiz",
+    category: { en: "Missions", cn: "宣教事工" },
     title: {
-      en: "Guess how many lives have we impacted this year?",
-      cn: "猜猜我们今年影响了多少生命？",
+      en: "How many lives?",
+      cn: "你猜影响了多少生命？",
     },
     quizOptions: [
       { value: "220", label: "A. 220" },
@@ -111,74 +130,82 @@ export const stories: Story[] = [
       { value: "167", label: "D. 167" },
     ],
     correctAnswer: "700",
-    revealText: { en: "700 lives impacted!", cn: "影响了700条生命！" },
-  },
-
-  // Missions Stats
-  {
-    id: "missions-lives",
-    type: "stat",
-    value: "700+",
-    label: { en: "Lives Impacted", cn: "受影响的生命" },
+    revealText: { en: "We impacted 700 lives", cn: "我们影响了 700 条生命" },
   },
 
   {
-    id: "missions-teeth",
-    type: "stat",
-    value: "2,000+",
-    label: { en: "Tooth Removed", cn: "拔除牙齿" },
+    id: "missions-impact",
+    type: "multi-stat",
+    category: { en: "Missions", cn: "宣教事工" },
+    title: { en: "Love in action", cn: "爱在行动中" },
+    bars: [
+      {
+        label: { en: "Teeth Treated", cn: "牙科治疗" },
+        value: "2,000+",
+        percentage: 100,
+      },
+      {
+        label: { en: "Volunteers", cn: "志愿者" },
+        value: "200+",
+        percentage: 10,
+      },
+      {
+        label: { en: "Mission Projects", cn: "宣教项目" },
+        value: "7",
+        percentage: 3,
+      },
+    ],
   },
 
+  // ACT 5 — GLOBAL
   {
-    id: "missions-volunteers",
+    id: "global-family",
     type: "stat",
-    value: "200+",
-    label: { en: "Volunteers", cn: "志愿者" },
-  },
-
-  // Missions Projects
-  {
-    id: "missions-projects",
-    type: "stat",
-    value: "7",
-    label: { en: "Mission Projects Completed", cn: "完成的宣教项目" },
-  },
-
-  // Churches
-  {
-    id: "churches",
-    type: "stat",
-    title: { en: "Our Global Family", cn: "我们的全球家庭" },
+    category: { en: "Collective Global", cn: "全球集体" },
+    title: { en: "Beyond Malaysia", cn: "不止在马来西亚" },
     value: "17",
-    label: { en: "Churches Across Asia", cn: "遍布亚洲的教会" },
+    label: { en: "Churches Across Asia", cn: "亚洲各地教会" },
   },
 
-  // New Pastors
   {
     id: "pastors",
     type: "stat",
+    category: { en: "Collective Global", cn: "全球集体" },
+    title: { en: "Leaders equipped", cn: "领袖被装备" },
     value: "5",
-    label: { en: "New Pastors Licensed", cn: "新授权牧师" },
+    label: { en: "New Pastors", cn: "新授权牧师" },
   },
 
-  // New Churches
   {
-    id: "new-churches",
+    id: "momentum",
     type: "stat",
+    category: { en: "Collective Global", cn: "全球集体" },
+    title: { en: "And we’re growing", cn: "而且仍在成长" },
     value: "2",
-    label: { en: "New Churches Joined", cn: "新教会加入" },
+    label: { en: "New Churches", cn: "新加入教会" },
   },
 
-  // Final CTA
+  // ACT 6 — INVITATION
+  {
+    id: "future-setup",
+    type: "hero",
+    title: { en: "2026 is bigger", cn: "2026 更大更远" },
+    subtitle: {
+      en: "And we can’t do it alone",
+      cn: "我们无法独自完成",
+    },
+  },
+
   {
     id: "final-cta",
     type: "cta",
-    title: { en: "We want to raise RM2.5mil", cn: "我们想筹集250万令吉" },
-    subtitle: {
-      en: "to do even crazier things and we want you to join us.",
-      cn: "做更疯狂的事情，我们希望你加入我们。",
-    },
-    value: "RM 2,500,000",
+    category: { en: "2026", cn: "2026年" },
+    title: { en: "Our faith goal", cn: "我们的信心目标" },
+    value: "RM 1,500,000",
     label: { en: "Join Us", cn: "加入我们" },
+    subtitle: {
+      en: "Let’s build together",
+      cn: "让我们一起建造",
+    },
   },
 ];
