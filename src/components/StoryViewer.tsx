@@ -162,7 +162,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose }) => {
       </div>
 
       {/* Top Controls */}
-      <div className="absolute top-6 left-6 right-6 z-60 flex items-center pointer-events-none">
+      <div className="absolute top-7 left-2 right-6 z-60 flex items-center pointer-events-none">
         {/* Close Button */}
         <button
           onClick={onClose}

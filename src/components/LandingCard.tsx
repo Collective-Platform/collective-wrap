@@ -18,8 +18,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   const percentage = (raised / totalTarget) * 100;
 
   return (
-    <div className="h-screen w-full flex flex-col items-center justify-center px-6 bg-black text-white">
+    <div className="h-dvh w-full flex flex-col items-center justify-center px-6 bg-black text-white">
       <div className="max-w-2xl w-full space-y-8">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-center"
+        >
+          <p className="text-sm text-[hsl(var(--card-subtitle))] mb-2">
+            {lang === "en" ? "Future Pledge 2026" : "未来认献 2026"}
+          </p>
+        </motion.div>
         {/* Main Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -42,16 +52,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           className="text-center"
         >
           <p className="text-sm text-[hsl(var(--card-subtitle))] mb-2">
-            {lang === "en" ? "Raised so far" : "目前筹集"}
+            {lang === "en" ? "Raised" : "目前筹集"}
           </p>
-          <h2 className="text-4xl md:text-7xl font-bold bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-7xl font-bold bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent -mb-6">
             RM {raised.toLocaleString("en-MY")}
           </h2>
-          <p className="text-sm text-[hsl(var(--card-subtitle))] mt-2">
-            {lang === "en"
-              ? `of RM ${totalTarget.toLocaleString("en-MY")} goal`
-              : `目标 RM ${totalTarget.toLocaleString("en-MY")}`}
-          </p>
         </motion.div>
 
         {/* Progress Bar */}
@@ -62,6 +67,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           className="w-full"
         >
           <Progress value={percentage} className="h-3" />
+          <p className="text-sm text-center text-[hsl(var(--card-subtitle))] mt-2">
+            {lang === "en"
+              ? `RM ${totalTarget.toLocaleString("en-MY")}`
+              : `RM ${totalTarget.toLocaleString("en-MY")}`}
+          </p>
           <p className="text-center text-sm text-[hsl(var(--card-subtitle))] mt-2">
             {percentage.toFixed(1)}%{" "}
             {lang === "en" ? "of goal reached" : "已达成目标"}
