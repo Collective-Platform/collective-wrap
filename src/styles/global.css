@@ -25,6 +25,9 @@
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
 
+    /* Language Toggle Colors */
+    --lang-button-bg: 35 10% 98%;
+
     /* Card Component Colors */
     --card-bg-from: 0 0% 5%;
     --card-bg-to: 0 0% 8%;
@@ -95,6 +98,7 @@
 }
 
 @theme {
+  --lang-button-bg: hsl(var(--lang-button-bg));
   --font-anton: var(--font-anton);
   --breakpoint-xs: 480px;
   --color-background: hsl(var(--background));
