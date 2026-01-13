@@ -50,227 +50,24 @@ export const StoryCard: React.FC<StoryCardProps> = ({
   // Hero Type
   if (story.type === "hero") {
     return (
-      <div className="w-full h-dvh flex flex-col items-center justify-center px-8 text-center">
-        <motion.h1
+      <div className="w-full h-dvh flex flex-col items-center justify-center px-8 text-center gap-3">
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-5xl font-bold mb-2 pb-1 bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent"
+          className="text-2xl md:text-3xl font-bold text-[hsl(var(--card-title))]"
         >
           {story.title?.[lang]}
-        </motion.h1>
+        </motion.h2>
         {story.subtitle && (
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-2xl text-[hsl(var(--card-subtitle))]"
+            className="text-lg text-[hsl(var(--card-subtitle))]"
           >
             {story.subtitle[lang]}
           </motion.p>
         )}
-      </div>
-    );
-  }
-
-  // 2025 Pledge Stat Type
-  if (story.type === "2025-pledge-stat") {
-    return (
-      <div className="w-full h-dvh flex flex-col items-center justify-center px-8 text-center relative">
-        {story.category && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="absolute top-11 left-0 right-0 text-center z-10"
-          >
-            <p className="text-sm font-semibold text-[hsl(var(--card-subtitle))] uppercase tracking-wider">
-              {story.category[lang]}
-            </p>
-          </motion.div>
-        )}
-
-        <div className="relative z-10">
-          {story.title && (
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-2xl md:text-3xl font-bold mb-2 text-[hsl(var(--card-title))]"
-            >
-              {story.title[lang]}
-            </motion.h2>
-          )}
-          {story.subtitle && (
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-lg text-[hsl(var(--card-subtitle))] mb-2"
-            >
-              {story.subtitle[lang]}
-            </motion.p>
-          )}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, type: "spring" }}
-            className="mb-2"
-          >
-            <p className="text-4xl md:text-7xl font-bold bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">
-              {story.value}
-            </p>
-          </motion.div>
-          {story.label && (
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-lg md:text-2xl text-[hsl(var(--card-subtitle))]"
-            >
-              {story.label[lang]}
-            </motion.p>
-          )}
-          {story.description && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="text-sm text-[hsl(var(--card-subtitle))] mt-2 max-w-lg"
-            >
-              {story.description[lang]}
-            </motion.p>
-          )}
-        </div>
-      </div>
-    );
-  }
-
-  // Stat Type
-  if (story.type === "stat") {
-    return (
-      <div className="w-full h-dvh flex flex-col items-center justify-center px-8 text-center relative">
-        {/* Background World Map (if mapData exists) */}
-        {/* {story.mapData && (
-          <div className="text-[hsl(var(--gradient-from))]">
-            <BackgroundWorldMap
-              mainLocation={story.mapData.mainLocation}
-              locations={story.mapData.locations}
-              region={story.mapData.region}
-            />
-          </div>
-        )} */}
-
-        {story.category && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="absolute top-11 left-0 right-0 text-center z-10"
-          >
-            <p className="text-sm font-semibold text-[hsl(var(--card-subtitle))] uppercase tracking-wider">
-              {story.category[lang]}
-            </p>
-          </motion.div>
-        )}
-
-        <div className="relative z-10">
-          {story.title && (
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-2xl md:text-3xl font-bold mb-2 text-[hsl(var(--card-title))]"
-            >
-              {story.title[lang]}
-            </motion.h2>
-          )}
-          {story.subtitle && (
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-lg text-[hsl(var(--card-subtitle))] mb-2"
-            >
-              {story.subtitle[lang]}
-            </motion.p>
-          )}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, type: "spring" }}
-            className="mb-2"
-          >
-            <p className="text-8xl font-bold bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">
-              {story.value}
-            </p>
-          </motion.div>
-          {story.label && (
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-lg md:text-2xl text-[hsl(var(--card-subtitle))]"
-            >
-              {story.label[lang]}
-            </motion.p>
-          )}
-          {story.description && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="text-sm text-[hsl(var(--card-subtitle))] mt-2 max-w-lg"
-            >
-              {story.description[lang]}
-            </motion.p>
-          )}
-        </div>
-      </div>
-    );
-  }
-
-  // Multi-Stat Type
-  if (story.type === "multi-stat") {
-    return (
-      <div className="w-full h-dvh flex flex-col items-center justify-center px-8">
-        {story.category && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="absolute top-11 left-0 right-0 text-center"
-          >
-            <p className="text-sm font-semibold text-[hsl(var(--card-subtitle))] uppercase tracking-wider">
-              {story.category[lang]}
-            </p>
-          </motion.div>
-        )}
-
-        {story.title && (
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-2xl md:text-3xl font-bold mb-8 text-center text-[hsl(var(--card-title))]"
-          >
-            {story.title[lang]}
-          </motion.h2>
-        )}
-
-        <div className="w-full max-w-md space-y-6 flex flex-col items-center justify-center px-8 text-center">
-          {story.bars?.map((bar, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.7, type: "spring" }}
-              className="space-y-6"
-            >
-              <div className="w-full max-w-md space-y-1 flex flex-col items-center justify-center px-8 text-center">
-                <p className="text-5xl md:text-7xl font-bold bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">
-                  {bar.value}
-                </p>
-                <p className="text-lg md:text-2xl text-[hsl(var(--card-subtitle))]">
-                  {bar.label[lang]}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     );
   }
@@ -280,18 +77,6 @@ export const StoryCard: React.FC<StoryCardProps> = ({
     return (
       <div className="w-full h-dvh flex flex-col items-center justify-center px-8">
         {showConfetti && <Confetti />}
-
-        {story.category && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="absolute top-11 left-0 right-0 text-center"
-          >
-            <p className="text-sm font-semibold text-[hsl(var(--card-subtitle))] uppercase tracking-wider">
-              {story.category[lang]}
-            </p>
-          </motion.div>
-        )}
 
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -345,7 +130,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
                     : ""
                 }`}
               >
-                <span className="flex items-center justify-between">
+                <span className="flex items-center justify-between text-[hsl(var(--card-subtitle))] font-medium">
                   <span>{option.label}</span>
                   {isWrong && (
                     <motion.div
@@ -390,38 +175,26 @@ export const StoryCard: React.FC<StoryCardProps> = ({
   if (story.type === "cta") {
     return (
       <div className="w-full h-dvh flex flex-col items-center justify-center px-4 text-center">
-        {story.category && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="absolute top-11 left-0 right-0 text-center"
-          >
-            <p className="text-sm font-semibold text-[hsl(var(--card-subtitle))] uppercase tracking-wider">
-              {story.category[lang]}
-            </p>
-          </motion.div>
-        )}
-
-        <motion.h1
+        {/* <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-5xl font-bold mb-4 bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent"
+          className="text-4xl md:text-5xl font-bold mb-4 text-[hsl(var(--text-subtitle))]"
         >
           {story.title?.[lang]}
-        </motion.h1>
+        </motion.h1> */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-xl text-[hsl(var(--card-title))] mb-8 max-w-xl"
+          className="text-xl text-[hsl(var(--text-subtitle))] mb-3 max-w-xl"
         >
-          {story.subtitle?.[lang]}
+          {story.title?.[lang]}
         </motion.p>
         <motion.p
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-5xl md:text-7xl font-bold bg-linear-to-r from-[hsl(var(--gradient-from))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent mb-12"
+          className="text-5xl md:text-7xl font-bold text-[hsl(var(--text-subtitle))] mb-6"
         >
           {story.value}
         </motion.p>

@@ -53,16 +53,16 @@ const ChurchWrap = () => {
   }, [showStories]);
 
   return (
-    <div className="relative w-full min-h-screen bg-black text-white">
+    <div className="relative w-full min-h-screen bg-[hsl(var(--background))] text-white">
       {/* Language Toggle */}
       <button
         onClick={toggleLanguage}
-        className={`fixed top-8 right-6 flex items-center gap-2 bg-[hsl(var(--card-bg-from))] hover:bg-[hsl(var(--card-bg-to))] px-4 py-2 rounded-full transition-all duration-300 border border-[hsl(var(--card-border))] ${
+        className={`fixed top-8 right-6 flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 border border-[hsl(var(--card-border))] ${
           showStories ? "z-60" : "z-50"
         }`}
       >
-        <Globe className="w-4 h-4" />
-        <span className="font-medium">{language.toUpperCase()}</span>
+        <Globe className="w-4 h-4 text-black" />
+        <span className="font-medium text-black">{language.toUpperCase()}</span>
       </button>
 
       {/* Landing Page */}

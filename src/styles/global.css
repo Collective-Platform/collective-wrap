@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import "tailwindcss";
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --font-anton: 'Anton', 'serif';
+    --background: 37 100% 94%; 
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -28,24 +30,19 @@
     --card-bg-to: 0 0% 8%;
     --card-border: 0 100% 49%;
     --card-border-hover: 0 100% 60%;
-    --card-title: 37 100% 94%;
-    --card-subtitle: 37 100% 94%;
-    
-    /* Gradient Colors - Red to Blue */
-    --gradient-from: 0 100% 49%;
-    --gradient-to: 0 100% 49%;
+    --text-title: 0 100% 49%;
+    --text-subtitle: 0 0% 0%;
+    --card-title: 0 0% 0%;
+    --card-subtitle: 0 0% 0%;
     
     /* Interactive Colors */
     --quiz-correct: 142 76% 36%;
     --quiz-incorrect: 0 100% 49%;
-    --quiz-border-default: 37 100% 94%;
+    --quiz-border-default: 0 0% 0%;
     
     /* CTA Colors */
-    --cta-bg-from: 0 100% 30%;
-    --cta-bg-to: 215 52% 25%;
-    --cta-border: 0 100% 49%;
-    --cta-button-bg: 37 100% 94%;
-    --cta-button-text: 0 100% 49%;
+    --cta-button-bg: 0 100% 49%;
+    --cta-button-text: 35 10% 98%;
     
     /* List Item Colors */
     --list-item-bg: 0 0% 8%;
@@ -56,7 +53,7 @@
   }
 
   .dark {
-    --background: 0 0% 0%;
+    --background: 37 100% 94%;
     --foreground: 37 100% 94%;
     --card: 0 0% 5%;
     --card-foreground: 37 100% 94%;
@@ -81,8 +78,10 @@
     --card-bg-to: 0 0% 8%;
     --card-border: 0 100% 49%;
     --card-border-hover: 0 100% 60%;
-    --card-title: 37 100% 94%;
-    --card-subtitle: 37 100% 94%;
+    --text-title: 0 100% 49%;
+    --text-subtitle: 0 0% 0%;
+    --card-title: 0 0% 0%;
+    --card-subtitle: 0 0% 0%;
   }
 
   * {
@@ -96,6 +95,7 @@
 }
 
 @theme {
+  --font-anton: var(--font-anton);
   --breakpoint-xs: 480px;
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -122,12 +122,11 @@
   --color-card-bg-to: hsl(var(--card-bg-to));
   --color-card-border: hsl(var(--card-border));
   --color-card-border-hover: hsl(var(--card-border-hover));
+  --color-text-title: hsl(var(--text-title));
+  --color-text-subtitle: hsl(var(--text-subtitle));
   --color-card-title: hsl(var(--card-title));
   --color-card-subtitle: hsl(var(--card-subtitle));
-  
-  /* Gradient Colors */
-  --color-gradient-from: hsl(var(--gradient-from));
-  --color-gradient-to: hsl(var(--gradient-to));
+
   
   /* Interactive Colors */
   --color-quiz-correct: hsl(var(--quiz-correct));
