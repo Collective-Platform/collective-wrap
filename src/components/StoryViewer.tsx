@@ -7,7 +7,7 @@ import {
 } from "framer-motion";
 import { stories } from "@/data/storyData";
 import { StoryCard } from "./StoryCard";
-import { Pause, Play, X } from "lucide-react";
+import { Pause, Play, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface StoryViewerProps {
   lang: "en" | "cn";
@@ -130,11 +130,15 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose }) => {
 
   const handleQuizInteraction = (interacting: boolean) => {
     setQuizInteractionPause(interacting);
+    // Resume if interaction ends (answer selected)
+    if (!interacting) {
+      setProgress(0);
+    }
   };
 
   return (
     <motion.div
-      className="fixed inset-0 bg-[hsl(var(--background))] z-50 flex items-center justify-center"
+      className="fixed inset-0 bg-[hsl(var(--background))] z-50 w-full flex items-center justify-center"
       style={{ opacity: backgroundOpacity }}
     >
       {/* Progress Bars */}
@@ -187,7 +191,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose }) => {
       {/* Story Content - Full width container */}
       <div className="w-full h-full relative">
         <motion.div
-          className="w-full h-full max-w-2xl mx-auto relative"
+          className="w-full h-full mx-auto relative"
           drag="y"
           dragConstraints={{ top: 0, bottom: 300 }}
           style={{ y, scale }}
@@ -222,22 +226,43 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose }) => {
                 onQuizInteraction={handleQuizInteraction}
               />
 
-              {/* Tap Areas for Navigation - Only for non-quiz stories */}
-              {!isQuizStory && (
-                <div className="absolute inset-0 flex" onClick={handleTap}>
-                  <button
-                    data-nav-area
-                    className="w-1/2 h-full cursor-pointer"
-                    style={{ background: "transparent", border: "none" }}
-                    aria-label="Previous story"
-                  />
-                  <button
-                    data-nav-area
-                    className="w-1/2 h-full cursor-pointer"
-                    style={{ background: "transparent", border: "none" }}
-                    aria-label="Next story"
-                  />
-                </div>
+              {/* Tap Areas for Navigation - Available for all stories */}
+              <div className="absolute inset-0 flex" onClick={handleTap}>
+                <button
+                  data-nav-area
+                  className="w-1/2 h-full cursor-pointer"
+                  style={{ background: "transparent", border: "none" }}
+                  aria-label="Previous story"
+                />
+                <button
+                  data-nav-area
+                  className="w-1/2 h-full cursor-pointer"
+                  style={{ background: "transparent", border: "none" }}
+                  aria-label="Next story"
+                />
+              </div>
+
+              {/* Navigation Arrows - Visible on md screens and above, always functional */}
+              {/* Left Arrow */}
+              {currentIndex > 0 && (
+                <button
+                  onClick={handlePrev}
+                  className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 p-2 text-[hsl(var(--text-title))] opacity-70 hover:opacity-100 transition-opacity pointer-events-auto z-20"
+                  aria-label="Previous story"
+                >
+                  <ChevronLeft className="w-8 h-8" />
+                </button>
+              )}
+
+              {/* Right Arrow */}
+              {currentIndex < stories.length - 1 && (
+                <button
+                  onClick={handleNext}
+                  className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 p-2 text-[hsl(var(--text-title))] opacity-70 hover:opacity-100 transition-opacity pointer-events-auto z-20"
+                  aria-label="Next story"
+                >
+                  <ChevronRight className="w-8 h-8" />
+                </button>
               )}
             </motion.div>
           </AnimatePresence>
