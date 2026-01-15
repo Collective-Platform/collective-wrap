@@ -54,7 +54,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           autoPlay
           muted
           loop
-          className="absolute inset-0 w-full h-screen object-cover"
+          className="absolute inset-0 w-full h-screen object-cover pointer-events-none"
+          onContextMenu={(e) => e.preventDefault()}
         >
           <source src="/video/running.mp4" type="video/mp4" />
         </video>
@@ -63,7 +64,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <CollectiveLogo href="/" className="text-[hsl(var(--text-title))]" />
         </div>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <h1 className="text-sm text-center md:text-xl text-[hsl(var(--text-title))] font-bold">
+          <h1 className="text-sm text-center md:text-2xl text-[hsl(var(--text-title))] font-bold font-foriene">
             {lang === "en" ? (
               <>Plant new churches. Build God's house. Send missionaries.</>
             ) : (

@@ -1,9 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Foriene';
+  src: url('/fonts/foriene-serif-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Foriene';
+  src: url('/fonts/foriene-serif-italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
 @layer base {
   :root {
-    --font-anton: 'Anton', 'serif';
+    --font-anton: 'Anton', 'sans-serif';
+    --font-foriene: 'Foriene', 'sans-serif';
     --background: 37 100% 94%; 
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -98,6 +113,7 @@
 }
 
 @theme {
+  --font-foriene: var(--font-foriene);
   --lang-button-bg: hsl(var(--lang-button-bg));
   --font-anton: var(--font-anton);
   --breakpoint-xs: 480px;
