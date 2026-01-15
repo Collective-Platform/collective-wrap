@@ -50,11 +50,11 @@ export const StoryCard: React.FC<StoryCardProps> = ({
   // Hero Type
   if (story.type === "hero") {
     return (
-      <div className="w-full h-dvh flex flex-col items-center justify-center px-8 text-center gap-3">
+      <div className="w-full h-dvh flex flex-col items-center justify-center px-8 text-center gap-2">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-2xl md:text-3xl font-bold text-[hsl(var(--card-title))]"
+          className="text-xl md:text-2xl font-bold text-[hsl(var(--card-title))]"
         >
           {story.title?.[lang]}
         </motion.h2>
@@ -63,7 +63,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-[hsl(var(--card-subtitle))]"
+            className="text-[hsl(var(--card-subtitle))]"
           >
             {story.subtitle[lang]}
           </motion.p>
@@ -81,7 +81,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-2xl md:text-3xl font-bold mb-8 text-center text-[hsl(var(--card-title))]"
+          className="text-xl md:text-2xl font-bold mb-8 text-center text-[hsl(var(--card-title))]"
         >
           {story.title?.[lang]}
         </motion.h2>
@@ -116,7 +116,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
                 }}
                 onClick={() => handleQuizAnswer(option.value)}
                 disabled={!!quizAnswer}
-                className={`w-full p-4 rounded-lg border-2 text-lg transition-all relative pointer-events-auto ${
+                className={`w-full p-4 rounded-lg border-2 transition-all relative pointer-events-auto ${
                   isWrong
                     ? "border-[hsl(var(--quiz-incorrect))] bg-white/5"
                     : showCorrectIndicator

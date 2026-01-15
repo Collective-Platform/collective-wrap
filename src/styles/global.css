@@ -83,7 +83,7 @@
     --card-border-hover: 0 100% 60%;
     --text-title: 0 100% 49%;
     --text-subtitle: 0 0% 0%;
-    --card-title: 0 0% 0%;
+    --card-title: #262622;
     --card-subtitle: 0 0% 0%;
   }
 

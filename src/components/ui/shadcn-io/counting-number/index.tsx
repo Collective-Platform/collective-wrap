@@ -1,24 +1,25 @@
-'use client';
-
-import * as React from 'react';
+import * as React from "react";
 import {
   type SpringOptions,
   type UseInViewOptions,
   useInView,
   useMotionValue,
   useSpring,
-} from 'motion/react';
+} from "motion/react";
 
-type CountingNumberProps = React.ComponentProps<'span'> & {
+type CountingNumberProps = React.ComponentProps<"span"> & {
   number: number;
   fromNumber?: number;
   padStart?: boolean;
   inView?: boolean;
-  inViewMargin?: UseInViewOptions['margin'];
+  inViewMargin?: UseInViewOptions["margin"];
   inViewOnce?: boolean;
   decimalSeparator?: string;
   transition?: SpringOptions;
   decimalPlaces?: number;
+  useThousandsSeparator?: boolean;
+  thousandsSeparator?: string;
+  locale?: string;
 };
 
 function CountingNumber({
@@ -26,25 +27,31 @@ function CountingNumber({
   number,
   fromNumber = 0,
   padStart = false,
-  inView = false,
-  inViewMargin = '0px',
+  inView = true,
+  inViewMargin = "20px",
   inViewOnce = true,
-  decimalSeparator = '.',
-  transition = { stiffness: 90, damping: 50 },
+  decimalSeparator = ".",
+  transition = { stiffness: 600, damping: 50 },
   decimalPlaces = 0,
+  useThousandsSeparator = false,
+  thousandsSeparator = ",",
+  locale = "en-US",
   className,
   ...props
 }: CountingNumberProps) {
   const localRef = React.useRef<HTMLSpanElement>(null);
-  React.useImperativeHandle(ref as any, () => localRef.current as HTMLSpanElement);
+  React.useImperativeHandle(
+    ref as any,
+    () => localRef.current as HTMLSpanElement
+  );
 
   const numberStr = number.toString();
   const decimals =
-    typeof decimalPlaces === 'number'
+    typeof decimalPlaces === "number"
       ? decimalPlaces
-      : numberStr.includes('.')
-        ? (numberStr.split('.')[1]?.length ?? 0)
-        : 0;
+      : numberStr.includes(".")
+      ? numberStr.split(".")[1]?.length ?? 0
+      : 0;
 
   const motionVal = useMotionValue(fromNumber);
   const springVal = useSpring(motionVal, transition);
@@ -59,7 +66,7 @@ function CountingNumber({
   }, [isInView, number, motionVal]);
 
   React.useEffect(() => {
-    const unsubscribe = springVal.on('change', (latest) => {
+    const unsubscribe = springVal.on("change", (latest) => {
       if (localRef.current) {
         let formatted =
           decimals > 0
@@ -67,13 +74,26 @@ function CountingNumber({
             : Math.round(latest).toString();
 
         if (decimals > 0) {
-          formatted = formatted.replace('.', decimalSeparator);
+          formatted = formatted.replace(".", decimalSeparator);
+        }
+
+        if (useThousandsSeparator) {
+          const [intPart, fracPart] = formatted.split(decimalSeparator);
+          const formattedInt = Math.floor(Number(intPart)).toLocaleString(
+            locale,
+            {
+              useGrouping: true,
+            }
+          );
+          formatted = fracPart
+            ? `${formattedInt}${decimalSeparator}${fracPart}`
+            : formattedInt;
         }
 
         if (padStart) {
           const finalIntLength = Math.floor(Math.abs(number)).toString().length;
           const [intPart, fracPart] = formatted.split(decimalSeparator);
-          const paddedInt = intPart?.padStart(finalIntLength, '0') ?? '';
+          const paddedInt = intPart?.padStart(finalIntLength, "0") ?? "";
           formatted = fracPart
             ? `${paddedInt}${decimalSeparator}${fracPart}`
             : paddedInt;
@@ -83,13 +103,21 @@ function CountingNumber({
       }
     });
     return () => unsubscribe();
-  }, [springVal, decimals, padStart, number, decimalSeparator]);
+  }, [
+    springVal,
+    decimals,
+    padStart,
+    number,
+    decimalSeparator,
+    useThousandsSeparator,
+    locale,
+  ]);
 
   const finalIntLength = Math.floor(Math.abs(number)).toString().length;
   const initialText = padStart
-    ? '0'.padStart(finalIntLength, '0') +
-      (decimals > 0 ? decimalSeparator + '0'.repeat(decimals) : '')
-    : '0' + (decimals > 0 ? decimalSeparator + '0'.repeat(decimals) : '');
+    ? "0".padStart(finalIntLength, "0") +
+      (decimals > 0 ? decimalSeparator + "0".repeat(decimals) : "")
+    : "0" + (decimals > 0 ? decimalSeparator + "0".repeat(decimals) : "");
 
   return (
     <span

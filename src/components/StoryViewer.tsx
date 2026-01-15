@@ -166,15 +166,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose }) => {
       </div>
 
       {/* Top Controls */}
-      <div className="absolute top-7 left-2 right-6 z-60 flex items-center pointer-events-none">
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="p-2 transition-all cursor-pointer pointer-events-auto"
-        >
-          <X className="w-8 h-8 text-[hsl(var(--text-title))]" />
-        </button>
-
+      <div className="absolute top-7 right-6 z-60 flex items-center pointer-events-none">
         {/* Pause Button */}
         <button
           onClick={togglePause}
@@ -185,6 +177,14 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose }) => {
           ) : (
             <Pause className="w-6 h-6 text-[hsl(var(--text-title))] fill-[hsl(var(--text-title))]" />
           )}
+        </button>
+
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="p-2 transition-all cursor-pointer pointer-events-auto"
+        >
+          <X className="w-8 h-8 text-[hsl(var(--text-title))]" />
         </button>
       </div>
 

@@ -29,7 +29,7 @@ const ChurchWrap = () => {
       const windowHeight = window.innerHeight;
 
       // Trigger stories when user scrolls down more than 50% of viewport
-      if (scrollPosition > windowHeight * 0.5) {
+      if (scrollPosition > windowHeight * 1.5) {
         setShowStories(true);
         window.scrollTo(0, 0); // Reset scroll position
       }
@@ -57,14 +57,14 @@ const ChurchWrap = () => {
       {/* Language Toggle */}
       <button
         onClick={toggleLanguage}
-        className={`absolute top-8 right-6 flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 border border-[hsl(var(--card-border))] ${
-          showStories
-            ? "z-60 bg-[hsl(var(--background))]"
-            : "z-50 bg-[hsl(var(--background))]"
+        className={`absolute top-8 left-6 flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 border border-[hsl(var(--card-border))] ${
+          showStories ? "z-60" : "z-50"
         }`}
       >
-        <Globe className="w-4 h-4 text-black" />
-        <span className="font-medium text-black">{language.toUpperCase()}</span>
+        <Globe className="w-4 h-4 text-[hsl(var(--text-title))]" />
+        <span className="font-medium text-[hsl(var(--text-title))]">
+          {language.toUpperCase()}
+        </span>
       </button>
 
       {/* Landing Page */}
