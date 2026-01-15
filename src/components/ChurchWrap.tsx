@@ -37,9 +37,10 @@ const ChurchWrap: React.FC<ChurchWrapProps> = ({ locale = "en" }) => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
 
-      // Trigger stories when user scrolls down more than 80% of viewport
-      if (scrollPosition > windowHeight * 2.5) {
+      // Trigger stories when user scrolls within 100px of the bottom of the page
+      if (scrollPosition + windowHeight >= documentHeight - 100) {
         setShowStories(true);
         window.scrollTo(0, 0); // Reset scroll position
       }
