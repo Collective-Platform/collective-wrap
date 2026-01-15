@@ -12,10 +12,10 @@ import { Pause, Play, X, ChevronLeft, ChevronRight } from "lucide-react";
 interface StoryViewerProps {
   lang: "en" | "cn";
   onClose: () => void;
-  onLanguageChange: () => void;
+  onGiveClick?: () => void;
 }
 
-export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose }) => {
+export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveClick }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -87,7 +87,6 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose }) => {
     if (currentIndex < stories.length - 1) {
       setCurrentIndex((prev) => prev + 1);
       setProgress(0);
-      setQuizInteractionPause(false);
     }
   };
 
@@ -95,7 +94,6 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose }) => {
     if (currentIndex > 0) {
       setCurrentIndex((prev) => prev - 1);
       setProgress(0);
-      setQuizInteractionPause(false);
     }
   };
 
@@ -126,14 +124,6 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose }) => {
 
   const togglePause = () => {
     setIsPaused((prev) => !prev);
-  };
-
-  const handleQuizInteraction = (interacting: boolean) => {
-    setQuizInteractionPause(interacting);
-    // Resume if interaction ends (answer selected)
-    if (!interacting) {
-      setProgress(0);
-    }
   };
 
   return (
@@ -220,11 +210,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose }) => {
               transition={{ duration: 0.3 }}
               className="w-full h-full relative"
             >
-              <StoryCard
-                story={currentStory}
-                lang={lang}
-                onQuizInteraction={handleQuizInteraction}
-              />
+              <StoryCard story={currentStory} lang={lang} onGiveClick={onGiveClick} />
 
               {/* Tap Areas for Navigation - Available for all stories */}
               <div className="absolute inset-0 flex" onClick={handleTap}>

@@ -1,9 +1,11 @@
 ---
 import ChurchWrap from "../components/ChurchWrap";
 import "../styles/global.css";
+
+const locale = Astro.currentLocale ?? "en";
 ---
 
-<html lang="en">
+<html lang={locale === "cn" ? "zh-CN" : "en"}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -11,6 +13,6 @@ import "../styles/global.css";
     <title>Future 2026</title>
   </head>
   <body>
-    <ChurchWrap client:only="react" />
+    <ChurchWrap client:only="react" locale={locale} />
   </body>
 </html>

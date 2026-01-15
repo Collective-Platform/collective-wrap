@@ -15,10 +15,42 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: 'GC';
+  src: url('/fonts/gc-grind.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Chinese Fonts */
+@font-face {
+  font-family: 'Chinese-Heading';
+  src: url('/fonts/Chinese/RuiZiGongFangGuangHuiDaHeiJian1.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Chinese-Body';
+  src: url('/fonts/Chinese/FZLanTingHei-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Chinese-Body';
+  src: url('/fonts/Chinese/FZLanTingHeiS-bold.TTF') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 @layer base {
   :root {
     --font-anton: 'Anton', 'sans-serif';
+    --font-gc: 'GC', 'sans-serif';
     --font-foriene: 'Foriene', 'sans-serif';
+    --font-chinese-heading: 'Chinese-Heading', 'sans-serif';
+    --font-chinese-body: 'Chinese-Body', 'sans-serif';
     --background: 37 100% 94%; 
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -114,6 +146,9 @@
 
 @theme {
   --font-foriene: var(--font-foriene);
+  --font-gc: var(--font-gc);
+  --font-chinese-heading: var(--font-chinese-heading);
+  --font-chinese-body: var(--font-chinese-body);
   --lang-button-bg: hsl(var(--lang-button-bg));
   --font-anton: var(--font-anton);
   --breakpoint-xs: 480px;

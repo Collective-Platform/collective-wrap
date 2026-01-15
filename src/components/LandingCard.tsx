@@ -1,20 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown, TrendingUp } from "lucide-react";
 import { CountingNumber } from "./ui/shadcn-io/counting-number";
 import CircularProgress from "./ui/progress-09";
-import { DonationCard } from "./ui/donation-card";
 import { CollectiveLogo } from "./CollectiveLogo";
+import { DonationCard } from "./ui/donation-card";
+import { FAQSection } from "./FAQSection";
 
 interface LandingPageProps {
   lang: "en" | "cn";
   onScrollToWrap: () => void;
+  donationCardRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({
   lang,
   onScrollToWrap,
+  donationCardRef,
 }) => {
+  const localDonationCardRef = useRef<HTMLDivElement>(null);
+  const effectiveRef = donationCardRef || localDonationCardRef;
   const totalTarget = 1500000;
   const raised = 1002310;
   const percentage = (raised / totalTarget) * 100;
@@ -46,6 +51,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     return () => clearTimeout(timer);
   }, [raised, percentage]);
 
+  const scrollToDonationCard = () => {
+    effectiveRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
   return (
     <div className="flex flex-col min-h-[200vh] items-center bg-[hsl(var(--background))]">
       {/* Video Background */}
@@ -54,76 +63,83 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           autoPlay
           muted
           loop
+          playsInline
+          preload="auto"
+          poster="/video/running-poster.webp"
           className="absolute inset-0 w-full h-screen object-cover pointer-events-none"
           onContextMenu={(e) => e.preventDefault()}
         >
-          <source src="/video/running.mp4" type="video/mp4" />
+          <source src="/video/running.webm" type="video/webm" />
+          <source src="/video/running-compressed.mp4" type="video/mp4" />
         </video>
         {/* Collective Logo */}
         <div className="absolute top-6 left-1/2 -translate-x-1/2 z-20">
           <CollectiveLogo href="/" className="text-[hsl(var(--text-title))]" />
         </div>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <h1 className="text-sm text-center md:text-2xl text-[hsl(var(--text-title))] font-bold font-foriene">
-            {lang === "en" ? (
-              <>Plant new churches. Build God's house. Send missionaries.</>
-            ) : (
-              <h1>
-                植堂建造。
-                <br />
-                差派宣教。
-              </h1>
-            )}
-          </h1>
-          <h1 className="text-9xl md:text-[14rem] font-anton text-[hsl(var(--text-title))] drop-shadow-lg">
+          <h1
+            className={`text-9xl md:text-[14rem] text-[hsl(var(--text-title))] drop-shadow-lg ${
+              lang === "cn" ? "font-chinese-heading" : "font-gc"
+            }`}
+          >
             {lang === "en" ? "FUTURE" : "未来认献"}
           </h1>
         </div>
         {/* Give Button - Bottom of Video */}
         <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20">
-          <a
-            href="https://give.collective.my"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-3 bg-[hsl(var(--text-title))] text-white text-lg font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 shadow-lg"
+          <button
+            onClick={scrollToDonationCard}
+            className={`px-8 py-3 bg-[hsl(var(--text-title))] text-white text-lg font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 shadow-lg cursor-pointer ${
+              lang === "cn" ? "font-chinese-body" : ""
+            }`}
           >
-            {lang === "en" ? "Give" : "奉献"}
-          </a>
+            {lang === "en" ? "Give Now" : "奉献"}
+          </button>
         </div>
       </div>
 
-      <div className="max-w-2xl w-full space-y-8  px-6 mt-22">
+      {/* Big Title*/}
+      <section className="w-full max-w-5xl mx-auto flex flex-col justify-center px-6 md:px-12 py-16 md:py-24">
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-gc font-bold text-[hsl(var(--text-title))] tracking-wide text-left capitalize">
+          {lang === "en" ? (
+            <>
+              Building.
+              <br />
+              Church Planting.
+              <br />
+              Missions.
+            </>
+          ) : (
+            "你的未来从这里开始。"
+          )}
+        </h1>
+        <p className="text-base md:text-lg text-[hsl(var(--text-subtitle))] max-w-2xl">
+          Next year, we pay off our building loan. Join us to cross the finish
+          line and fuel what's next: more churches, more missions, more lives
+          reached.
+        </p>
+      </section>
+
+      <div className="md:max-w-2xl w-full space-y-8 px-6 py-12">
         {/* Progress Bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-col items-center gap-0.5 space-y-4"
+          className="flex flex-col items-center gap-4"
         >
-          <h1 className="text-xl text-center md:text-2xl text-[hsl(var(--text-subtitle))] font-bold">
-            {lang === "en" ? (
-              <>Plant new churches. Build God's house. Send missionaries.</>
-            ) : (
-              <>
-                植堂建造。
-                <br />
-                差派宣教。
-              </>
-            )}
-          </h1>
           <div className="flex items-center justify-center gap-4">
-            <div className="shrink-0">
-              <CircularProgress
-                value={displayPercentage}
-                size={140}
-                strokeWidth={8}
-                showLabel
-                labelClassName="text-xl font-bold text-[hsl(var(--text-subtitle))]"
-                renderLabel={(progress) => `${progress.toFixed(0)}%`}
-                progressClassName="stroke-[hsl(var(--text-title))]"
-                className="stroke-[hsl(var(--text-subtitle))]/25"
-              />
-            </div>
+            <CircularProgress
+              value={displayPercentage}
+              size={140}
+              strokeWidth={16}
+              showLabel
+              labelClassName="text-xl font-bold text-[hsl(var(--text-subtitle))]"
+              renderLabel={(progress) => `${progress.toFixed(0)}%`}
+              progressClassName="stroke-[hsl(var(--text-title))]"
+              className="stroke-[hsl(var(--text-subtitle))]/25"
+            />
+
             <div className="flex flex-col gap-2 min-w-fit">
               <h2 className="text-5xl text-[hsl(var(--text-subtitle))] md:text-6xl font-anton">
                 RM{" "}
@@ -135,49 +151,97 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   className="text-[hsl(var(--text-subtitle))] tabular-nums"
                 />
               </h2>
-              <p className="text-[hsl(var(--text-subtitle))]/60">
-                raised of RM1,500,000
+              <p className="text-xl text-[hsl(var(--text-subtitle))]/60">
+                raised of RM 1,500,000
               </p>
-              <p className="text-sm text-center text-[hsl(var(--card-subtitle))]/60">
-                *This funds are managed by the board of elders.
-              </p>
+              <div className="flex items-left justify-center gap-2">
+                <TrendingUp className="w-4 h-4 text-[hsl(var(--text-title))]" />
+                <p
+                  className={`text-sm text-[hsl(var(--card-subtitle))]/70 ${
+                    lang === "cn" ? "font-chinese-body" : ""
+                  }`}
+                >
+                  {lang === "en"
+                    ? "117 people have just pledged"
+                    : "已有117人认献"}
+                </p>
+              </div>
             </div>
           </div>
+          <button
+            onClick={scrollToDonationCard}
+            className={`w-full text-center px-8 py-3 bg-[hsl(var(--text-title))] text-white text-xl font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 cursor-pointer ${
+              lang === "cn" ? "font-chinese-body" : ""
+            }`}
+          >
+            {lang === "en" ? "Give Now" : "立即奉献"}
+          </button>
         </motion.div>
 
-        <DonationCard />
-
-        {/* Give Button */}
+        {/* Section 3: The Math */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col justify-center"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="flex flex-col items-center text-center gap-4"
         >
-          <a
-            href="https://give.collective.my"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-2 bg-[hsl(var(--text-title))] text-white text-xl font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105"
+          <p className="text-4xl md:text-5xl font-anton text-[hsl(var(--text-title))]">
+            300 × RM 5,000 = RM 1.5M
+          </p>
+          <p
+            className={`text-base md:text-lg text-[hsl(var(--text-subtitle))] ${
+              lang === "cn" ? "font-chinese-body" : ""
+            }`}
           >
-            {lang === "en" ? "Give" : "奉献"}
-          </a>
-          <div className="flex items-center justify-center gap-2">
-            <TrendingUp className="text-[hsl(var(--text-title))]" />
-            <p className="text-[hsl(var(--card-subtitle))] mb-2 text-center">
-              {lang === "en" ? "117 people have just pledged" : "已有117人认献"}
-            </p>
-          </div>
+            {lang === "en" ? (
+              <>
+                Some give RM 500. Some give RM 50,000.
+                <br />
+                Together, we average RM 5,000 per person.
+                <br />
+                That's how 300 people reach RM 1.5 million.
+              </>
+            ) : (
+              <>
+                有人奉献 RM 500，有人奉献 RM 50,000。
+                <br />
+                我们平均每人 RM 5,000。
+                <br />
+                这就是 300 人如何达到 RM 150 万。
+              </>
+            )}
+          </p>
+          <h2
+            className={`text-2xl md:text-3xl font-gc text-[hsl(var(--text-title))] mt-4 ${
+              lang === "cn" ? "font-chinese-heading" : ""
+            }`}
+          >
+            {lang === "en"
+              ? "Every gift counts. Every giver matters."
+              : "每一份奉献都重要。每一位奉献者都重要。"}
+          </h2>
         </motion.div>
+
+        <motion.div ref={effectiveRef}>
+          <DonationCard />
+        </motion.div>
+
+        {/* FAQ Section */}
+        <FAQSection lang={lang} />
+
         {/* Scroll Prompt */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
           className="flex flex-col items-center gap-4 pt-8 cursor-pointer"
           onClick={onScrollToWrap}
         >
-          <p className="text-sm text-[hsl(var(--card-subtitle))]">
+          <p
+            className={`text-sm text-[hsl(var(--card-subtitle))] ${
+              lang === "cn" ? "font-chinese-body" : ""
+            }`}
+          >
             {lang === "en"
               ? "Scroll to see what we've done in 2025"
               : "滚动查看我们在2025年所做的"}

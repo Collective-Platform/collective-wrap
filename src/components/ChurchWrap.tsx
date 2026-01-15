@@ -1,16 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Globe } from "lucide-react";
 import { StoryViewer } from "./StoryViewer";
 import { LandingPage } from "./LandingCard";
 
-const ChurchWrap = () => {
-  const [language, setLanguage] = useState<"en" | "cn">("en");
+interface ChurchWrapProps {
+  locale?: string;
+}
+
+const ChurchWrap: React.FC<ChurchWrapProps> = ({ locale = "en" }) => {
+  const language = (locale === "cn" ? "cn" : "en") as "en" | "cn";
   const [showStories, setShowStories] = useState(false);
   const landingRef = useRef<HTMLDivElement>(null);
+  const donationCardRef = useRef<HTMLDivElement>(null);
 
-  const toggleLanguage = () => {
-    setLanguage((prev) => (prev === "en" ? "cn" : "en"));
-  };
+  const switchLanguageUrl = language === "en" ? "/cn/" : "/";
 
   const handleScrollToWrap = () => {
     setShowStories(true);
@@ -18,6 +21,13 @@ const ChurchWrap = () => {
 
   const handleCloseStories = () => {
     setShowStories(false);
+  };
+
+  const handleGiveClick = () => {
+    setShowStories(false);
+    setTimeout(() => {
+      donationCardRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 100);
   };
 
   // Detect scroll to trigger story viewer
@@ -28,8 +38,8 @@ const ChurchWrap = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
 
-      // Trigger stories when user scrolls down more than 50% of viewport
-      if (scrollPosition > windowHeight * 1.5) {
+      // Trigger stories when user scrolls down more than 80% of viewport
+      if (scrollPosition > windowHeight * 2.5) {
         setShowStories(true);
         window.scrollTo(0, 0); // Reset scroll position
       }
@@ -55,22 +65,22 @@ const ChurchWrap = () => {
   return (
     <div className="relative w-full min-h-screen bg-[hsl(var(--background))] text-white">
       {/* Language Toggle */}
-      <button
-        onClick={toggleLanguage}
+      <a
+        href={switchLanguageUrl}
         className={`absolute top-8 left-6 flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 border border-[hsl(var(--card-border))] ${
           showStories ? "z-60" : "z-50"
         }`}
       >
         <Globe className="w-4 h-4 text-[hsl(var(--text-title))]" />
-        <span className="font-medium text-[hsl(var(--text-title))]">
-          {language.toUpperCase()}
+        <span className="font-medium text-sm text-[hsl(var(--text-title))]">
+          {language === "en" ? "CN" : "EN"}
         </span>
-      </button>
+      </a>
 
       {/* Landing Page */}
       {!showStories && (
         <div ref={landingRef}>
-          <LandingPage lang={language} onScrollToWrap={handleScrollToWrap} />
+          <LandingPage lang={language} onScrollToWrap={handleScrollToWrap} donationCardRef={donationCardRef} />
           {/* Add extra space below to make scrolling possible */}
           <div className="h-screen" />
         </div>
@@ -78,11 +88,7 @@ const ChurchWrap = () => {
 
       {/* Story Viewer */}
       {showStories && (
-        <StoryViewer
-          lang={language}
-          onClose={handleCloseStories}
-          onLanguageChange={toggleLanguage}
-        />
+        <StoryViewer lang={language} onClose={handleCloseStories} onGiveClick={handleGiveClick} />
       )}
     </div>
   );

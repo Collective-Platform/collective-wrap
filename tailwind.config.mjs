@@ -4,6 +4,10 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      fontFamily: {
+        'chinese-heading': ['var(--font-chinese-heading)'],
+        'chinese-body': ['var(--font-chinese-body)'],
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

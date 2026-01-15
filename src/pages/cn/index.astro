@@ -1,0 +1,18 @@
+---
+import ChurchWrap from "../../components/ChurchWrap";
+import "../../styles/global.css";
+
+const locale = Astro.currentLocale ?? "cn";
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>未来 2026</title>
+  </head>
+  <body>
+    <ChurchWrap client:only="react" locale={locale} />
+  </body>
+</html>
