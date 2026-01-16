@@ -20,7 +20,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`text-xl md:text-2xl leading-6 font-bold text-text-primary text-balance ${
+          className={`text-xl md:text-2xl leading-7 font-bold text-text-primary text-balance ${
             lang === "cn" ? "font-chinese-heading" : ""
           }`}
         >

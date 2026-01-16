@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   motion,
   AnimatePresence,
-  useMotionValue,
-  useTransform,
 } from "framer-motion";
 import { stories } from "@/data/storyData";
 import { StoryCard } from "./StoryCard";
@@ -22,7 +20,6 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
   const [progress, setProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [quizInteractionPause, setQuizInteractionPause] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
   const preloadedVideosRef = useRef<HTMLVideoElement[]>([]);
 
   const currentStory = stories[currentIndex];
@@ -49,13 +46,6 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
   }, []);
   const isLastStory = currentIndex === stories.length - 1;
   const isQuizStory = currentStory.type === "quiz";
-  const y = useMotionValue(0);
-
-  // Background fades as you pull
-  const backgroundOpacity = useTransform(y, [0, 200], [1, 0.6]);
-
-  // Slight scale-down while pulling
-  const scale = useTransform(y, [0, 200], [1, 0.95]);
 
   // Auto-pause on quiz story
   useEffect(() => {
@@ -88,7 +78,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
 
   // Auto-advance progress
   useEffect(() => {
-    if (isPaused || quizInteractionPause || isDragging) return;
+    if (isPaused || quizInteractionPause) return;
 
     const interval = setInterval(() => {
       setProgress((prev) => {
@@ -105,7 +95,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
     }, 50); // 5 seconds per story (100 * 50ms = 5000ms)
 
     return () => clearInterval(interval);
-  }, [currentIndex, isPaused, quizInteractionPause, isLastStory, isDragging]);
+  }, [currentIndex, isPaused, quizInteractionPause, isLastStory]);
 
   const handleNext = () => {
     if (currentIndex < stories.length - 1) {
@@ -122,9 +112,6 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
   };
 
   const handleTap = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Don't handle tap if dragging
-    if (isDragging || Math.abs(y.get()) > 20) return;
-
     const target = e.target as HTMLElement;
 
     // Don't navigate if clicking on buttons, links, or quiz options
@@ -153,7 +140,6 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
   return (
     <motion.div
       className="fixed inset-0 bg-bg-page z-50 w-full flex items-center justify-center"
-      style={{ opacity: backgroundOpacity }}
     >
       {/* Progress Bars */}
       <div className="absolute top-0 left-0 right-0 flex gap-1 p-4 z-10 pointer-events-none">
@@ -203,28 +189,8 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
       </div>
 
       {/* Story Content - Full width container */}
-      <div className="w-full h-full relative">
-        <motion.div
-          className="w-full h-full mx-auto relative"
-          drag="y"
-          dragConstraints={{ top: 0, bottom: 300 }}
-          style={{ y, scale }}
-          dragElastic={0.2}
-          onDragStart={() => {
-            setIsPaused(true);
-            setIsDragging(true);
-          }}
-          onDragEnd={(_, info) => {
-            setIsDragging(false);
-
-            // Close if pulled down far enough
-            if (info.offset.y > 120) {
-              onClose();
-            } else {
-              setIsPaused(false);
-            }
-          }}
-        >
+      <div className="w-full h-full relative overflow-hidden">
+        <div className="w-full h-full mx-auto relative">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
@@ -276,7 +242,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
               )}
             </motion.div>
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
 
       {/* Story Counter */}
@@ -285,7 +251,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
       </div>
 
       {/* Pause Indicator - Hide for quiz */}
-      {isPaused && !isDragging && !isQuizStory && (
+      {isPaused && !isQuizStory && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
