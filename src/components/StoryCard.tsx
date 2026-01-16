@@ -74,10 +74,9 @@ export const StoryCard: React.FC<StoryCardProps> = ({
           loop
           playsInline
           preload="auto"
+          src={story.videoSrc}
           className="h-full max-h-dvh aspect-9/16 object-cover"
-        >
-          <source src={story.videoSrc} type="video/mp4" />
-        </video>
+        />
       </div>
     );
   }

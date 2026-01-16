@@ -4,7 +4,14 @@ import { stories } from "@/data/storyData";
 import { StoryCard } from "./StoryCard";
 import { Pause, Play, X, ChevronLeft, ChevronRight } from "lucide-react";
 
-const videoStories = stories.filter((s) => s.type === "video" && s.videoSrc);
+const getNextVideoSrc = (currentIndex: number): string | null => {
+  for (let i = currentIndex + 1; i < stories.length; i++) {
+    if (stories[i].type === "video" && stories[i].videoSrc) {
+      return stories[i].videoSrc!;
+    }
+  }
+  return null;
+};
 
 interface StoryViewerProps {
   lang: "en" | "cn";
@@ -20,32 +27,36 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const preloadedVideosRef = useRef<HTMLVideoElement[]>([]);
+  const preloadLinkRef = useRef<HTMLLinkElement | null>(null);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   const currentStory = stories[currentIndex];
   const isLastStory = currentIndex === stories.length - 1;
 
   useEffect(() => {
-    videoStories.forEach((story) => {
-      if (story.videoSrc) {
-        const video = document.createElement("video");
-        video.preload = "auto";
-        video.muted = true;
-        video.src = story.videoSrc;
-        video.load();
-        preloadedVideosRef.current.push(video);
-      }
-    });
+    const nextVideoSrc = getNextVideoSrc(currentIndex);
+    
+    if (preloadLinkRef.current) {
+      preloadLinkRef.current.remove();
+      preloadLinkRef.current = null;
+    }
+    
+    if (nextVideoSrc) {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "video";
+      link.href = nextVideoSrc;
+      document.head.appendChild(link);
+      preloadLinkRef.current = link;
+    }
 
     return () => {
-      preloadedVideosRef.current.forEach((video) => {
-        video.src = "";
-        video.load();
-      });
-      preloadedVideosRef.current = [];
+      if (preloadLinkRef.current) {
+        preloadLinkRef.current.remove();
+        preloadLinkRef.current = null;
+      }
     };
-  }, []);
+  }, [currentIndex]);
 
   // Keyboard controls
   useEffect(() => {

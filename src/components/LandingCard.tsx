@@ -78,13 +78,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           muted
           loop
           playsInline
+          preload="auto"
+          src="https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/running-compressed.mp4"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-        >
-          <source
-            src="https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/running-compressed.mp4"
-            type="video/mp4"
-          />
-        </video>
+        />
         {/* Collective Logo */}
         <div className="absolute top-6 left-1/2 -translate-x-1/2 z-20">
           <CollectiveLogo href="/" className="text-text-accent" />

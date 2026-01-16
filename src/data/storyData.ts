@@ -155,7 +155,7 @@ export const stories: Story[] = [
       cn: "你资助了 4,371 位难民看诊。",
     },
     subtitle: {
-      en: "331 babies are vaccinated against serious disease threats.",
+      en: "331 babies were vaccinated against serious disease threats.",
       cn: "让 331 名婴儿接种了疫苗，免受严重疾病的威胁。",
     },
   },
