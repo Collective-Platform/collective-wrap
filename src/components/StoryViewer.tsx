@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   motion,
   AnimatePresence,
@@ -8,6 +8,8 @@ import {
 import { stories } from "@/data/storyData";
 import { StoryCard } from "./StoryCard";
 import { Pause, Play, X, ChevronLeft, ChevronRight } from "lucide-react";
+
+const videoStories = stories.filter((s) => s.type === "video" && s.videoSrc);
 
 interface StoryViewerProps {
   lang: "en" | "cn";
@@ -21,8 +23,30 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
   const [isPaused, setIsPaused] = useState(false);
   const [quizInteractionPause, setQuizInteractionPause] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const preloadedVideosRef = useRef<HTMLVideoElement[]>([]);
 
   const currentStory = stories[currentIndex];
+
+  useEffect(() => {
+    videoStories.forEach((story) => {
+      if (story.videoSrc) {
+        const video = document.createElement("video");
+        video.preload = "auto";
+        video.muted = true;
+        video.src = story.videoSrc;
+        video.load();
+        preloadedVideosRef.current.push(video);
+      }
+    });
+
+    return () => {
+      preloadedVideosRef.current.forEach((video) => {
+        video.src = "";
+        video.load();
+      });
+      preloadedVideosRef.current = [];
+    };
+  }, []);
   const isLastStory = currentIndex === stories.length - 1;
   const isQuizStory = currentStory.type === "quiz";
   const y = useMotionValue(0);

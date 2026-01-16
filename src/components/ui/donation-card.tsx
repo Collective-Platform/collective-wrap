@@ -67,7 +67,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
         )}
       >
         <p className="text-xl font-bold text-text-on-dark text-center text-balance">
-          I want to give to the Future Funds
+          I want to give to Future Funds
         </p>
 
         {/* Preset Amount Buttons */}
@@ -78,7 +78,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
               type="button"
               onClick={() => handlePresetClick(amount)}
               className={cn(
-                "px-4 py-4 rounded-sm border border-border-subtle/20 text-sm transition-all font-bold",
+                "px-4 py-4 rounded-md border border-border-subtle/20 text-sm transition-all font-bold",
                 selectedPreset === amount
                   ? "bg-text-on-dark text-text-primary"
                   : "text-btn-secondary-text hover:bg-btn-secondary-hover"
@@ -90,7 +90,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
         </div>
 
         {/* Custom Amount Input */}
-        <div className="flex items-center gap-3 border border-border-subtle/20 rounded-sm px-4 py-3">
+        <div className="flex items-center gap-3 border border-border-subtle/20 rounded-md px-4 py-3">
           <span className="text-sm text-text-muted">{currency}</span>
           <input
             type="text"

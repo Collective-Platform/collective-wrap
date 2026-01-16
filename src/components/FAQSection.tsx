@@ -19,7 +19,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
       transition={{ duration: 0.8, delay: 0.7 }}
     >
       <h3
-        className={`text-5xl leading-[1.1] uppercase font-gc text-text-on-dark mb-4 ${
+        className={`text-5xl leading-[1.1] uppercase font-gc text-text-on-dark mb-4 tracking-wide ${
           lang === "cn" ? "font-chinese-body" : ""
         }`}
       >

@@ -69,7 +69,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           playsInline
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         >
-          <source src="https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/running-compressed.mp4" type="video/mp4" />
+          <source
+            src="https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/running-compressed.mp4"
+            type="video/mp4"
+          />
         </video>
         {/* Collective Logo */}
         <div className="absolute top-6 left-1/2 -translate-x-1/2 z-20">
@@ -119,7 +122,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <>建堂。植堂。宣教。</>
             )}
           </h1>
-          <p className="text-2xl md:text-2xl text-text-accent max-w-2xl">
+          <p className="text-lg md:text-2xl text-text-accent max-w-2xl">
             {lang === "en"
               ? "Next year, we pay off our building loan. Join us to cross the finish line and fuel what's next: more churches, more missions, more lives reached."
               : "明年，我们将还清建堂贷款。加入我们一起跨越终点线，为未来注入动力：建立更多教会、拓展更多宣教、触动更多生命。"}
@@ -197,13 +200,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               300 people × RM 5,000 <br></br> = RM 1.5M
             </p>
             <p
-              className={`text-base md:text-lg text-text-on-dark text-left ${
+              className={`text-lg md:text-lg text-text-on-dark text-left ${
                 lang === "cn" ? "font-chinese-body" : ""
               }`}
             >
               {lang === "en" ? (
                 <>
-                  Some give RM 500. Some give RM 50,000.
+                  Some give RM 500.
+                  <br />
+                  Some give RM 50,000.
                   <br />
                   Together, we average RM 5,000 per person.
                   <br />
@@ -253,16 +258,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col items-start text-left gap-4 py-8"
           >
-            <h2 className="font-gc uppercase text-5xl md:text-6xl leading-[1.1] text-text-on-dark text-left">
+            <h2 className="font-gc uppercase text-5xl md:text-6xl leading-[1.1] text-text-on-dark text-left tracking-wide">
               LAST YEAR, TOGETHER WE:
             </h2>
             <div className="flex flex-col gap-2 text-lg md:text-xl text-text-on-dark">
               <p className="font-bold text-3xl md:text-4xl">
-                <span className="text-lg md:text-xl">raised</span> RM 1,082,842
+                <span className="text-lg font-normal md:text-xl">raised</span>{" "}
+                RM 1,082,842
               </p>
               <p className="font-bold text-3xl md:text-4xl">
-                <span className="text-lg md:text-xl">reached</span> 20,000+
-                lives
+                <span className="text-lg font-normal md:text-xl">reached</span>{" "}
+                20,000+ lives
               </p>
               <p className="text-base md:text-lg text-text-on-dark">
                 RM50 = 1 life impacted
