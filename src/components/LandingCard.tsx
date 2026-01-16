@@ -242,19 +242,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               >
                 {lang === "en" ? "lives reached" : "生命触及"}
               </p>
-              <div className="flex items-center justify-center gap-3 mt-8">
+              <div className="flex items-center justify-center gap-2 mt-8">
                 <span className="text-5xl md:text-7xl text-text-accent font-anton">
-                  RM50 =
+                  RM 50 = 1 <span className="text-4xl align-middle">x</span>
                 </span>
-                <User className="w-10 h-10 md:w-14 md:h-14 text-text-accent fill-text-accent" />
+                <User className="w-14 h-14 md:w-14 md:h-14 text-text-accent fill-text-accent" />
               </div>
-              <p
+              {/* <p
                 className={`text-sm text-text-primary/80 mt-1 ${
                   lang === "cn" ? "font-chinese-body" : ""
                 }`}
               >
-                {lang === "en" ? "1 life impacted" : "1个生命被影响"}
-              </p>
+                {lang === "en" ? "life impacted" : "生命被影响"}
+              </p> */}
             </div>
             <p
               className={`text-lg md:text-xl text-text-primary mt-4 ${
@@ -271,7 +271,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
       {/* Section 3: Donation Card */}
       <section className="w-full bg-bg-inverse">
-        <div className="max-w-3xl mx-auto flex flex-col gap-15 justify-center px-6 md:px-12 py-16 md:py-24">
+        <div className="max-w-3xl mx-auto flex flex-col gap-20 justify-center px-6 md:px-12 py-16 md:py-24">
           <motion.div ref={effectiveRef}>
             <DonationCard lang={lang} />
           </motion.div>
