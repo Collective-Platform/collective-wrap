@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { ChevronDown, TrendingUp } from "lucide-react";
+import { ChevronDown, TrendingUp, User } from "lucide-react";
 import { CountingNumber } from "./ui/shadcn-io/counting-number";
 import CircularProgress from "./ui/progress-09";
 import { CollectiveLogo } from "./CollectiveLogo";
@@ -97,14 +97,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               lang === "cn" ? "font-chinese-body" : ""
             }`}
           >
-            {lang === "en" ? "Give Now" : "奉献"}
+            {lang === "en" ? "Give Now" : "立即奉献"}
           </button>
         </div>
       </div>
 
-      {/* Big Title*/}
+      {/* Section: Big Title */}
       <section className="w-full bg-bg-page">
-        <div className="max-w-3xl mx-auto flex flex-col gap-8 justify-center px-6 md:px-12 py-16 md:py-24">
+        <div className="max-w-3xl mx-auto flex flex-col gap-6 justify-center px-6 md:px-12 py-16 md:py-24">
           <h1
             className={`text-5xl md:text-8xl leading-[1.1] text-text-accent tracking-wide text-left ${
               lang === "cn" ? "font-chinese-heading" : "font-gc uppercase"
@@ -122,18 +122,22 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <>建堂。植堂。宣教。</>
             )}
           </h1>
-          <p className="text-lg md:text-2xl text-text-accent max-w-2xl">
+          <p className="text-lg md:text-2xl text-text-primary max-w-2xl">
             {lang === "en"
               ? "Next year, we pay off our building loan. Join us to cross the finish line and fuel what's next: more churches, more missions, more lives reached."
               : "明年，我们将还清建堂贷款。加入我们一起跨越终点线，为未来注入动力：建立更多教会、拓展更多宣教、触动更多生命。"}
           </p>
+        </div>
+      </section>
 
-          {/* Progress Bar */}
+      {/* Section: Progress Bar */}
+      <section className="w-full bg-bg-page">
+        <div className="max-w-3xl mx-auto flex flex-col gap-6 justify-center items-center px-6 md:px-12 py-6 md:py-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col justify-center items-center gap-4 mx-auto w-full mt-2"
+            className="flex flex-col justify-center items-center gap-4 mx-auto w-full"
           >
             <div className="inline-flex w-full items-center justify-center gap-4">
               <CircularProgress
@@ -147,7 +151,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 className="stroke-text-primary/25"
               />
 
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-0.5">
                 <h2 className="text-5xl md:text-7xl text-text-accent font-anton">
                   RM{" "}
                   <CountingNumber
@@ -158,124 +162,102 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     className="text-text-accent tabular-nums"
                   />
                 </h2>
-                <p className="text-lg text-text-primary/60">
+                <p className="text-sm text-text-primary/60 mt-1">
                   raised of RM 1,500,000
                 </p>
               </div>
             </div>
-            <div className="flex items-center justify-center gap-2 mt-2">
-              <TrendingUp className="w-6 h-6 text-text-accent" />
-              <p
-                className={`text-sm text-text-primary/70 ${
-                  lang === "cn" ? "font-chinese-body" : "font-bold"
-                }`}
-              >
-                {lang === "en"
-                  ? "117 people have just pledged"
-                  : "已有117人认献"}
-              </p>
-            </div>
-            <button
-              onClick={scrollToDonationCard}
-              className={`text-center px-8 py-3 bg-btn-primary-bg text-btn-primary-text text-xl font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 cursor-pointer ${
-                lang === "cn" ? "font-chinese-body" : ""
-              }`}
-            >
-              {lang === "en" ? "Give Now" : "立即奉献"}
-            </button>
           </motion.div>
-        </div>
-      </section>
 
-      {/* Section 3: The Math */}
-      <section className="w-full bg-bg-inverse">
-        <div className="max-w-3xl mx-auto flex flex-col gap-8 justify-center px-6 md:px-12 py-16 md:py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col items-start text-left gap-4"
-          >
-            <p className="text-3xl md:text-4xl text-left font-anton text-text-accent leading-[1.2]">
-              300 people × RM 5,000 <br></br> = RM 1.5M
-            </p>
+          <div className="flex items-center justify-center gap-2">
+            <TrendingUp className="w-6 h-6 text-text-accent" />
             <p
-              className={`text-lg md:text-lg text-text-on-dark text-left ${
+              className={`text-lg text-text-primary ${
                 lang === "cn" ? "font-chinese-body" : ""
               }`}
             >
-              {lang === "en" ? (
-                <>
-                  Some give RM 500.
-                  <br />
-                  Some give RM 50,000.
-                  <br />
-                  Together, we average RM 5,000 per person.
-                  <br />
-                  That's how 300 people reach RM 1.5 million.
-                </>
-              ) : (
-                <>
-                  有人奉献 RM 500，有人奉献 RM 50,000。
-                  <br />
-                  我们平均每人 RM 5,000。
-                  <br />
-                  这就是 300 人如何达到 RM 150 万。
-                </>
-              )}
+              {lang === "en" ? "117 people have just pledged" : "已有117人认献"}
             </p>
-            <h1
-              className={`leading-[1.1] text-text-accent tracking-wide text-left ${
-                lang === "cn"
-                  ? "font-chinese-heading text-4xl md:text-6xl"
-                  : "font-gc uppercase text-4xl md:text-6xl"
-              }`}
-            >
-              {lang === "en" ? (
-                <>
-                  Every gift counts. <br></br>Every giver matters.
-                </>
-              ) : (
-                <>
-                  每一份奉献都重要。<br></br>每一位奉献者都重要。
-                </>
-              )}
-            </h1>
-          </motion.div>
+          </div>
 
-          <motion.div ref={effectiveRef}>
-            <DonationCard />
-          </motion.div>
+          <button
+            onClick={scrollToDonationCard}
+            className={`text-center px-8 py-3 bg-btn-primary-bg text-btn-primary-text text-lg font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 shadow-lg cursor-pointer ${
+              lang === "cn" ? "font-chinese-body" : ""
+            }`}
+          >
+            {lang === "en" ? "Give Now" : "立即奉献"}
+          </button>
         </div>
       </section>
 
-      {/* Last Year Stats Section */}
-      <section className="w-full bg-blue-950">
-        <div className="max-w-3xl mx-auto space-y-8 px-6 py-12">
+      {/* Section: Last Year Stats */}
+      <section className="w-full bg-bg-page">
+        <div className="max-w-3xl mx-auto flex flex-col gap-6 justify-center items-center px-6 md:px-12 py-13 md:py-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col items-start text-left gap-4 py-8"
+            className="flex flex-col items-center text-center"
           >
-            <h2 className="font-gc uppercase text-5xl md:text-6xl leading-[1.1] text-text-on-dark text-left tracking-wide">
-              LAST YEAR, TOGETHER WE:
-            </h2>
-            <div className="flex flex-col gap-2 text-lg md:text-xl text-text-on-dark">
-              <p className="font-bold text-3xl md:text-4xl">
-                <span className="text-lg font-normal md:text-xl">raised</span>{" "}
-                RM 1,082,842
+            <p
+              className={`capitalize text-lg md:text-2xl text-text-primary text-center ${
+                lang === "cn" ? "font-chinese-body" : ""
+              }`}
+            >
+              {lang === "en" ? "Last year, together we:" : "去年，我们一起："}
+            </p>
+            <div className="flex flex-col text-lg md:text-xl text-text-accent">
+              <h4 className="font-anton text-5xl md:text-7xl mt-4">
+                RM{" "}
+                <CountingNumber
+                  number={1082842}
+                  decimalPlaces={0}
+                  useThousandsSeparator={true}
+                  locale="en-MY"
+                  className="text-text-accent tabular-nums"
+                />
+              </h4>
+              <p
+                className={`text-sm text-text-primary/80 mt-1 ${
+                  lang === "cn" ? "font-chinese-body" : ""
+                }`}
+              >
+                {lang === "en" ? "raised" : "筹集"}
               </p>
-              <p className="font-bold text-3xl md:text-4xl">
-                <span className="text-lg font-normal md:text-xl">reached</span>{" "}
-                20,000+ lives
+              <h4 className="font-anton text-5xl md:text-7xl mt-8">
+                <CountingNumber
+                  number={20000}
+                  decimalPlaces={0}
+                  useThousandsSeparator={true}
+                  locale="en-MY"
+                  className="text-text-accent tabular-nums"
+                />
+                +
+              </h4>
+              <p
+                className={`text-sm text-text-primary/80 mt-1 ${
+                  lang === "cn" ? "font-chinese-body" : ""
+                }`}
+              >
+                {lang === "en" ? "lives reached" : "生命触及"}
               </p>
-              <p className="text-base md:text-lg text-text-on-dark">
-                RM50 = 1 life impacted
+              <div className="flex items-center justify-center gap-3 mt-8">
+                <span className="text-5xl md:text-7xl text-text-accent font-anton">
+                  RM50 =
+                </span>
+                <User className="w-10 h-10 md:w-14 md:h-14 text-text-accent fill-text-accent" />
+              </div>
+              <p
+                className={`text-sm text-text-primary/80 mt-1 ${
+                  lang === "cn" ? "font-chinese-body" : ""
+                }`}
+              >
+                {lang === "en" ? "1 life impacted" : "1个生命被影响"}
               </p>
             </div>
             <p
-              className={`text-lg md:text-xl text-text-on-dark mt-4 ${
+              className={`text-lg md:text-xl text-text-primary mt-4 ${
                 lang === "cn" ? "font-chinese-body" : ""
               }`}
             >
@@ -283,15 +265,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 ? "This year, we continue the mission."
                 : "今年，我们继续使命。"}
             </p>
+          </motion.div>
+        </div>
+      </section>
 
-            <button
-              onClick={scrollToDonationCard}
-              className={`px-8 py-3 bg-btn-primary-bg text-btn-primary-text text-lg font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 shadow-lg cursor-pointer ${
-                lang === "cn" ? "font-chinese-body" : ""
-              }`}
-            >
-              {lang === "en" ? "Give Now" : "奉献"}
-            </button>
+      {/* Section 3: Donation Card */}
+      <section className="w-full bg-bg-inverse">
+        <div className="max-w-3xl mx-auto flex flex-col gap-15 justify-center px-6 md:px-12 py-16 md:py-24">
+          <motion.div ref={effectiveRef}>
+            <DonationCard lang={lang} />
           </motion.div>
 
           {/* FAQ Section */}
@@ -306,7 +288,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             onClick={onScrollToWrap}
           >
             <p
-              className={`text-sm text-text-on-dark ${
+              className={`text-lg text-text-on-dark font-bold ${
                 lang === "cn" ? "font-chinese-body" : ""
               }`}
             >

@@ -6,6 +6,7 @@ interface DonationCardProps {
   currency?: string;
   onAmountChange?: (amount: number | null) => void;
   className?: string;
+  lang?: "en" | "cn";
 }
 
 const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
@@ -15,6 +16,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
       currency = "RM",
       onAmountChange,
       className,
+      lang = "en",
     },
     ref
   ) => {
@@ -66,8 +68,15 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
           className
         )}
       >
-        <p className="text-xl font-bold text-text-on-dark text-center text-balance">
-          I want to give to Future Funds
+        <p
+          className={cn(
+            "text-lg md:text-2xl text-text-on-dark tracking-wide  font-normal capitalize text-center text-balance",
+            lang === "cn" && "font-chinese-body"
+          )}
+        >
+          {lang === "en"
+            ? "I want to give to Future Funds"
+            : "我想奉献给未来基金"}
         </p>
 
         {/* Preset Amount Buttons */}
@@ -113,18 +122,26 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
             onClick={handleGiveClick}
             disabled={currentAmount === null || currentAmount <= 0}
             className={cn(
-              "text-center px-8 py-3 mt-6 bg-btn-primary-bg text-btn-primary-text text-xl font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 cursor-pointer",
+              "px-8 py-3 mt-6 bg-btn-primary-bg text-btn-primary-text text-lg font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 shadow-lg cursor-pointer",
               currentAmount !== null && currentAmount > 0
                 ? "bg-text-on-dark text-text-primary hover:bg-text-on-dark/90"
-                : "bg-btn-disabled-bg text-btn-disabled-text cursor-not-allowed"
+                : "bg-btn-disabled-bg text-btn-disabled-text cursor-not-allowed",
+              lang === "cn" && "font-chinese-body"
             )}
           >
-            Give Now
+            {lang === "en" ? "Give Now" : "立即奉献"}
           </button>
         </div>
 
-        <p className="text-center text-[12px] text-text-on-dark">
-          This fund is overseen by the Board of Elders.
+        <p
+          className={cn(
+            "text-center text-[12px] text-text-on-dark/80 mt-6",
+            lang === "cn" && "font-chinese-body"
+          )}
+        >
+          {lang === "en"
+            ? "This fund is overseen by the Board of Elders."
+            : "此基金由长老会监督。"}
         </p>
       </div>
     );

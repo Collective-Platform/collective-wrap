@@ -106,6 +106,7 @@
 
     /* Background Tokens */
     --bg-page: var(--color-cream-50);
+    --bg-story: var(--color-stone-900);
     --bg-inverse: var(--color-stone-900);
     --bg-highlight: var(--color-blue-700);
     --bg-card: var(--color-gray-950);
@@ -223,6 +224,7 @@
   
   /* Semantic Background Colors */
   --color-bg-page: hsl(var(--bg-page));
+  --color-bg-story: hsl(var(--bg-story));
   --color-bg-inverse: hsl(var(--bg-inverse));
   --color-bg-highlight: hsl(var(--bg-highlight));
   --color-bg-card: hsl(var(--bg-card));

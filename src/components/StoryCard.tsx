@@ -20,8 +20,8 @@ export const StoryCard: React.FC<StoryCardProps> = ({
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`text-xl md:text-2xl leading-7 font-bold text-text-primary text-balance ${
-            lang === "cn" ? "font-chinese-heading" : ""
+          className={`text-xl md:text-2xl leading-7 font-bold text-center text-text-on-dark text-balance ${
+            lang === "cn" ? "font-chinese-body" : ""
           }`}
         >
           {story.title?.[lang]}
@@ -31,7 +31,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className={`text-text-primary text-balance ${
+            className={`text-text-on-dark text-balance ${
               lang === "cn" ? "font-chinese-body" : ""
             }`}
             dangerouslySetInnerHTML={{ __html: story.subtitle[lang] }}
@@ -67,7 +67,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className={`text-xl text-text-primary mb-3 max-w-xl ${
+          className={`text-xl text-text-on-dark mb-3 max-w-xl ${
             lang === "cn" ? "font-chinese-body" : ""
           }`}
         >
@@ -77,7 +77,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-5xl md:text-7xl font-bold text-text-primary mb-6"
+          className="text-5xl md:text-7xl font-bold text-text-on-dark mb-6"
         >
           {story.value}
         </motion.p>

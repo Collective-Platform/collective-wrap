@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  motion,
-  AnimatePresence,
-} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { stories } from "@/data/storyData";
 import { StoryCard } from "./StoryCard";
 import { Pause, Play, X, ChevronLeft, ChevronRight } from "lucide-react";
@@ -15,7 +12,11 @@ interface StoryViewerProps {
   onGiveClick?: () => void;
 }
 
-export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveClick }) => {
+export const StoryViewer: React.FC<StoryViewerProps> = ({
+  lang,
+  onClose,
+  onGiveClick,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -46,13 +47,6 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
   }, []);
   const isLastStory = currentIndex === stories.length - 1;
   const isQuizStory = currentStory.type === "quiz";
-
-  // Auto-pause on quiz story
-  useEffect(() => {
-    if (isQuizStory) {
-      setQuizInteractionPause(true);
-    }
-  }, [isQuizStory, currentIndex]);
 
   // Keyboard controls
   useEffect(() => {
@@ -138,9 +132,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
   };
 
   return (
-    <motion.div
-      className="fixed inset-0 bg-bg-page z-50 w-full flex items-center justify-center"
-    >
+    <motion.div className="fixed inset-0 bg-bg-inverse z-50 w-full flex items-center justify-center">
       {/* Progress Bars */}
       <div className="absolute top-0 left-0 right-0 flex gap-1 p-4 z-10 pointer-events-none">
         {stories.map((_, index) => (
@@ -200,7 +192,11 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
               transition={{ duration: 0.3 }}
               className="w-full h-full relative"
             >
-              <StoryCard story={currentStory} lang={lang} onGiveClick={onGiveClick} />
+              <StoryCard
+                story={currentStory}
+                lang={lang}
+                onGiveClick={onGiveClick}
+              />
 
               {/* Tap Areas for Navigation - Available for all stories */}
               <div className="absolute inset-0 flex" onClick={handleTap}>
@@ -245,19 +241,13 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
         </div>
       </div>
 
-      {/* Story Counter */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-text-accent text-sm px-4 py-2 rounded-full pointer-events-none z-10">
-        {currentIndex + 1} / {stories.length}
-      </div>
-
       {/* Pause Indicator - Hide for quiz */}
       {isPaused && !isQuizStory && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-6 py-3 pointer-events-none z-10"
-        >
-        </motion.div>
+        ></motion.div>
       )}
     </motion.div>
   );

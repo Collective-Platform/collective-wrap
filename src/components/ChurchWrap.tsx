@@ -90,7 +90,7 @@ const ChurchWrap: React.FC<ChurchWrapProps> = ({ locale = "en" }) => {
             donationCardRef={donationCardRef}
           />
           {/* Add extra space below to make scrolling possible */}
-          <div className="h-screen" />
+          <div className="h-screen bg-bg-inverse" />
         </div>
       )}
 
