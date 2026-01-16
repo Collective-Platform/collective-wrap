@@ -46,7 +46,7 @@ const ChurchWrap: React.FC<ChurchWrapProps> = ({ locale = "en" }) => {
 
       // Trigger when the element is in the top 20% of the viewport
       // rect.top will be small/negative when scrolled up
-      if (rect.top <= windowHeight * 0.4 && rect.top > -rect.height) {
+      if (rect.top <= windowHeight * 0.5 && rect.top > -rect.height) {
         setShowStories(true);
         window.scrollTo(0, 0);
       }
