@@ -73,7 +73,8 @@ export const stories: Story[] = [
   {
     id: "video-1",
     type: "video",
-    videoSrc: "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/people-walking.mp4",
+    videoSrc:
+      "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/updated/walking-in-church.mp4",
   },
 
   {
@@ -105,7 +106,8 @@ export const stories: Story[] = [
   {
     id: "video-2",
     type: "video",
-    videoSrc: "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/collective-global.mp4",
+    videoSrc:
+      "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/updated/collective-global.mp4",
   },
 
   {
@@ -124,7 +126,8 @@ export const stories: Story[] = [
   {
     id: "video-3",
     type: "video",
-    videoSrc: "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/hall-makeover.mp4",
+    videoSrc:
+      "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/updated/hall-makeover.mp4",
   },
 
   {
@@ -162,13 +165,15 @@ export const stories: Story[] = [
   {
     id: "video-5",
     type: "video",
-    videoSrc: "/videos/autrui.mp4",
+    videoSrc:
+      "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/updated/autrui.mp4",
   },
 
   {
     id: "video-6-walking to school",
     type: "video",
-    videoSrc: "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/walking.mp4",
+    videoSrc:
+      "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/updated/walking-to-school.mp4",
   },
 
   {
@@ -187,7 +192,8 @@ export const stories: Story[] = [
   {
     id: "video-6",
     type: "video",
-    videoSrc: "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/starfish.mp4",
+    videoSrc:
+      "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/updated/starfish-hostel.mp4",
   },
 
   {
