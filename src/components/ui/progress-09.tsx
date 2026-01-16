@@ -25,7 +25,7 @@ const CircularProgress = ({
   labelClassName,
   showLabel,
   shape = "round",
-  size = 100,
+  size = 80,
   strokeWidth,
   circleStrokeWidth = 10,
   progressStrokeWidth = 10,

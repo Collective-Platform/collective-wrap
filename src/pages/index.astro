@@ -8,6 +8,13 @@ const locale = Astro.currentLocale ?? "en";
 <html lang={locale === "cn" ? "zh-CN" : "en"}>
   <head>
     <meta charset="utf-8" />
+    <link
+      rel="preload"
+      href="/fonts/gc-grind.ttf"
+      as="font"
+      type="font/truetype"
+      crossorigin
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Future 2026</title>

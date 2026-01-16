@@ -9,7 +9,8 @@ export interface Story {
     | "multi-stat"
     | "2025-pledge-stat"
     | "appreciation"
-    | "medal";
+    | "medal"
+    | "video";
   category?: { en: string; cn: string };
   title?: { en: string; cn: string };
   subtitle?: { en: string; cn: string };
@@ -18,6 +19,8 @@ export interface Story {
   description?: { en: string; cn: string };
   image?: string;
   backgroundImage?: string;
+  videoSrc?: string;
+  muxPlaybackId?: string;
   bars?: {
     label: { en: string; cn: string };
     value: string;
@@ -68,6 +71,12 @@ export const stories: Story[] = [
   },
 
   {
+    id: "video-1",
+    type: "video",
+    muxPlaybackId: "8Wa2fciG02yM33zaIOvI55RZL2C4PyNj2024r502UBlkaQ",
+  },
+
+  {
     id: "hero-4",
     type: "hero",
     title: {
@@ -78,6 +87,25 @@ export const stories: Story[] = [
       en: "They accepted Christ.",
       cn: "他们决志信主了。",
     },
+  },
+
+  {
+    id: "hero-churches",
+    type: "hero",
+    title: {
+      en: "Your giving didn't just build one church.",
+      cn: "你的奉献不仅仅是建立了一间教会。",
+    },
+    subtitle: {
+      en: "It supported 17 churches across 7 countries.",
+      cn: "它支持了遍布 7 个国家的 17 间教会。",
+    },
+  },
+
+  {
+    id: "video-2",
+    type: "video",
+    muxPlaybackId: "tN4nwFb7X1W3lCKkaw70017YLvn6mitdqHZ8iAvAiNCY",
   },
 
   {
@@ -94,6 +122,12 @@ export const stories: Story[] = [
   },
 
   {
+    id: "video-3",
+    type: "video",
+    muxPlaybackId: "01sXUoS6cG01ZBifFxaC86QPWLousk7H01uFBxx8dqddjU",
+  },
+
+  {
     id: "hero-6",
     type: "hero",
     title: {
@@ -106,6 +140,12 @@ export const stories: Story[] = [
     },
   },
 
+  // {
+  //   id: "video-4",
+  //   type: "video",
+  //   videoSrc: "/videos/smiling.mp4",
+  // },
+
   {
     id: "hero-7",
     type: "hero",
@@ -117,6 +157,12 @@ export const stories: Story[] = [
       en: "331 babies are vaccinated against serious disease threats.",
       cn: "让 331 名婴儿接种了疫苗，免受严重疾病的威胁。",
     },
+  },
+
+  {
+    id: "video-5",
+    type: "video",
+    muxPlaybackId: "JEorqEGPJNSyTPQBGp01HAzSpHDd1Z6LyBZzqCb7IfP00",
   },
 
   {
@@ -133,6 +179,12 @@ export const stories: Story[] = [
   },
 
   {
+    id: "video-6",
+    type: "video",
+    muxPlaybackId: "uJiu2CUgC0199qyYF6pojaDS02AvXP13j8XKUUdYaFHaM",
+  },
+
+  {
     id: "hero-9",
     type: "hero",
     title: {
@@ -142,6 +194,19 @@ export const stories: Story[] = [
     subtitle: {
       en: "But you made it all happen.",
       cn: "但这一切之所以发生，都是因为你。",
+    },
+  },
+
+  {
+    id: "hero-10",
+    type: "hero",
+    title: {
+      en: "No single person did this.",
+      cn: "这不是一个人完成的。",
+    },
+    subtitle: {
+      en: "It took 432 of us.",
+      cn: "这是我们 432 人共同努力的成果。",
     },
   },
 

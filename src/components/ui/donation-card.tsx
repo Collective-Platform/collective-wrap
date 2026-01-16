@@ -117,13 +117,15 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
           </div>
         </div>
 
+        <p>This fund is overseen by the Board of Elders.</p>
+
         {/* Give Button */}
         <button
           type="button"
           onClick={handleGiveClick}
           disabled={currentAmount === null || currentAmount <= 0}
           className={cn(
-            "w-full py-4 rounded-full text-sm font-gc tracking-wide uppercase transition-all",
+            "w-full py-4 rounded-full text-sm tracking-wide uppercase transition-all",
             currentAmount !== null && currentAmount > 0
               ? "bg-white text-black hover:bg-neutral-200"
               : "bg-neutral-800 text-neutral-500 cursor-not-allowed"

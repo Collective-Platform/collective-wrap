@@ -6,6 +6,7 @@ import CircularProgress from "./ui/progress-09";
 import { CollectiveLogo } from "./CollectiveLogo";
 import { DonationCard } from "./ui/donation-card";
 import { FAQSection } from "./FAQSection";
+import MuxPlayer from "@mux/mux-player-react";
 
 interface LandingPageProps {
   lang: "en" | "cn";
@@ -52,33 +53,37 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   }, [raised, percentage]);
 
   const scrollToDonationCard = () => {
-    effectiveRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    effectiveRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
   };
 
   return (
     <div className="flex flex-col min-h-[200vh] items-center bg-[hsl(var(--background))]">
       {/* Video Background */}
       <div className="relative w-full aspect-video h-screen overflow-hidden">
-        <video
-          autoPlay
-          muted
+        <MuxPlayer
+          playbackId="b5RcNqdRxMubPN8yKS1znYYFKM8dV6q9OEGEw1aAdWs"
+          autoPlay="muted"
           loop
+          muted
           playsInline
-          preload="auto"
-          poster="/video/running-poster.webp"
-          className="absolute inset-0 w-full h-screen object-cover pointer-events-none"
-          onContextMenu={(e) => e.preventDefault()}
-        >
-          <source src="/video/running.webm" type="video/webm" />
-          <source src="/video/running-compressed.mp4" type="video/mp4" />
-        </video>
+          className="absolute inset-0 w-full h-full pointer-events-none [&::part(video)]:object-cover"
+          style={{
+            "--controls": "none",
+            "--media-object-fit": "cover",
+            "--media-object-position": "center",
+          }}
+          streamType="on-demand"
+        />
         {/* Collective Logo */}
         <div className="absolute top-6 left-1/2 -translate-x-1/2 z-20">
           <CollectiveLogo href="/" className="text-[hsl(var(--text-title))]" />
         </div>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <h1
-            className={`text-9xl md:text-[14rem] text-[hsl(var(--text-title))] drop-shadow-lg ${
+            className={`text-9xl md:text-[14rem] text-[hsl(var(--text-title))] drop-shadow-lg text-center ${
               lang === "cn" ? "font-chinese-heading" : "font-gc"
             }`}
           >
@@ -100,7 +105,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
       {/* Big Title*/}
       <section className="w-full max-w-5xl mx-auto flex flex-col justify-center px-6 md:px-12 py-16 md:py-24">
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-gc font-bold text-[hsl(var(--text-title))] tracking-wide text-left capitalize">
+        <h1
+          className={`text-6xl md:text-8xl lg:text-9xl  text-[hsl(var(--text-title))] tracking-wide text-left capitalize ${
+            lang === "cn" ? "font-chinese-heading" : "font-gc"
+          }`}
+        >
           {lang === "en" ? (
             <>
               Building.
@@ -110,17 +119,23 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               Missions.
             </>
           ) : (
-            "你的未来从这里开始。"
+            <>
+              建堂。
+              <br />
+              植堂。
+              <br />
+              宣教。
+            </>
           )}
         </h1>
         <p className="text-base md:text-lg text-[hsl(var(--text-subtitle))] max-w-2xl">
-          Next year, we pay off our building loan. Join us to cross the finish
-          line and fuel what's next: more churches, more missions, more lives
-          reached.
+          {lang === "en"
+            ? "Next year, we pay off our building loan. Join us to cross the finish line and fuel what's next: more churches, more missions, more lives reached."
+            : "明年，我们将还清建堂贷款。加入我们一起跨越终点线，为未来注入动力：建立更多教会、拓展更多宣教、触动更多生命。"}
         </p>
       </section>
 
-      <div className="md:max-w-2xl w-full space-y-8 px-6 py-12">
+      <div className="md:max-w-2xl w-full space-y-8 px-6 py-12 bg-cyan-200">
         {/* Progress Bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -128,11 +143,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           transition={{ duration: 0.8, delay: 0.2 }}
           className="flex flex-col items-center gap-4"
         >
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center">
             <CircularProgress
               value={displayPercentage}
-              size={140}
-              strokeWidth={16}
+              size={100}
+              strokeWidth={12}
               showLabel
               labelClassName="text-xl font-bold text-[hsl(var(--text-subtitle))]"
               renderLabel={(progress) => `${progress.toFixed(0)}%`}
@@ -154,19 +169,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <p className="text-xl text-[hsl(var(--text-subtitle))]/60">
                 raised of RM 1,500,000
               </p>
-              <div className="flex items-left justify-center gap-2">
-                <TrendingUp className="w-4 h-4 text-[hsl(var(--text-title))]" />
-                <p
-                  className={`text-sm text-[hsl(var(--card-subtitle))]/70 ${
-                    lang === "cn" ? "font-chinese-body" : ""
-                  }`}
-                >
-                  {lang === "en"
-                    ? "117 people have just pledged"
-                    : "已有117人认献"}
-                </p>
-              </div>
             </div>
+          </div>
+          <div className="flex items-left justify-center gap-2">
+            <TrendingUp className="w-4 h-4 text-[hsl(var(--text-title))]" />
+            <p
+              className={`text-sm text-[hsl(var(--card-subtitle))]/70 ${
+                lang === "cn" ? "font-chinese-body" : ""
+              }`}
+            >
+              {lang === "en" ? "117 people have just pledged" : "已有117人认献"}
+            </p>
           </div>
           <button
             onClick={scrollToDonationCard}
@@ -224,6 +237,39 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
         <motion.div ref={effectiveRef}>
           <DonationCard />
+        </motion.div>
+
+        {/* Last Year Stats Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex flex-col items-center text-center gap-4 py-8"
+        >
+          <h2 className="text-2xl md:text-3xl font-gc text-[hsl(var(--text-title))] tracking-wide">
+            LAST YEAR, TOGETHER WE:
+          </h2>
+          <div className="w-48 h-[2px] bg-[hsl(var(--text-title))]" />
+          <div className="flex flex-col gap-2 text-lg md:text-xl text-[hsl(var(--text-subtitle))]">
+            <p className="font-anton text-3xl md:text-4xl text-[hsl(var(--text-title))]">
+              RM 1,082,842 raised
+            </p>
+            <p className="font-anton text-3xl md:text-4xl text-[hsl(var(--text-title))]">
+              20,000+ lives reached
+            </p>
+            <p className="text-base md:text-lg text-[hsl(var(--text-subtitle))]">
+              RM50 = 1 life impacted
+            </p>
+          </div>
+          <p
+            className={`text-lg md:text-xl text-[hsl(var(--text-subtitle))] mt-4 ${
+              lang === "cn" ? "font-chinese-body" : ""
+            }`}
+          >
+            {lang === "en"
+              ? "This year, we continue the mission."
+              : "今年，我们继续使命。"}
+          </p>
         </motion.div>
 
         {/* FAQ Section */}

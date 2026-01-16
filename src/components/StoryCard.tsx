@@ -1,5 +1,6 @@
 import type { Story } from "@/data/storyData";
 import { motion } from "framer-motion";
+import MuxPlayer from "@mux/mux-player-react";
 
 interface StoryCardProps {
   story: Story;
@@ -8,7 +9,11 @@ interface StoryCardProps {
   onGiveClick?: () => void;
 }
 
-export const StoryCard: React.FC<StoryCardProps> = ({ story, lang, onGiveClick }) => {
+export const StoryCard: React.FC<StoryCardProps> = ({
+  story,
+  lang,
+  onGiveClick,
+}) => {
   // Hero Type
   if (story.type === "hero") {
     return (
@@ -33,6 +38,25 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story, lang, onGiveClick }
             dangerouslySetInnerHTML={{ __html: story.subtitle[lang] }}
           />
         )}
+      </div>
+    );
+  }
+
+  // Video Type
+  if (story.type === "video" && story.muxPlaybackId) {
+    return (
+      <div className="w-full h-dvh flex items-center justify-center bg-black">
+        <MuxPlayer
+          playbackId={story.muxPlaybackId}
+          autoPlay="muted"
+          muted
+          loop
+          playsInline
+          className="w-full h-full [&::part(video)]:object-cover"
+          style={{ "--controls": "none", "--media-object-fit": "cover", "--media-object-position": "center" }}
+          streamType="on-demand"
+          preload="auto"
+        />
       </div>
     );
   }
