@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { track } from "@vercel/analytics";
+import { track } from "@vercel/analytics/react";
 import { Globe } from "lucide-react";
 import { StoryViewer } from "./StoryViewer";
 import { LandingPage } from "./LandingCard";

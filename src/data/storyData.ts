@@ -143,7 +143,8 @@ export const stories: Story[] = [
   {
     id: "video-4",
     type: "video",
-    videoSrc: "/videos/smiling.mp4",
+    videoSrc:
+      "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/updated/dental-compressed.mp4",
   },
 
   {

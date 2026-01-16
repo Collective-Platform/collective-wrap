@@ -1,5 +1,5 @@
 import type { Story } from "@/data/storyData";
-import { track } from "@vercel/analytics";
+import { track } from "@vercel/analytics/react";
 import { motion } from "framer-motion";
 import { CollectiveLogo } from "./CollectiveLogo";
 

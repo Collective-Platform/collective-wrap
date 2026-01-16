@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { track } from "@vercel/analytics";
+import { track } from "@vercel/analytics/react";
 import { motion } from "framer-motion";
 import { ChevronDown, TrendingUp, User } from "lucide-react";
 import { CountingNumber } from "./ui/shadcn-io/counting-number";
