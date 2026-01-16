@@ -23,6 +23,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 }) => {
   const localDonationCardRef = useRef<HTMLDivElement>(null);
   const effectiveRef = donationCardRef || localDonationCardRef;
+  const videoRef = useRef<HTMLVideoElement>(null);
   const totalTarget = 1500000;
   const raised = 1269910;
   const percentage = (raised / totalTarget) * 100;
@@ -35,6 +36,26 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
     return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const tryPlay = () => {
+      if (video.paused) {
+        video.play().catch(() => {});
+      }
+    };
+
+    video.play().catch(() => {
+      const events = ["click", "touchstart", "keydown", "scroll"];
+      const handleInteraction = () => {
+        tryPlay();
+        events.forEach((e) => document.removeEventListener(e, handleInteraction));
+      };
+      events.forEach((e) => document.addEventListener(e, handleInteraction, { once: false, passive: true }));
+    });
   }, []);
 
   useEffect(() => {
@@ -74,13 +95,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* Video Background */}
       <div className="relative w-full aspect-video h-screen overflow-hidden">
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
           crossOrigin="anonymous"
           preload="auto"
-          src="/video/running-compressed.mp4"
+          src="https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/running-compressed.mp4"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         />
         {/* Collective Logo */}
