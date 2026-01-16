@@ -12,6 +12,7 @@ const ChurchWrap: React.FC<ChurchWrapProps> = ({ locale = "en" }) => {
   const [showStories, setShowStories] = useState(false);
   const landingRef = useRef<HTMLDivElement>(null);
   const donationCardRef = useRef<HTMLDivElement>(null);
+  const scrollTriggerRef = useRef<HTMLDivElement>(null);
 
   const switchLanguageUrl = language === "en" ? "/cn/" : "/";
 
@@ -35,17 +36,19 @@ const ChurchWrap: React.FC<ChurchWrapProps> = ({ locale = "en" }) => {
 
   // Detect scroll to trigger story viewer
   useEffect(() => {
-    if (showStories) return; // Don't listen if stories already open
+    if (showStories) return;
 
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
+      if (!scrollTriggerRef.current) return;
 
-      // Trigger stories when user scrolls within 100px of the bottom of the page
-      if (scrollPosition + windowHeight >= documentHeight - 100) {
+      const rect = scrollTriggerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Trigger when the element is in the top 20% of the viewport
+      // rect.top will be small/negative when scrolled up
+      if (rect.top <= windowHeight * 0.4 && rect.top > -rect.height) {
         setShowStories(true);
-        window.scrollTo(0, 0); // Reset scroll position
+        window.scrollTo(0, 0);
       }
     };
 
@@ -88,6 +91,7 @@ const ChurchWrap: React.FC<ChurchWrapProps> = ({ locale = "en" }) => {
             lang={language}
             onScrollToWrap={handleScrollToWrap}
             donationCardRef={donationCardRef}
+            scrollTriggerRef={scrollTriggerRef}
           />
           {/* Add extra space below to make scrolling possible */}
           <div className="h-screen bg-bg-inverse" />

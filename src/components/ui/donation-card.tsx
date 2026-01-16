@@ -74,9 +74,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
             lang === "cn" && "font-chinese-body"
           )}
         >
-          {lang === "en"
-            ? "I want to give to Future Fund"
-            : "我想奉献给未来基金"}
+          {lang === "en" ? "I would love to give" : "我想奉献"}
         </p>
 
         {/* Preset Amount Buttons */}

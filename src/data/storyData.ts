@@ -135,7 +135,7 @@ export const stories: Story[] = [
       cn: "你资助了 1,085 次拔牙手术。",
     },
     subtitle: {
-      en: "No IC. No subsidised care. For 454 of them, there was no second option.",
+      en: "No identification. No subsidised care. <br/> For 454 of them, there was no second option.",
       cn: "没有身份证，没有津贴医疗。对其中的 454 人来说，这是唯一的选择。",
     },
   },
@@ -150,7 +150,7 @@ export const stories: Story[] = [
     id: "hero-7",
     type: "hero",
     title: {
-      en: "You subsidised doctors visits for 4,371 refugees.",
+      en: "You subsidised doctors' visits <br/> for 4,371 refugees.",
       cn: "你资助了 4,371 位难民看诊。",
     },
     subtitle: {
@@ -167,13 +167,6 @@ export const stories: Story[] = [
   },
 
   {
-    id: "video-6-walking to school",
-    type: "video",
-    videoSrc:
-      "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/updated/walking-to-school.mp4",
-  },
-
-  {
     id: "hero-8",
     type: "hero",
     title: {
@@ -187,10 +180,10 @@ export const stories: Story[] = [
   },
 
   {
-    id: "video-6",
+    id: "video-6-walking to school",
     type: "video",
     videoSrc:
-      "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/updated/starfish-hostel.mp4",
+      "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/updated/walking-to-school.mp4",
   },
 
   {

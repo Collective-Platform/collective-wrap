@@ -46,9 +46,8 @@ export const StoryCard: React.FC<StoryCardProps> = ({
           className={`text-xl md:text-2xl leading-7 font-bold text-center text-text-on-dark text-balance ${
             lang === "cn" ? "font-chinese-body" : ""
           }`}
-        >
-          {story.title?.[lang]}
-        </motion.h2>
+          dangerouslySetInnerHTML={{ __html: story.title?.[lang] ?? "" }}
+        />
         {story.subtitle && (
           <motion.p
             initial={{ opacity: 0, y: 20 }}

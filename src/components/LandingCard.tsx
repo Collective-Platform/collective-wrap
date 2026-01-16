@@ -11,12 +11,14 @@ interface LandingPageProps {
   lang: "en" | "cn";
   onScrollToWrap: () => void;
   donationCardRef?: React.RefObject<HTMLDivElement | null>;
+  scrollTriggerRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({
   lang,
   onScrollToWrap,
   donationCardRef,
+  scrollTriggerRef,
 }) => {
   const localDonationCardRef = useRef<HTMLDivElement>(null);
   const effectiveRef = donationCardRef || localDonationCardRef;
@@ -25,6 +27,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   const percentage = (raised / totalTarget) * 100;
   const [displayRaised, setDisplayRaised] = useState(0);
   const [displayPercentage, setDisplayPercentage] = useState(0);
+  const [isMd, setIsMd] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => setIsMd(window.innerWidth >= 768);
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   useEffect(() => {
     // Small delay before animation starts
@@ -141,17 +151,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           >
             <CircularProgress
               value={displayPercentage}
-              size={100}
-              strokeWidth={10}
+              size={isMd ? 150 : 100}
+              strokeWidth={isMd ? 14 : 10}
               showLabel
-              labelClassName="text-xl font-bold text-text-accent"
+              labelClassName="text-xl md:text-4xl font-bold text-text-accent"
               renderLabel={(progress) => `${progress.toFixed(0)}%`}
               progressClassName="stroke-text-accent"
               className="stroke-text-primary/25"
             />
-            <div className="flex w-full items-center justify-center text-center gap-4">
+            <div className="flex w-full items-center justify-center text-center gap-4 mt-4">
               <div className="flex flex-col gap-0.5">
-                <h2 className="text-5xl md:text-7xl text-text-accent font-anton">
+                <h2 className="text-5xl md:text-8xl text-text-accent font-anton">
                   RM{" "}
                   <CountingNumber
                     number={displayRaised}
@@ -282,6 +292,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
           {/* Scroll Prompt */}
           <motion.div
+            ref={scrollTriggerRef}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9 }}
