@@ -80,7 +80,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           playsInline
           crossOrigin="anonymous"
           preload="auto"
-          src="https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/running-compressed.mp4"
+          src="/video/running-compressed.mp4"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         />
         {/* Collective Logo */}

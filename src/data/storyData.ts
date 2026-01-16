@@ -135,7 +135,7 @@ export const stories: Story[] = [
       cn: "你资助了 1,085 次拔牙手术。",
     },
     subtitle: {
-      en: "No identification. No subsidised care. <br/> For 454 of them, this was the only option",
+      en: "No identification. No subsidised care. <br/> For 454 of them, this was the only option.",
       cn: "没有身份证，没有津贴医疗。对其中的 454 人来说，这是唯一的选择。",
     },
   },
