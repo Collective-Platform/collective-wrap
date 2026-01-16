@@ -177,7 +177,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   />
                 </h2>
                 <p className="text-sm text-text-primary/60 mt-1">
-                  raised of RM 1,500,000
+                  {lang === "en"
+                    ? "raised of RM 1,500,000"
+                    : "已筹 RM 1,500,000"}
                 </p>
               </div>
             </div>
