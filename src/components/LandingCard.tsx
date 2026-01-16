@@ -6,7 +6,7 @@ import CircularProgress from "./ui/progress-09";
 import { CollectiveLogo } from "./CollectiveLogo";
 import { DonationCard } from "./ui/donation-card";
 import { FAQSection } from "./FAQSection";
-import MuxPlayer from "@mux/mux-player-react";
+
 
 interface LandingPageProps {
   lang: "en" | "cn";
@@ -63,20 +63,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     <div className="flex flex-col min-h-[200vh] items-center bg-[hsl(var(--background))]">
       {/* Video Background */}
       <div className="relative w-full aspect-video h-screen overflow-hidden">
-        <MuxPlayer
-          playbackId="b5RcNqdRxMubPN8yKS1znYYFKM8dV6q9OEGEw1aAdWs"
-          autoPlay="muted"
+        <video
+          autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full pointer-events-none [&::part(video)]:object-cover"
-          style={{
-            "--controls": "none",
-            "--media-object-fit": "cover",
-            "--media-object-position": "center",
-          }}
-          streamType="on-demand"
-        />
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        >
+          <source src="/video/running-compressed.mp4" type="video/mp4" />
+        </video>
         {/* Collective Logo */}
         <div className="absolute top-6 left-1/2 -translate-x-1/2 z-20">
           <CollectiveLogo href="/" className="text-[hsl(var(--text-title))]" />
