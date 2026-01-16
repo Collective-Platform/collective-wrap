@@ -73,6 +73,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
           muted
           loop
           playsInline
+          crossOrigin="anonymous"
           preload="auto"
           src={story.videoSrc}
           className="h-full max-h-dvh aspect-9/16 object-cover"
