@@ -19,8 +19,8 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
       transition={{ duration: 0.8, delay: 0.7 }}
     >
       <h3
-        className={`text-5xl md:text-8xl leading-[1.1] uppercase font-gc text-text-on-dark mb-4 tracking-wide ${
-          lang === "cn" ? "font-chinese-heading" : ""
+        className={`text-5xl md:text-8xl leading-[1.1]  text-text-on-dark mb-4 tracking-wide ${
+          lang === "cn" ? "font-chinese-heading" : "font-gc uppercase"
         }`}
       >
         {lang === "en" ? "FAQ" : "常见问题"}
@@ -30,9 +30,10 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
           <AccordionTrigger
             className={`text-left 
               text-lg md:text-2xl 
-              font-normal
               text-text-on-dark hover:no-underline hover:text-text-accent ${
-                lang === "cn" ? "font-chinese-body" : ""
+                lang === "cn"
+                  ? "font-chinese-body tracking-widest"
+                  : "font-normal"
               }`}
           >
             {lang === "en"
@@ -41,7 +42,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
           </AccordionTrigger>
           <AccordionContent
             className={`text-sm text-text-on-dark/70 leading-normal ${
-              lang === "cn" ? "font-chinese-body" : ""
+              lang === "cn" ? "font-chinese-body tracking-widest" : ""
             }`}
           >
             {lang === "en"
@@ -54,7 +55,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
             className={`text-left 
               text-lg md:text-2xl 
               font-normal text-text-on-dark hover:no-underline hover:text-text-accent ${
-                lang === "cn" ? "font-chinese-body" : ""
+                lang === "cn" ? "font-chinese-body tracking-widest" : ""
               }`}
           >
             {lang === "en"
@@ -63,7 +64,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
           </AccordionTrigger>
           <AccordionContent
             className={`text-sm text-text-on-dark/70 leading-normal ${
-              lang === "cn" ? "font-chinese-body" : ""
+              lang === "cn" ? "font-chinese-body tracking-widest" : ""
             }`}
           >
             {lang === "en"
@@ -75,7 +76,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
           <AccordionTrigger
             className={`text-left text-text-on-dark text-lg md:text-2xl 
               font-normal hover:no-underline hover:text-text-accent ${
-                lang === "cn" ? "font-chinese-body" : ""
+                lang === "cn" ? "font-chinese-body tracking-widest" : ""
               }`}
           >
             {lang === "en"
@@ -84,7 +85,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
           </AccordionTrigger>
           <AccordionContent
             className={`text-sm text-text-on-dark/70 leading-normal ${
-              lang === "cn" ? "font-chinese-body" : ""
+              lang === "cn" ? "font-chinese-body tracking-widest" : ""
             }`}
           >
             {lang === "en"

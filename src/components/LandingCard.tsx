@@ -130,13 +130,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <br />
                 Church Planting.
                 <br />
-                Missions.
+                Mission.
               </>
             ) : (
               <>建堂。植堂。宣教。</>
             )}
           </h1>
-          <p className="text-lg md:text-2xl text-text-primary max-w-2xl">
+          <p
+            className={`text-lg md:text-2xl text-text-primary max-w-2xl ${
+              lang === "cn" ? "font-chinese-body tracking-widest" : ""
+            }`}
+          >
             {lang === "en"
               ? "Next year, we pay off our building loan. Join us to cross the finish line and fuel what's next: more churches, more missions, more lives reached."
               : "明年，我们将还清建堂贷款。加入我们一起跨越终点线，为未来注入动力：建立更多教会、拓展更多宣教、触动更多生命。"}

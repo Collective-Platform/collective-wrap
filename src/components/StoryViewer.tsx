@@ -20,11 +20,11 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [quizInteractionPause, setQuizInteractionPause] = useState(false);
   const preloadedVideosRef = useRef<HTMLVideoElement[]>([]);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   const currentStory = stories[currentIndex];
+  const isLastStory = currentIndex === stories.length - 1;
 
   useEffect(() => {
     videoStories.forEach((story) => {
@@ -46,8 +46,6 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({
       preloadedVideosRef.current = [];
     };
   }, []);
-  const isLastStory = currentIndex === stories.length - 1;
-  const isQuizStory = currentStory.type === "quiz";
 
   // Keyboard controls
   useEffect(() => {
@@ -73,24 +71,26 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({
 
   // Auto-advance progress
   useEffect(() => {
-    if (isPaused || quizInteractionPause) return;
+    if (isPaused) return;
+
+    // Video stories: 4 seconds (100 * 40ms), others: 5 seconds (100 * 50ms)
+    const intervalMs = currentStory.type === "video" ? 35 : 50;
 
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           if (!isLastStory) {
             setCurrentIndex((i) => i + 1);
-            setQuizInteractionPause(false);
             return 0;
           }
           return 100;
         }
         return prev + 1;
       });
-    }, 50); // 5 seconds per story (100 * 50ms = 5000ms)
+    }, intervalMs);
 
     return () => clearInterval(interval);
-  }, [currentIndex, isPaused, quizInteractionPause, isLastStory]);
+  }, [currentIndex, isPaused, isLastStory, currentStory.type]);
 
   const handleNext = () => {
     if (currentIndex < stories.length - 1) {
@@ -109,12 +109,8 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({
   const handleTap = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
 
-    // Don't navigate if clicking on buttons, links, or quiz options
-    if (
-      target.closest("button:not([data-nav-area])") ||
-      target.closest("a") ||
-      target.closest("[data-quiz-option]")
-    ) {
+    // Don't navigate if clicking on buttons or links
+    if (target.closest("button:not([data-nav-area])") || target.closest("a")) {
       return;
     }
 
@@ -283,8 +279,8 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({
         </div>
       </div>
 
-      {/* Pause Indicator - Hide for quiz */}
-      {isPaused && !isQuizStory && (
+      {/* Pause Indicator */}
+      {isPaused && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

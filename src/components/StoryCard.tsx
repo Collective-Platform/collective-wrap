@@ -23,11 +23,11 @@ export const StoryCard: React.FC<StoryCardProps> = ({
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-9xl md:text-9xl font-gc uppercase tracking-wide"
+          className="text-8xl md:text-8xl font-gc uppercase tracking-wide"
         >
           <span className="text-text-on-dark">2025</span>
           <br />
-          <span className="text-text-on-dark">WRAP</span>
+          <span className="text-text-on-dark">WRAPPED</span>
         </motion.h1>
         <CollectiveLogo
           href="/"
@@ -45,7 +45,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className={`text-xl md:text-2xl leading-7 font-bold text-center text-text-on-dark text-balance ${
-            lang === "cn" ? "font-chinese-body" : ""
+            lang === "cn" ? "font-chinese-body tracking-wide" : ""
           }`}
           dangerouslySetInnerHTML={{ __html: story.title?.[lang] ?? "" }}
         />
@@ -55,7 +55,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className={`text-text-on-dark text-balance ${
-              lang === "cn" ? "font-chinese-body" : ""
+              lang === "cn" ? "font-chinese-body tracking-wider" : ""
             }`}
             dangerouslySetInnerHTML={{ __html: story.subtitle[lang] }}
           />
@@ -109,7 +109,10 @@ export const StoryCard: React.FC<StoryCardProps> = ({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
           onClick={() => {
-            track("Story CTA Clicked", { lang, label: story.label?.[lang] ?? "" });
+            track("Story CTA Clicked", {
+              lang,
+              label: story.label?.[lang] ?? "",
+            });
             onGiveClick?.();
           }}
           className={`px-12 py-2 bg-btn-primary-bg text-btn-primary-text text-xl font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 relative z-10 cursor-pointer ${
