@@ -1,5 +1,6 @@
 import type { Story } from "@/data/storyData";
 import { motion } from "framer-motion";
+import { CollectiveLogo } from "./CollectiveLogo";
 
 interface StoryCardProps {
   story: Story;
@@ -13,6 +14,28 @@ export const StoryCard: React.FC<StoryCardProps> = ({
   lang,
   onGiveClick,
 }) => {
+  // Wrap Title Type
+  if (story.type === "wrap-title") {
+    return (
+      <div className="w-full h-dvh flex flex-col items-center justify-center px-8 text-center">
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="text-9xl md:text-9xl font-gc uppercase tracking-wide"
+        >
+          <span className="text-text-on-dark">2025</span>
+          <br />
+          <span className="text-text-on-dark">WRAP</span>
+        </motion.h1>
+        <CollectiveLogo
+          href="/"
+          className="absolute bottom-4 text-text-on-dark/70"
+        />
+      </div>
+    );
+  }
+
   // Hero Type
   if (story.type === "hero") {
     return (

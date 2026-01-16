@@ -23,7 +23,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
           lang === "cn" ? "font-chinese-heading" : ""
         }`}
       >
-        {lang === "en" ? "Frequently Asked Questions" : "常见问题"}
+        {lang === "en" ? "FAQ" : "常见问题"}
       </h3>
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1" className="border-text-on-dark">
@@ -36,7 +36,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
               }`}
           >
             {lang === "en"
-              ? "How will my gift be used if we don't hit the goal?"
+              ? "How will my gift be used if we don't reach the goal?"
               : "如果我们没有达到目标，我的奉献将如何使用？"}
           </AccordionTrigger>
           <AccordionContent

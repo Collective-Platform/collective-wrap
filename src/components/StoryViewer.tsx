@@ -22,6 +22,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({
   const [isPaused, setIsPaused] = useState(false);
   const [quizInteractionPause, setQuizInteractionPause] = useState(false);
   const preloadedVideosRef = useRef<HTMLVideoElement[]>([]);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   const currentStory = stories[currentIndex];
 
@@ -131,8 +132,49 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({
     setIsPaused((prev) => !prev);
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartRef.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    };
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartRef.current) return;
+
+    const touchEnd = {
+      x: e.changedTouches[0].clientX,
+      y: e.changedTouches[0].clientY,
+    };
+
+    const deltaX = touchEnd.x - touchStartRef.current.x;
+    const deltaY = touchEnd.y - touchStartRef.current.y;
+    const screenWidth = window.innerWidth;
+    const swipeThreshold = screenWidth * 0.3;
+
+    // Only trigger if horizontal swipe is dominant
+    if (
+      Math.abs(deltaX) > Math.abs(deltaY) &&
+      Math.abs(deltaX) > swipeThreshold
+    ) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (deltaX < 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+    }
+
+    touchStartRef.current = null;
+  };
+
   return (
-    <motion.div className="fixed inset-0 bg-bg-inverse z-50 w-full flex items-center justify-center">
+    <motion.div
+      className="fixed inset-0 bg-bg-inverse z-50 w-full flex items-center justify-center"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Progress Bars */}
       <div className="absolute top-0 left-0 right-0 flex gap-1 p-4 z-10 pointer-events-none">
         {stories.map((_, index) => (

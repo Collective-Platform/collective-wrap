@@ -132,25 +132,24 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
       {/* Section: Progress Bar */}
       <section className="w-full bg-bg-page">
-        <div className="max-w-3xl mx-auto flex flex-col gap-6 justify-center items-center px-6 md:px-12 py-6 md:py-24">
+        <div className="max-w-3xl mx-auto flex flex-col gap-6 justify-center items-center px-6 md:px-12 py-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex flex-col justify-center items-center gap-4 mx-auto w-full"
           >
-            <div className="inline-flex w-full items-center justify-center gap-4">
-              <CircularProgress
-                value={displayPercentage}
-                size={60}
-                strokeWidth={6}
-                showLabel
-                labelClassName="text-sm font-bold text-text-accent"
-                renderLabel={(progress) => `${progress.toFixed(0)}%`}
-                progressClassName="stroke-text-accent"
-                className="stroke-text-primary/25"
-              />
-
+            <CircularProgress
+              value={displayPercentage}
+              size={100}
+              strokeWidth={10}
+              showLabel
+              labelClassName="text-xl font-bold text-text-accent"
+              renderLabel={(progress) => `${progress.toFixed(0)}%`}
+              progressClassName="stroke-text-accent"
+              className="stroke-text-primary/25"
+            />
+            <div className="flex w-full items-center justify-center text-center gap-4">
               <div className="flex flex-col gap-0.5">
                 <h2 className="text-5xl md:text-7xl text-text-accent font-anton">
                   RM{" "}
@@ -176,7 +175,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 lang === "cn" ? "font-chinese-body" : ""
               }`}
             >
-              {lang === "en" ? "117 people have just pledged" : "已有117人认献"}
+              {lang === "en"
+                ? "117 people have just contributed"
+                : "已有117人认献"}
             </p>
           </div>
 
@@ -193,15 +194,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
       {/* Section: Last Year Stats */}
       <section className="w-full bg-bg-page">
-        <div className="max-w-3xl mx-auto flex flex-col gap-6 justify-center items-center px-6 md:px-12 py-13 md:py-24">
+        <div className="max-w-3xl mx-auto flex flex-col gap-6 justify-center items-center px-6 md:px-12 py-16 md:py-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col items-center text-center"
+            className="flex flex-col items-center text-center gap-4"
           >
             <p
-              className={`capitalize text-lg md:text-2xl text-text-primary text-center ${
+              className={`text-lg md:text-2xl text-text-primary text-center ${
                 lang === "cn" ? "font-chinese-body" : ""
               }`}
             >
@@ -242,12 +243,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               >
                 {lang === "en" ? "lives reached" : "生命触及"}
               </p>
-              <div className="flex items-center justify-center gap-2 mt-8">
+              {/* <div className="flex items-center justify-center gap-2 mt-8">
                 <span className="text-5xl md:text-7xl text-text-accent font-anton">
                   RM 50 = 1 <span className="text-4xl align-middle">x</span>
                 </span>
                 <User className="w-14 h-14 md:w-14 md:h-14 text-text-accent fill-text-accent" />
-              </div>
+              </div> */}
               {/* <p
                 className={`text-sm text-text-primary/80 mt-1 ${
                   lang === "cn" ? "font-chinese-body" : ""

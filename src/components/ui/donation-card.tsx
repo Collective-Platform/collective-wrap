@@ -70,12 +70,12 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
       >
         <p
           className={cn(
-            "text-lg md:text-2xl text-text-on-dark tracking-wide  font-normal capitalize text-center text-balance",
+            "text-lg md:text-2xl text-text-on-dark tracking-wide  font-normal text-center text-balance",
             lang === "cn" && "font-chinese-body"
           )}
         >
           {lang === "en"
-            ? "I want to give to Future Funds"
+            ? "I want to give to Future Fund"
             : "我想奉献给未来基金"}
         </p>
 
@@ -87,7 +87,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
               type="button"
               onClick={() => handlePresetClick(amount)}
               className={cn(
-                "px-4 py-4 rounded-md border border-border-subtle/20 text-sm transition-all font-bold",
+                "px-4 py-4 rounded-md border border-border-subtle/20 text-sm transition-all",
                 selectedPreset === amount
                   ? "bg-text-on-dark text-text-primary"
                   : "text-btn-secondary-text hover:bg-btn-secondary-hover"
@@ -108,7 +108,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
             value={formattedCustomAmount}
             onChange={handleCustomAmountChange}
             className={cn(
-              "flex-1 min-w-0 bg-transparent text-2xl font-light text-right",
+              "flex-1 min-w-0 bg-transparent text-sm font-light text-right",
               "placeholder:text-text-muted text-text-on-dark",
               "focus:outline-none"
             )}
@@ -124,8 +124,8 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
             className={cn(
               "px-8 py-3 mt-6 bg-btn-primary-bg text-btn-primary-text text-lg font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 shadow-lg cursor-pointer",
               currentAmount !== null && currentAmount > 0
-                ? "bg-text-on-dark text-text-primary hover:bg-text-on-dark/90"
-                : "bg-btn-disabled-bg text-btn-disabled-text cursor-not-allowed",
+                ? "bg-text-accent text-text-on-dark hover:bg-text-accent/90"
+                : "bg-text-accent/60 text-text-on-dark/60 cursor-not-allowed",
               lang === "cn" && "font-chinese-body"
             )}
           >

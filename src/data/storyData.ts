@@ -10,7 +10,8 @@ export interface Story {
     | "2025-pledge-stat"
     | "appreciation"
     | "medal"
-    | "video";
+    | "video"
+    | "wrap-title";
   category?: { en: string; cn: string };
   title?: { en: string; cn: string };
   subtitle?: { en: string; cn: string };
@@ -38,13 +39,9 @@ export interface Story {
 export const stories: Story[] = [
   // ACT 1 — BELONGING
   {
-    id: "hero-1",
-    type: "hero",
-    title: { en: "2025: Unwrapped", cn: "2025：年度回顾" },
-    subtitle: {
-      en: "It was a long year, but you made it count.",
-      cn: "这一年虽长，但你让它变得意义非凡。",
-    },
+    id: "wrap-title-1",
+    type: "wrap-title",
+    title: { en: "2025 WRAP", cn: "2025 WRAP" },
   },
 
   {
