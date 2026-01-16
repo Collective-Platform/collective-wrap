@@ -1,6 +1,5 @@
 import type { Story } from "@/data/storyData";
 import { motion } from "framer-motion";
-import MuxPlayer from "@mux/mux-player-react";
 
 interface StoryCardProps {
   story: Story;
@@ -43,24 +42,19 @@ export const StoryCard: React.FC<StoryCardProps> = ({
   }
 
   // Video Type
-  if (story.type === "video" && story.muxPlaybackId) {
+  if (story.type === "video" && story.videoSrc) {
     return (
-      <div className="w-full h-dvh flex items-center justify-center bg-text-primary">
-        <MuxPlayer
-          playbackId={story.muxPlaybackId}
-          autoPlay="muted"
+      <div className="w-full h-dvh flex items-center justify-center bg-black">
+        <video
+          autoPlay
           muted
           loop
           playsInline
-          className="w-full h-full aspect-9/16 [&::part(video)]:object-cover"
-          style={{
-            "--controls": "none",
-            "--media-object-fit": "cover",
-            "--media-object-position": "center",
-          }}
-          streamType="on-demand"
           preload="auto"
-        />
+          className="h-full max-h-dvh aspect-9/16 object-cover"
+        >
+          <source src={story.videoSrc} type="video/mp4" />
+        </video>
       </div>
     );
   }

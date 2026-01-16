@@ -17,20 +17,16 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.7 }}
-      className="rounded-lg border border-text-accent/20 bg-text-accent/5 p-6"
     >
       <h3
-        className={`text-lg font-bold text-text-accent mb-4 ${
+        className={`text-5xl leading-[1.1] uppercase font-gc text-text-on-dark mb-4 ${
           lang === "cn" ? "font-chinese-body" : ""
         }`}
       >
         {lang === "en" ? "Frequently Asked Questions" : "常见问题"}
       </h3>
       <Accordion type="single" collapsible className="w-full">
-        <AccordionItem
-          value="item-1"
-          className="border-text-accent/20"
-        >
+        <AccordionItem value="item-1" className="border-cream-50/20">
           <AccordionTrigger
             className={`text-left text-text-on-dark hover:no-underline hover:text-text-accent ${
               lang === "cn" ? "font-chinese-body" : ""
@@ -50,10 +46,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
               : "每一份奉献都会立即投入使用。如有需要，我们会优先完成筹集资金可支持的项目。对于任何紧急项目，我们会发起专门的筹款活动来满足需求。"}
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem
-          value="item-2"
-          className="border-text-accent/20"
-        >
+        <AccordionItem value="item-2" className="border-cream-50/20">
           <AccordionTrigger
             className={`text-left text-text-on-dark hover:no-underline hover:text-text-accent ${
               lang === "cn" ? "font-chinese-body" : ""
@@ -73,10 +66,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
               : "如果我们有幸超过目标，任何额外资金将继续支持我们的三大优先事项——植堂、建堂和宣教——扩大这次活动的影响力。"}
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem
-          value="item-3"
-          className="border-text-accent/20 border-b-0"
-        >
+        <AccordionItem value="item-3" className="border-cream-50 border-b-0">
           <AccordionTrigger
             className={`text-left text-text-on-dark hover:no-underline hover:text-text-accent ${
               lang === "cn" ? "font-chinese-body" : ""
@@ -92,7 +82,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
             }`}
           >
             {lang === "en"
-              ? 'All gifts go into a unified fund, allowing eldership to allocate resources where they\'ll make the greatest impact. We\'ve found this approach is more effective than designated giving, which can sometimes leave funds "stuck" while urgent needs go unmet.'
+              ? "All gifts go into a unified fund, allowing eldership to allocate resources where they'll make the greatest impact. We've found this approach is more effective than designated giving, which can sometimes leave funds \"stuck\" while urgent needs go unmet."
               : '所有奉献都进入统一基金，由长老团队将资源分配到最能产生影响的地方。我们发现这种方式比指定奉献更有效，因为指定奉献有时会导致资金"滞留"，而紧急需求无法满足。'}
           </AccordionContent>
         </AccordionItem>

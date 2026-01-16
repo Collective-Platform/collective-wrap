@@ -86,6 +86,7 @@
     /* Blue (campaign/highlight) */
     --color-blue-700: 220 50% 36%;
     --color-blue-600: 220 50% 45%;
+    --color-blue-dark: #0f2535;
     
     /* Pure Black & White */
     --color-black: 0 0% 0%;
@@ -117,7 +118,7 @@
     --text-primary: var(--color-black);
     --text-secondary: var(--color-gray-600);
     --text-muted: var(--color-gray-500);
-    --text-on-dark: var(--color-cream-100);
+    --text-on-dark: var(--color-cream-50);
     --text-on-accent: var(--color-cream-100);
     
     /* Border Tokens */

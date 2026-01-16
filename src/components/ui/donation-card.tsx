@@ -25,26 +25,32 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
 
     const handlePresetClick = (amount: number) => {
       setSelectedPreset(amount);
-      setCustomAmount("");
+      setCustomAmount(amount.toString());
       onAmountChange?.(amount);
     };
 
     const handleCustomAmountChange = (
       e: React.ChangeEvent<HTMLInputElement>
     ) => {
-      const value = e.target.value;
-      setCustomAmount(value);
-      setSelectedPreset(null);
-
-      const numValue = parseFloat(value);
-      onAmountChange?.(isNaN(numValue) ? null : numValue);
+      const rawValue = e.target.value.replace(/,/g, "");
+      if (rawValue === "" || /^\d*$/.test(rawValue)) {
+        setCustomAmount(rawValue);
+        setSelectedPreset(null);
+        const numValue = parseInt(rawValue, 10);
+        onAmountChange?.(isNaN(numValue) ? null : numValue);
+      }
     };
 
-    const currentAmount = selectedPreset ?? (parseFloat(customAmount) || null);
+    const currentAmount =
+      selectedPreset ?? (parseInt(customAmount, 10) || null);
 
     const formatAmount = (amount: number) => {
       return amount.toLocaleString("en-MY");
     };
+
+    const formattedCustomAmount = customAmount
+      ? parseInt(customAmount, 10).toLocaleString("en-MY")
+      : "";
 
     const handleGiveClick = () => {
       if (currentAmount !== null && currentAmount > 0) {
@@ -56,28 +62,26 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
       <div
         ref={ref}
         className={cn(
-          "rounded-lg border border-border-subtle/20 bg-bg-card text-text-on-dark p-8 space-y-6",
+          "rounded-lg border border-border-subtle/20 bg-bg-card text-text-on-dark p-8 space-y-3",
           className
         )}
       >
-        <div className="space-y-1">
-          <p className="text-2xl text-text-on-dark font-gc tracking-wide text-center uppercase">
-            Future
-          </p>
-        </div>
+        <p className="text-xl font-bold text-text-on-dark text-center text-balance">
+          I want to give to the Future Funds
+        </p>
 
         {/* Preset Amount Buttons */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-3 mt-6">
           {presetAmounts.map((amount) => (
             <button
               key={amount}
               type="button"
               onClick={() => handlePresetClick(amount)}
               className={cn(
-                "px-4 py-3 rounded-sm border border-border-subtle/20 text-sm tracking-wide transition-all",
+                "px-4 py-4 rounded-sm border border-border-subtle/20 text-sm transition-all font-bold",
                 selectedPreset === amount
                   ? "bg-text-on-dark text-text-primary"
-                  : "bg-btn-secondary-bg text-btn-secondary-text hover:bg-btn-secondary-hover"
+                  : "text-btn-secondary-text hover:bg-btn-secondary-hover"
               )}
             >
               RM {formatAmount(amount)}
@@ -86,51 +90,38 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
         </div>
 
         {/* Custom Amount Input */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 border border-border-subtle/20 rounded-sm px-4 py-3">
           <span className="text-sm text-text-muted">{currency}</span>
           <input
-            type="number"
-            min="0"
-            step="1"
+            type="text"
+            inputMode="numeric"
             placeholder="0"
-            value={customAmount}
+            value={formattedCustomAmount}
             onChange={handleCustomAmountChange}
             className={cn(
-              "flex-1 bg-transparent border-b border-btn-secondary-hover py-2 text-2xl font-light",
+              "flex-1 min-w-0 bg-transparent text-2xl font-light text-right",
               "placeholder:text-text-muted text-text-on-dark",
-              "focus:outline-none focus:border-text-on-dark transition-colors",
-              "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              "focus:outline-none"
             )}
           />
         </div>
 
-        {/* Total Amount Display */}
-        <div className="pt-4 border-t border-btn-secondary-bg">
-          <div className="flex justify-between items-center">
-            <span className="text-sm text-text-muted capitalize">
-              total amount
-            </span>
-            <span className="text-xl tracking-wide">
-              {currency}{" "}
-              {currentAmount !== null ? formatAmount(currentAmount) : "0.00"}
-            </span>
-          </div>
-        </div>
-
         {/* Give Button */}
-        <button
-          type="button"
-          onClick={handleGiveClick}
-          disabled={currentAmount === null || currentAmount <= 0}
-          className={cn(
-            "text-center px-8 py-3 bg-btn-primary-bg text-btn-primary-text text-xl font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 cursor-pointer",
-            currentAmount !== null && currentAmount > 0
-              ? "bg-text-on-dark text-text-primary hover:bg-text-on-dark/90"
-              : "bg-btn-disabled-bg text-btn-disabled-text cursor-not-allowed"
-          )}
-        >
-          Give Now
-        </button>
+        <div className="flex justify-center">
+          <button
+            type="button"
+            onClick={handleGiveClick}
+            disabled={currentAmount === null || currentAmount <= 0}
+            className={cn(
+              "text-center px-8 py-3 mt-6 bg-btn-primary-bg text-btn-primary-text text-xl font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 cursor-pointer",
+              currentAmount !== null && currentAmount > 0
+                ? "bg-text-on-dark text-text-primary hover:bg-text-on-dark/90"
+                : "bg-btn-disabled-bg text-btn-disabled-text cursor-not-allowed"
+            )}
+          >
+            Give Now
+          </button>
+        </div>
 
         <p className="text-center text-[12px] text-text-on-dark">
           This fund is overseen by the Board of Elders.

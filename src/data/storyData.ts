@@ -73,7 +73,7 @@ export const stories: Story[] = [
   {
     id: "video-1",
     type: "video",
-    videoSrc: "/videos/people-walking.mp4",
+    videoSrc: "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/people-walking.mp4",
   },
 
   {
@@ -105,7 +105,7 @@ export const stories: Story[] = [
   {
     id: "video-2",
     type: "video",
-    videoSrc: "/videos/collective-global.mp4",
+    videoSrc: "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/collective-global.mp4",
   },
 
   {
@@ -124,7 +124,7 @@ export const stories: Story[] = [
   {
     id: "video-3",
     type: "video",
-    videoSrc: "/videos/hall-makeover.mp4",
+    videoSrc: "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/hall-makeover.mp4",
   },
 
   {
@@ -168,7 +168,7 @@ export const stories: Story[] = [
   {
     id: "video-6-walking to school",
     type: "video",
-    videoSrc: "/videos/walking.mp4",
+    videoSrc: "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/walking.mp4",
   },
 
   {
@@ -187,7 +187,7 @@ export const stories: Story[] = [
   {
     id: "video-6",
     type: "video",
-    videoSrc: "/videos/starfish.mp4",
+    videoSrc: "https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/starfish.mp4",
   },
 
   {

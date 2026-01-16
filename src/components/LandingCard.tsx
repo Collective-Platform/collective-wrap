@@ -69,7 +69,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           playsInline
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         >
-          <source src="/video/running-compressed.mp4" type="video/mp4" />
+          <source src="https://mqyxc4xvodvuodmx.public.blob.vercel-storage.com/running-compressed.mp4" type="video/mp4" />
         </video>
         {/* Collective Logo */}
         <div className="absolute top-6 left-1/2 -translate-x-1/2 z-20">
@@ -191,9 +191,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col items-center text-center gap-4"
+            className="flex flex-col items-start text-left gap-4"
           >
-            <p className="text-4xl md:text-4xl text-left md:text-center  font-anton text-text-accent leading-[1.2]">
+            <p className="text-3xl md:text-4xl text-left font-anton text-text-accent leading-[1.2]">
               300 people × RM 5,000 <br></br> = RM 1.5M
             </p>
             <p
@@ -220,10 +220,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               )}
             </p>
             <h1
-              className={`leading-[1.1] text-text-accent tracking-wide text-left md:text-center ${
+              className={`leading-[1.1] text-text-accent tracking-wide text-left ${
                 lang === "cn"
                   ? "font-chinese-heading text-4xl md:text-6xl"
-                  : "font-gc uppercase text-5xl md:text-6xl "
+                  : "font-gc uppercase text-4xl md:text-6xl"
               }`}
             >
               {lang === "en" ? (
@@ -245,24 +245,24 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       </section>
 
       {/* Last Year Stats Section */}
-      <section className="w-full bg-bg-highlight">
+      <section className="w-full bg-blue-950">
         <div className="max-w-3xl mx-auto space-y-8 px-6 py-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col items-center text-center gap-4 py-8"
+            className="flex flex-col items-start text-left gap-4 py-8"
           >
-            <h2 className="text-2xl md:text-3xl font-gc text-text-on-dark tracking-wide">
+            <h2 className="font-gc uppercase text-5xl md:text-6xl leading-[1.1] text-text-on-dark text-left">
               LAST YEAR, TOGETHER WE:
             </h2>
-            <div className="w-48 h-0.5 bg-text-accent" />
             <div className="flex flex-col gap-2 text-lg md:text-xl text-text-on-dark">
-              <p className="font-anton text-3xl md:text-4xl text-text-accent">
-                RM 1,082,842 raised
+              <p className="font-bold text-3xl md:text-4xl">
+                <span className="text-lg md:text-xl">raised</span> RM 1,082,842
               </p>
-              <p className="font-anton text-3xl md:text-4xl text-text-accent">
-                20,000+ lives reached
+              <p className="font-bold text-3xl md:text-4xl">
+                <span className="text-lg md:text-xl">reached</span> 20,000+
+                lives
               </p>
               <p className="text-base md:text-lg text-text-on-dark">
                 RM50 = 1 life impacted
@@ -277,6 +277,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 ? "This year, we continue the mission."
                 : "今年，我们继续使命。"}
             </p>
+
+            <button
+              onClick={scrollToDonationCard}
+              className={`px-8 py-3 bg-btn-primary-bg text-btn-primary-text text-lg font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 shadow-lg cursor-pointer ${
+                lang === "cn" ? "font-chinese-body" : ""
+              }`}
+            >
+              {lang === "en" ? "Give Now" : "奉献"}
+            </button>
           </motion.div>
 
           {/* FAQ Section */}
