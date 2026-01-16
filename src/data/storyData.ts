@@ -73,7 +73,7 @@ export const stories: Story[] = [
   {
     id: "video-1",
     type: "video",
-    muxPlaybackId: "8Wa2fciG02yM33zaIOvI55RZL2C4PyNj2024r502UBlkaQ",
+    videoSrc: "/videos/people-walking.mp4",
   },
 
   {
@@ -105,7 +105,7 @@ export const stories: Story[] = [
   {
     id: "video-2",
     type: "video",
-    muxPlaybackId: "tN4nwFb7X1W3lCKkaw70017YLvn6mitdqHZ8iAvAiNCY",
+    videoSrc: "/videos/collective-global.mp4",
   },
 
   {
@@ -124,7 +124,7 @@ export const stories: Story[] = [
   {
     id: "video-3",
     type: "video",
-    muxPlaybackId: "01sXUoS6cG01ZBifFxaC86QPWLousk7H01uFBxx8dqddjU",
+    videoSrc: "/videos/hall-makeover.mp4",
   },
 
   {
@@ -135,16 +135,16 @@ export const stories: Story[] = [
       cn: "你资助了 1,085 次拔牙手术。",
     },
     subtitle: {
-      en: "No IC. No subsidised care. <br> For 454 of them, there was no second option.",
+      en: "No IC. No subsidised care. For 454 of them, there was no second option.",
       cn: "没有身份证，没有津贴医疗。对其中的 454 人来说，这是唯一的选择。",
     },
   },
 
-  // {
-  //   id: "video-4",
-  //   type: "video",
-  //   videoSrc: "/videos/smiling.mp4",
-  // },
+  {
+    id: "video-4",
+    type: "video",
+    videoSrc: "/videos/smiling.mp4",
+  },
 
   {
     id: "hero-7",
@@ -162,7 +162,13 @@ export const stories: Story[] = [
   {
     id: "video-5",
     type: "video",
-    muxPlaybackId: "JEorqEGPJNSyTPQBGp01HAzSpHDd1Z6LyBZzqCb7IfP00",
+    videoSrc: "/videos/autrui.mp4",
+  },
+
+  {
+    id: "video-6-walking to school",
+    type: "video",
+    videoSrc: "/videos/walking.mp4",
   },
 
   {
@@ -181,7 +187,7 @@ export const stories: Story[] = [
   {
     id: "video-6",
     type: "video",
-    muxPlaybackId: "uJiu2CUgC0199qyYF6pojaDS02AvXP13j8XKUUdYaFHaM",
+    videoSrc: "/videos/starfish.mp4",
   },
 
   {

@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: ["class"],
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
@@ -14,6 +13,44 @@ export default {
         sm: 'calc(var(--radius) - 4px)'
       },
       colors: {
+        // Semantic Background Colors
+        'bg-page': 'hsl(var(--bg-page))',
+        'bg-inverse': 'hsl(var(--bg-inverse))',
+        'bg-highlight': 'hsl(var(--bg-highlight))',
+        'bg-card': 'hsl(var(--bg-card))',
+        'bg-card-hover': 'hsl(var(--bg-card-hover))',
+        'bg-muted': 'hsl(var(--bg-muted))',
+        'bg-input': 'hsl(var(--bg-input))',
+        
+        // Semantic Text Colors
+        'text-accent': 'hsl(var(--text-accent))',
+        'text-primary': 'hsl(var(--text-primary))',
+        'text-secondary': 'hsl(var(--text-secondary))',
+        'text-muted': 'hsl(var(--text-muted))',
+        'text-on-dark': 'hsl(var(--text-on-dark))',
+        'text-on-accent': 'hsl(var(--text-on-accent))',
+        
+        // Semantic Border Colors
+        'border-accent': 'hsl(var(--border-accent))',
+        'border-accent-hover': 'hsl(var(--border-accent-hover))',
+        'border-default': 'hsl(var(--border-default))',
+        'border-muted': 'hsl(var(--border-muted))',
+        'border-subtle': 'hsl(var(--border-subtle))',
+        
+        // Semantic Button Colors
+        'btn-primary-bg': 'hsl(var(--btn-primary-bg))',
+        'btn-primary-text': 'hsl(var(--btn-primary-text))',
+        'btn-secondary-bg': 'hsl(var(--btn-secondary-bg))',
+        'btn-secondary-text': 'hsl(var(--btn-secondary-text))',
+        'btn-secondary-hover': 'hsl(var(--btn-secondary-hover))',
+        'btn-disabled-bg': 'hsl(var(--btn-disabled-bg))',
+        'btn-disabled-text': 'hsl(var(--btn-disabled-text))',
+        
+        // Semantic Progress Colors
+        'progress-track': 'hsl(var(--progress-track))',
+        'progress-fill': 'hsl(var(--progress-fill))',
+        
+        // Legacy colors (for backward compatibility)
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

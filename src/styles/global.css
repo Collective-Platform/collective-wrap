@@ -52,17 +52,107 @@
 
 @layer base {
   :root {
+    /* ========================================
+       TIER 1: PRIMITIVE TOKENS
+       Raw color values - never use directly in components
+       ======================================== */
+    
+    /* Cream/Warm Whites */
+    --color-cream-50: 37 100% 94%;
+    --color-cream-100: 35 10% 98%;
+    
+    /* Brand Red */
+    --color-red-500: 0 100% 49%;
+    --color-red-400: 0 100% 60%;
+    
+    /* Grays (neutral) */
+    --color-gray-950: 0 0% 5%;
+    --color-gray-900: 0 0% 8%;
+    --color-gray-800: 0 0% 17.5%;
+    --color-gray-700: 0 0% 25%;
+    --color-gray-600: 0 0% 35%;
+    --color-gray-500: 0 0% 45%;
+    --color-gray-400: 0 0% 55%;
+    --color-gray-300: 0 0% 70%;
+    --color-gray-200: 0 0% 85%;
+    --color-gray-100: 0 0% 91%;
+    
+    /* Stone (warm grays) */
+    --color-stone-900: 30 6% 10%;
+    --color-stone-800: 30 3% 14%;
+    --color-stone-700: 30 2% 20%;
+    --color-stone-100: 30 6% 90%;
+    
+    /* Blue (campaign/highlight) */
+    --color-blue-700: 220 50% 36%;
+    --color-blue-600: 220 50% 45%;
+    
+    /* Pure Black & White */
+    --color-black: 0 0% 0%;
+    --color-white: 0 0% 100%;
+    
+    /* ========================================
+       TIER 2: SEMANTIC TOKENS
+       Role-based tokens - use these in components
+       ======================================== */
+    
+    /* Fonts */
     --font-anton: 'Anton', 'sans-serif';
     --font-gc: 'GC', 'sans-serif';
     --font-foriene: 'Foriene', 'sans-serif';
     --font-chinese-heading: 'Chinese-Heading', 'sans-serif';
     --font-chinese-body: 'Chinese-Body', 'sans-serif';
-    --background: 37 100% 94%; 
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+
+    /* Background Tokens */
+    --bg-page: var(--color-cream-50);
+    --bg-inverse: var(--color-stone-900);
+    --bg-highlight: var(--color-blue-700);
+    --bg-card: var(--color-gray-950);
+    --bg-card-hover: var(--color-gray-900);
+    --bg-muted: var(--color-gray-800);
+    --bg-input: var(--color-gray-900);
+    
+    /* Text Tokens */
+    --text-accent: var(--color-red-500);
+    --text-primary: var(--color-black);
+    --text-secondary: var(--color-gray-600);
+    --text-muted: var(--color-gray-500);
+    --text-on-dark: var(--color-cream-100);
+    --text-on-accent: var(--color-cream-100);
+    
+    /* Border Tokens */
+    --border-accent: var(--color-red-500);
+    --border-accent-hover: var(--color-red-400);
+    --border-default: var(--color-gray-200);
+    --border-muted: var(--color-gray-100);
+    --border-subtle: var(--color-stone-100);
+    
+    /* Interactive/Button Tokens */
+    --btn-primary-bg: var(--color-red-500);
+    --btn-primary-text: var(--color-white);
+    --btn-secondary-bg: var(--color-gray-800);
+    --btn-secondary-text: var(--color-gray-300);
+    --btn-secondary-hover: var(--color-gray-700);
+    --btn-disabled-bg: var(--color-gray-800);
+    --btn-disabled-text: var(--color-gray-500);
+    
+    /* Progress/Status Tokens */
+    --progress-track: var(--color-gray-800);
+    --progress-fill: var(--color-red-500);
+    
+    /* Lang Toggle */
+    --lang-button-bg: var(--color-cream-100);
+    
+    /* ========================================
+       BACKWARD COMPATIBILITY ALIASES
+       Map old tokens to new semantic tokens
+       ======================================== */
+    --background: var(--bg-page);
+    --foreground: var(--text-primary);
+    --card: var(--color-white);
+    --card-foreground: var(--text-primary);
+    --popover: var(--color-white);
+    --popover-foreground: var(--text-primary);
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
@@ -73,91 +163,104 @@
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --border: var(--border-default);
+    --input: var(--border-default);
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
-
-    /* Language Toggle Colors */
-    --lang-button-bg: 35 10% 98%;
-
-    /* Card Component Colors */
-    --card-bg-from: 0 0% 5%;
-    --card-bg-to: 0 0% 8%;
-    --card-border: 0 100% 49%;
-    --card-border-hover: 0 100% 60%;
-    --text-title: 0 100% 49%;
-    --text-subtitle: 0 0% 0%;
-    --card-title: 0 0% 0%;
-    --card-subtitle: 0 0% 0%;
     
-    /* Interactive Colors */
-    --quiz-correct: 142 76% 36%;
-    --quiz-incorrect: 0 100% 49%;
-    --quiz-border-default: 0 0% 0%;
-    
-    /* CTA Colors */
-    --cta-button-bg: 0 100% 49%;
-    --cta-button-text: 35 10% 98%;
-    
-    /* List Item Colors */
-    --list-item-bg: 0 0% 8%;
-    
-    /* Progress Bar */
-    --progress-bg: 0 0% 17.5%;
-    --progress-fill: 0 100% 49%;
-  }
-
-  .dark {
-    --background: 37 100% 94%;
-    --foreground: 37 100% 94%;
-    --card: 0 0% 5%;
-    --card-foreground: 37 100% 94%;
-    --popover: 0 0% 5%;
-    --popover-foreground: 37 100% 94%;
-    --primary: 0 100% 49%;
-    --primary-foreground: 37 100% 94%;
-    --secondary: 0 0% 17.5%;
-    --secondary-foreground: 37 100% 94%;
-    --muted: 0 0% 17.5%;
-    --muted-foreground: 37 70% 85%;
-    --accent: 0 100% 49%;
-    --accent-foreground: 37 100% 94%;
-    --destructive: 0 100% 49%;
-    --destructive-foreground: 37 100% 94%;
-    --border: 0 0% 17.5%;
-    --input: 0 0% 17.5%;
-    --ring: 0 100% 49%;
-
-    /* Card Component Colors - Dark Mode */
-    --card-bg-from: 0 0% 5%;
-    --card-bg-to: 0 0% 8%;
-    --card-border: 0 100% 49%;
-    --card-border-hover: 0 100% 60%;
-    --text-title: 0 100% 49%;
-    --text-subtitle: 0 0% 0%;
-    --card-title: #262622;
-    --card-subtitle: 0 0% 0%;
+    /* Legacy aliases (deprecated - migrate away from these) */
+    --text-title: var(--text-accent);
+    --text-subtitle: var(--text-primary);
+    --card-title: var(--text-primary);
+    --card-subtitle: var(--text-primary);
+    --card-bg-from: var(--color-gray-950);
+    --card-bg-to: var(--color-gray-900);
+    --card-border: var(--border-accent);
+    --card-border-hover: var(--border-accent-hover);
+    --cta-button-bg: var(--btn-primary-bg);
+    --cta-button-text: var(--btn-primary-text);
+    --list-item-bg: var(--color-gray-900);
+    --progress-bg: var(--progress-track);
   }
 
   * {
-    border-color: hsl(var(--border));
+    border-color: hsl(var(--border-default));
   }
   
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background-color: hsl(var(--bg-page));
+    color: hsl(var(--text-primary));
   }
 }
 
 @theme {
+  /* Fonts */
   --font-foriene: var(--font-foriene);
   --font-gc: var(--font-gc);
   --font-chinese-heading: var(--font-chinese-heading);
   --font-chinese-body: var(--font-chinese-body);
-  --lang-button-bg: hsl(var(--lang-button-bg));
   --font-anton: var(--font-anton);
+  
+  /* Breakpoints */
   --breakpoint-xs: 480px;
+  
+  /* Primitives (for rare direct use cases) */
+  --color-cream-50: hsl(var(--color-cream-50));
+  --color-cream-100: hsl(var(--color-cream-100));
+  --color-red-500: hsl(var(--color-red-500));
+  --color-red-400: hsl(var(--color-red-400));
+  --color-gray-950: hsl(var(--color-gray-950));
+  --color-gray-900: hsl(var(--color-gray-900));
+  --color-gray-800: hsl(var(--color-gray-800));
+  --color-gray-700: hsl(var(--color-gray-700));
+  --color-gray-600: hsl(var(--color-gray-600));
+  --color-gray-500: hsl(var(--color-gray-500));
+  --color-gray-400: hsl(var(--color-gray-400));
+  --color-gray-300: hsl(var(--color-gray-300));
+  --color-stone-900: hsl(var(--color-stone-900));
+  --color-blue-700: hsl(var(--color-blue-700));
+  
+  /* Semantic Background Colors */
+  --color-bg-page: hsl(var(--bg-page));
+  --color-bg-inverse: hsl(var(--bg-inverse));
+  --color-bg-highlight: hsl(var(--bg-highlight));
+  --color-bg-card: hsl(var(--bg-card));
+  --color-bg-card-hover: hsl(var(--bg-card-hover));
+  --color-bg-muted: hsl(var(--bg-muted));
+  --color-bg-input: hsl(var(--bg-input));
+  
+  /* Semantic Text Colors */
+  --color-text-accent: hsl(var(--text-accent));
+  --color-text-primary: hsl(var(--text-primary));
+  --color-text-secondary: hsl(var(--text-secondary));
+  --color-text-muted: hsl(var(--text-muted));
+  --color-text-on-dark: hsl(var(--text-on-dark));
+  --color-text-on-accent: hsl(var(--text-on-accent));
+  
+  /* Semantic Border Colors */
+  --color-border-accent: hsl(var(--border-accent));
+  --color-border-accent-hover: hsl(var(--border-accent-hover));
+  --color-border-default: hsl(var(--border-default));
+  --color-border-muted: hsl(var(--border-muted));
+  --color-border-subtle: hsl(var(--border-subtle));
+  
+  /* Semantic Button Colors */
+  --color-btn-primary-bg: hsl(var(--btn-primary-bg));
+  --color-btn-primary-text: hsl(var(--btn-primary-text));
+  --color-btn-secondary-bg: hsl(var(--btn-secondary-bg));
+  --color-btn-secondary-text: hsl(var(--btn-secondary-text));
+  --color-btn-secondary-hover: hsl(var(--btn-secondary-hover));
+  --color-btn-disabled-bg: hsl(var(--btn-disabled-bg));
+  --color-btn-disabled-text: hsl(var(--btn-disabled-text));
+  
+  /* Semantic Progress Colors */
+  --color-progress-track: hsl(var(--progress-track));
+  --color-progress-fill: hsl(var(--progress-fill));
+  
+  /* Lang Toggle */
+  --lang-button-bg: hsl(var(--lang-button-bg));
+  
+  /* Legacy tokens (for backward compatibility) */
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   --color-card: hsl(var(--card));
@@ -178,33 +281,17 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
   
-  /* Card Colors */
-  --color-card-bg-from: hsl(var(--card-bg-from));
-  --color-card-bg-to: hsl(var(--card-bg-to));
-  --color-card-border: hsl(var(--card-border));
-  --color-card-border-hover: hsl(var(--card-border-hover));
+  /* Legacy card/text tokens */
   --color-text-title: hsl(var(--text-title));
   --color-text-subtitle: hsl(var(--text-subtitle));
   --color-card-title: hsl(var(--card-title));
   --color-card-subtitle: hsl(var(--card-subtitle));
-
-  
-  /* Interactive Colors */
-  --color-quiz-correct: hsl(var(--quiz-correct));
-  --color-quiz-incorrect: hsl(var(--quiz-incorrect));
-  --color-quiz-border: hsl(var(--quiz-border-default));
-  
-  /* CTA Colors */
-  --color-cta-bg-from: hsl(var(--cta-bg-from));
-  --color-cta-bg-to: hsl(var(--cta-bg-to));
-  --color-cta-border: hsl(var(--cta-border));
+  --color-card-bg-from: hsl(var(--card-bg-from));
+  --color-card-bg-to: hsl(var(--card-bg-to));
+  --color-card-border: hsl(var(--card-border));
+  --color-card-border-hover: hsl(var(--card-border-hover));
   --color-cta-button-bg: hsl(var(--cta-button-bg));
   --color-cta-button-text: hsl(var(--cta-button-text));
-  
-  /* List Colors */
   --color-list-item-bg: hsl(var(--list-item-bg));
-  
-  /* Progress */
   --color-progress-bg: hsl(var(--progress-bg));
-  --color-progress-fill: hsl(var(--progress-fill));
 }

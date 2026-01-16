@@ -128,7 +128,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
 
   return (
     <motion.div
-      className="fixed inset-0 bg-[hsl(var(--background))] z-50 w-full flex items-center justify-center"
+      className="fixed inset-0 bg-bg-page z-50 w-full flex items-center justify-center"
       style={{ opacity: backgroundOpacity }}
     >
       {/* Progress Bars */}
@@ -136,10 +136,10 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
         {stories.map((_, index) => (
           <div
             key={index}
-            className="flex-1 h-1 bg-gray-700 rounded-full overflow-hidden"
+            className="flex-1 h-1 bg-progress-track rounded-full overflow-hidden"
           >
             <motion.div
-              className="h-full bg-[hsl(var(--text-title))]"
+              className="h-full bg-progress-fill"
               initial={{ width: "0%" }}
               animate={{
                 width:
@@ -163,9 +163,9 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
           className="p-2 transition-all pointer-events-auto"
         >
           {isPaused ? (
-            <Play className="w-6 h-6 text-[hsl(var(--text-title))] fill-[hsl(var(--text-title))]" />
+            <Play className="w-6 h-6 text-text-accent fill-text-accent" />
           ) : (
-            <Pause className="w-6 h-6 text-[hsl(var(--text-title))] fill-[hsl(var(--text-title))]" />
+            <Pause className="w-6 h-6 text-text-accent fill-text-accent" />
           )}
         </button>
 
@@ -174,7 +174,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
           onClick={onClose}
           className="p-2 transition-all cursor-pointer pointer-events-auto"
         >
-          <X className="w-8 h-8 text-[hsl(var(--text-title))]" />
+          <X className="w-8 h-8 text-text-accent" />
         </button>
       </div>
 
@@ -233,7 +233,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
               {currentIndex > 0 && (
                 <button
                   onClick={handlePrev}
-                  className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 p-2 text-[hsl(var(--text-title))] opacity-70 hover:opacity-100 transition-opacity pointer-events-auto z-20"
+                  className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 p-2 text-text-accent opacity-70 hover:opacity-100 transition-opacity pointer-events-auto z-20"
                   aria-label="Previous story"
                 >
                   <ChevronLeft className="w-8 h-8" />
@@ -244,7 +244,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
               {currentIndex < stories.length - 1 && (
                 <button
                   onClick={handleNext}
-                  className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 p-2 text-[hsl(var(--text-title))] opacity-70 hover:opacity-100 transition-opacity pointer-events-auto z-20"
+                  className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 p-2 text-text-accent opacity-70 hover:opacity-100 transition-opacity pointer-events-auto z-20"
                   aria-label="Next story"
                 >
                   <ChevronRight className="w-8 h-8" />
@@ -256,7 +256,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
       </div>
 
       {/* Story Counter */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[hsl(var(--text-title))] text-sm px-4 py-2 rounded-full pointer-events-none z-10">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-text-accent text-sm px-4 py-2 rounded-full pointer-events-none z-10">
         {currentIndex + 1} / {stories.length}
       </div>
 
@@ -265,11 +265,8 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({ lang, onClose, onGiveC
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  px-6 py-3 pointer-events-none z-10"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-6 py-3 pointer-events-none z-10"
         >
-          {/* <p className="text-[hsl(var(--text-title))] text-sm font-medium">
-            {lang === "en" ? "Paused" : "已暂停"}
-          </p> */}
         </motion.div>
       )}
     </motion.div>

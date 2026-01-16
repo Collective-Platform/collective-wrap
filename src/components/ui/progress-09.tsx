@@ -15,6 +15,7 @@ interface CircularProgressProps {
   labelClassName?: string;
   showLabel?: boolean;
   animateOnInView?: boolean;
+  gradient?: { from: string; to: string };
 }
 
 const CircularProgress = ({
@@ -30,18 +31,21 @@ const CircularProgress = ({
   circleStrokeWidth = 10,
   progressStrokeWidth = 10,
   animateOnInView = false,
+  gradient,
 }: CircularProgressProps) => {
   const ref = React.useRef<SVGSVGElement>(null);
   const isInView = useInView(ref, { once: false });
   const displayValue = animateOnInView ? (isInView ? value : 0) : value;
 
-  const radius = size / 2 - 10;
-  const circumference = Math.ceil(3.14 * radius * 2);
+  const maxStrokeWidth = Math.max(
+    strokeWidth ?? circleStrokeWidth,
+    strokeWidth ?? progressStrokeWidth
+  );
+  const radius = (size - maxStrokeWidth) / 2;
+  const circumference = Math.ceil(2 * Math.PI * radius);
   const percentage = Math.ceil(circumference * ((100 - displayValue) / 100));
 
-  const viewBox = `-${size * 0.125} -${size * 0.125} ${size * 1.25} ${
-    size * 1.25
-  }`;
+  const viewBox = `0 0 ${size} ${size}`;
 
   return (
     <div className="relative">
@@ -55,6 +59,14 @@ const CircularProgress = ({
         style={{ transform: "rotate(-90deg)" }}
         className="relative"
       >
+        {gradient && (
+          <defs>
+            <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor={gradient.from} />
+              <stop offset="100%" stopColor={gradient.to} />
+            </linearGradient>
+          </defs>
+        )}
         {/* Base Circle */}
         <circle
           r={radius}
@@ -64,7 +76,7 @@ const CircularProgress = ({
           strokeWidth={strokeWidth ?? circleStrokeWidth}
           strokeDasharray={circumference}
           strokeDashoffset="0"
-          className={cn("stroke-primary/25", className)}
+          className={cn("stroke-progress-track", className)}
         />
 
         {/* Progress */}
@@ -77,7 +89,8 @@ const CircularProgress = ({
           strokeDashoffset={percentage}
           fill="transparent"
           strokeDasharray={circumference}
-          className={cn("stroke-primary", progressClassName)}
+          stroke={gradient ? "url(#progress-gradient)" : undefined}
+          className={cn(!gradient && "stroke-progress-fill", progressClassName)}
         />
       </svg>
       {showLabel && (

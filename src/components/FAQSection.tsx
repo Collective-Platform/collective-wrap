@@ -17,10 +17,10 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.7 }}
-      className="rounded-lg border border-[hsl(var(--text-title))]/20 bg-[hsl(var(--text-title))]/5 p-6"
+      className="rounded-lg border border-text-accent/20 bg-text-accent/5 p-6"
     >
       <h3
-        className={`text-lg font-bold text-[hsl(var(--text-title))] mb-4 ${
+        className={`text-lg font-bold text-text-accent mb-4 ${
           lang === "cn" ? "font-chinese-body" : ""
         }`}
       >
@@ -29,10 +29,10 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem
           value="item-1"
-          className="border-[hsl(var(--text-title))]/20"
+          className="border-text-accent/20"
         >
           <AccordionTrigger
-            className={`text-left text-[hsl(var(--text-subtitle))] hover:no-underline hover:text-[hsl(var(--text-title))] ${
+            className={`text-left text-text-on-dark hover:no-underline hover:text-text-accent ${
               lang === "cn" ? "font-chinese-body" : ""
             }`}
           >
@@ -41,7 +41,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
               : "如果我们没有达到目标，我的奉献将如何使用？"}
           </AccordionTrigger>
           <AccordionContent
-            className={`text-[hsl(var(--text-subtitle))]/70 ${
+            className={`text-text-on-dark/70 ${
               lang === "cn" ? "font-chinese-body" : ""
             }`}
           >
@@ -52,10 +52,10 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
         </AccordionItem>
         <AccordionItem
           value="item-2"
-          className="border-[hsl(var(--text-title))]/20"
+          className="border-text-accent/20"
         >
           <AccordionTrigger
-            className={`text-left text-[hsl(var(--text-subtitle))] hover:no-underline hover:text-[hsl(var(--text-title))] ${
+            className={`text-left text-text-on-dark hover:no-underline hover:text-text-accent ${
               lang === "cn" ? "font-chinese-body" : ""
             }`}
           >
@@ -64,7 +64,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
               : "如果我们超过目标怎么办？"}
           </AccordionTrigger>
           <AccordionContent
-            className={`text-[hsl(var(--text-subtitle))]/70 ${
+            className={`text-text-on-dark/70 ${
               lang === "cn" ? "font-chinese-body" : ""
             }`}
           >
@@ -75,10 +75,10 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
         </AccordionItem>
         <AccordionItem
           value="item-3"
-          className="border-[hsl(var(--text-title))]/20 border-b-0"
+          className="border-text-accent/20 border-b-0"
         >
           <AccordionTrigger
-            className={`text-left text-[hsl(var(--text-subtitle))] hover:no-underline hover:text-[hsl(var(--text-title))] ${
+            className={`text-left text-text-on-dark hover:no-underline hover:text-text-accent ${
               lang === "cn" ? "font-chinese-body" : ""
             }`}
           >
@@ -87,7 +87,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
               : "我可以指定我的奉献用于植堂、建堂或宣教吗？"}
           </AccordionTrigger>
           <AccordionContent
-            className={`text-[hsl(var(--text-subtitle))]/70 ${
+            className={`text-text-on-dark/70 ${
               lang === "cn" ? "font-chinese-body" : ""
             }`}
           >

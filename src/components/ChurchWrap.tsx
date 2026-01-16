@@ -26,7 +26,10 @@ const ChurchWrap: React.FC<ChurchWrapProps> = ({ locale = "en" }) => {
   const handleGiveClick = () => {
     setShowStories(false);
     setTimeout(() => {
-      donationCardRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      donationCardRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
     }, 100);
   };
 
@@ -64,16 +67,16 @@ const ChurchWrap: React.FC<ChurchWrapProps> = ({ locale = "en" }) => {
   }, [showStories]);
 
   return (
-    <div className="relative w-full min-h-screen bg-[hsl(var(--background))] text-white">
+    <div className="relative w-full min-h-screen">
       {/* Language Toggle */}
       <a
         href={switchLanguageUrl}
-        className={`absolute top-8 left-6 flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 border border-[hsl(var(--card-border))] ${
+        className={`absolute top-8 left-6 flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 border border-border-accent ${
           showStories ? "z-60" : "z-50"
         }`}
       >
-        <Globe className="w-4 h-4 text-[hsl(var(--text-title))]" />
-        <span className="font-medium text-sm text-[hsl(var(--text-title))]">
+        <Globe className="w-4 h-4 text-text-accent" />
+        <span className="font-medium text-sm text-text-accent">
           {language === "en" ? "CN" : "EN"}
         </span>
       </a>
@@ -81,7 +84,11 @@ const ChurchWrap: React.FC<ChurchWrapProps> = ({ locale = "en" }) => {
       {/* Landing Page */}
       {!showStories && (
         <div ref={landingRef}>
-          <LandingPage lang={language} onScrollToWrap={handleScrollToWrap} donationCardRef={donationCardRef} />
+          <LandingPage
+            lang={language}
+            onScrollToWrap={handleScrollToWrap}
+            donationCardRef={donationCardRef}
+          />
           {/* Add extra space below to make scrolling possible */}
           <div className="h-screen" />
         </div>
@@ -89,7 +96,11 @@ const ChurchWrap: React.FC<ChurchWrapProps> = ({ locale = "en" }) => {
 
       {/* Story Viewer */}
       {showStories && (
-        <StoryViewer lang={language} onClose={handleCloseStories} onGiveClick={handleGiveClick} />
+        <StoryViewer
+          lang={language}
+          onClose={handleCloseStories}
+          onGiveClick={handleGiveClick}
+        />
       )}
     </div>
   );
