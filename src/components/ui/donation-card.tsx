@@ -1,4 +1,5 @@
 import * as React from "react";
+import { track } from "@vercel/analytics";
 import { cn } from "@/lib/utils";
 
 interface DonationCardProps {
@@ -56,6 +57,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
 
     const handleGiveClick = () => {
       if (currentAmount !== null && currentAmount > 0) {
+        track("Donation Give Now Clicked", { amount: currentAmount, lang });
         window.location.href = `https://give.collective.my/?future=${currentAmount}`;
       }
     };

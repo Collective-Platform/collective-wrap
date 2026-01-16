@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { track } from "@vercel/analytics";
 import { Globe } from "lucide-react";
 import { StoryViewer } from "./StoryViewer";
 import { LandingPage } from "./LandingCard";
@@ -17,6 +18,7 @@ const ChurchWrap: React.FC<ChurchWrapProps> = ({ locale = "en" }) => {
   const switchLanguageUrl = language === "en" ? "/cn/" : "/";
 
   const handleScrollToWrap = () => {
+    track("Story Triggered", { lang: language, trigger: "button" });
     setShowStories(true);
   };
 
@@ -47,6 +49,7 @@ const ChurchWrap: React.FC<ChurchWrapProps> = ({ locale = "en" }) => {
       // Trigger when the element is in the top 20% of the viewport
       // rect.top will be small/negative when scrolled up
       if (rect.top <= windowHeight * 0.5 && rect.top > -rect.height) {
+        track("Story Triggered", { lang: language, trigger: "scroll" });
         setShowStories(true);
         window.scrollTo(0, 0);
       }

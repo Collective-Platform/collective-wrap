@@ -1,4 +1,5 @@
 import type { Story } from "@/data/storyData";
+import { track } from "@vercel/analytics";
 import { motion } from "framer-motion";
 import { CollectiveLogo } from "./CollectiveLogo";
 
@@ -107,7 +108,10 @@ export const StoryCard: React.FC<StoryCardProps> = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          onClick={onGiveClick}
+          onClick={() => {
+            track("Story CTA Clicked", { lang, label: story.label?.[lang] ?? "" });
+            onGiveClick?.();
+          }}
           className={`px-12 py-2 bg-btn-primary-bg text-btn-primary-text text-xl font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 relative z-10 cursor-pointer ${
             lang === "cn" ? "font-chinese-body" : ""
           }`}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { track } from "@vercel/analytics";
 import { motion } from "framer-motion";
 import { ChevronDown, TrendingUp, User } from "lucide-react";
 import { CountingNumber } from "./ui/shadcn-io/counting-number";
@@ -102,7 +103,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* Give Button - Bottom of Video */}
         <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20">
           <button
-            onClick={scrollToDonationCard}
+            onClick={() => {
+              track("Hero Give Now Clicked", { lang });
+              scrollToDonationCard();
+            }}
             className={`px-8 py-3 bg-btn-primary-bg text-btn-primary-text text-lg font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 shadow-lg cursor-pointer ${
               lang === "cn" ? "font-chinese-body" : ""
             }`}
