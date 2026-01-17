@@ -25,11 +25,28 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   const effectiveRef = donationCardRef || localDonationCardRef;
   const videoRef = useRef<HTMLVideoElement>(null);
   const totalTarget = 1500000;
-  const raised = 0;
-  const percentage = (raised / totalTarget) * 100;
   const [displayRaised, setDisplayRaised] = useState(0);
   const [displayPercentage, setDisplayPercentage] = useState(0);
   const [isMd, setIsMd] = useState(false);
+
+  const [stats, setStats] = useState({
+    totalRaised: 0,
+    contributorCount: 0,
+  });
+
+  const raised = stats.totalRaised;
+  const percentage = (stats.totalRaised / totalTarget) * 100;
+
+  useEffect(() => {
+    fetch("https://give.collective.my/api/stats/future")
+      .then((res) => res.json())
+      .then((data) =>
+        setStats({
+          totalRaised: Number(data.totalRaised) || 0,
+          contributorCount: data.contributorCount || 0,
+        }),
+      );
+  }, []);
 
   useEffect(() => {
     const checkScreenSize = () => setIsMd(window.innerWidth >= 768);
@@ -215,18 +232,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
           </motion.div>
 
-          {/* <div className="flex items-center justify-center gap-2">
-            <TrendingUp className="w-6 h-6 text-text-accent" />
-            <p
-              className={`text-lg md:text-2xl text-text-primary ${
-                lang === "cn" ? "font-chinese-body" : ""
-              }`}
-            >
-              {lang === "en"
-                ? "0 people have just contributed"
-                : "已有 0 人认献"}
-            </p>
-          </div> */}
+          {stats.contributorCount > 0 && (
+            <div className="flex items-center justify-center gap-2">
+              <TrendingUp className="w-6 h-6 text-text-accent" />
+              <p
+                className={`text-lg md:text-2xl text-text-primary ${
+                  lang === "cn" ? "font-chinese-body" : ""
+                }`}
+              >
+                {lang === "en"
+                  ? `${stats.contributorCount} people have contributed`
+                  : `已有 ${stats.contributorCount} 人认献`}
+              </p>
+            </div>
+          )}
 
           <button
             onClick={scrollToDonationCard}
