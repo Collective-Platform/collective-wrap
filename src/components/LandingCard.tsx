@@ -34,8 +34,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     contributorCount: 0,
   });
 
-  const raised = stats.totalRaised;
-  const percentage = (stats.totalRaised / totalTarget) * 100;
+  const raised = stats.totalRaised / 100;
+  const percentage = (raised / totalTarget) * 100;
 
   useEffect(() => {
     fetch("https://give.collective.my/api/stats/future")
