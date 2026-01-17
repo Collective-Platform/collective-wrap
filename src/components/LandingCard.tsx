@@ -215,7 +215,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
           </motion.div>
 
-          <div className="flex items-center justify-center gap-2">
+          {/* <div className="flex items-center justify-center gap-2">
             <TrendingUp className="w-6 h-6 text-text-accent" />
             <p
               className={`text-lg md:text-2xl text-text-primary ${
@@ -226,7 +226,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 ? "0 people have just contributed"
                 : "已有 0 人认献"}
             </p>
-          </div>
+          </div> */}
 
           <button
             onClick={scrollToDonationCard}
