@@ -218,7 +218,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <div className="flex items-center justify-center gap-2">
             <TrendingUp className="w-6 h-6 text-text-accent" />
             <p
-              className={`text-lg text-text-primary ${
+              className={`text-lg md:text-2xl text-text-primary ${
                 lang === "cn" ? "font-chinese-body" : ""
               }`}
             >
@@ -267,7 +267,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 />
               </h4>
               <p
-                className={`text-sm text-text-primary/80 mt-1 ${
+                className={`text-sm md:text-base text-text-primary/80 mt-1 ${
                   lang === "cn" ? "font-chinese-body" : ""
                 }`}
               >
@@ -284,7 +284,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 +
               </h4>
               <p
-                className={`text-sm text-text-primary/80 mt-1 ${
+                className={`text-sm md:text-base text-text-primary/80 mt-1 ${
                   lang === "cn" ? "font-chinese-body" : ""
                 }`}
               >
@@ -305,7 +305,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </p> */}
             </div>
             <p
-              className={`text-lg md:text-xl text-text-primary mt-4 ${
+              className={`text-lg md:text-2xl text-text-primary mt-4 ${
                 lang === "cn" ? "font-chinese-body" : ""
               }`}
             >

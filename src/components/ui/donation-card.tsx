@@ -136,7 +136,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
 
         <p
           className={cn(
-            "text-center text-[12px] text-text-on-dark/80 mt-6",
+            "text-center text-[12px] md:text-base text-text-on-dark/80 mt-6",
             lang === "cn" && "font-chinese-body"
           )}
         >

@@ -245,6 +245,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({
                 story={currentStory}
                 lang={lang}
                 onGiveClick={onGiveClick}
+                isPaused={isPaused}
               />
 
               {/* Tap Areas for Navigation - Available for all stories */}

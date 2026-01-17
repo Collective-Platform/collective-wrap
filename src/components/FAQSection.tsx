@@ -41,7 +41,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
               : "如果我们没有达到目标，我的奉献将如何使用？"}
           </AccordionTrigger>
           <AccordionContent
-            className={`text-sm text-text-on-dark/70 leading-normal ${
+            className={`text-sm md:text-lg text-text-on-dark/70 leading-normal ${
               lang === "cn" ? "font-chinese-body tracking-widest" : ""
             }`}
           >
@@ -63,7 +63,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
               : "如果所筹的资金必预期更多，将会如何使用？"}
           </AccordionTrigger>
           <AccordionContent
-            className={`text-sm text-text-on-dark/70 leading-normal ${
+            className={`text-sm md:text-lg text-text-on-dark/70 leading-normal ${
               lang === "cn" ? "font-chinese-body tracking-widest" : ""
             }`}
           >
@@ -84,7 +84,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
               : "我可以指定我的奉献用于植堂、建堂或宣教吗？"}
           </AccordionTrigger>
           <AccordionContent
-            className={`text-sm text-text-on-dark/70 leading-normal ${
+            className={`text-sm md:text-lg text-text-on-dark/70 leading-normal ${
               lang === "cn" ? "font-chinese-body tracking-widest" : ""
             }`}
           >

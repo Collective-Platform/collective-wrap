@@ -1,6 +1,7 @@
 import type { Story } from "@/data/storyData";
 import { track } from "@vercel/analytics/react";
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { CollectiveLogo } from "./CollectiveLogo";
 
 interface StoryCardProps {
@@ -8,13 +9,26 @@ interface StoryCardProps {
   lang: "en" | "cn";
   onQuizInteraction?: (interacting: boolean) => void;
   onGiveClick?: () => void;
+  isPaused?: boolean;
 }
 
 export const StoryCard: React.FC<StoryCardProps> = ({
   story,
   lang,
   onGiveClick,
+  isPaused = false,
 }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (story.type === "video" && videoRef.current) {
+      if (isPaused) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+    }
+  }, [isPaused, story.type]);
   // Wrap Title Type
   if (story.type === "wrap-title") {
     return (
@@ -69,6 +83,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
     return (
       <div className="w-full h-dvh flex items-center justify-center bg-black">
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop

@@ -79,7 +79,7 @@ export const stories: Story[] = [
     type: "hero",
     title: {
       en: "For 273 of them, the visit changed everything. ",
-      cn: "其中273人第一次的到访，改变了他们一切。",
+      cn: "其中 273 人第一次的到访，改变了他们一切。",
     },
     subtitle: {
       en: "They accepted Christ.",
@@ -152,7 +152,7 @@ export const stories: Story[] = [
     type: "hero",
     title: {
       en: "You subsidised doctors' visits <br/> for 4,371 refugees.",
-      cn: "你资助了4,371位难民看诊。",
+      cn: "你资助了 4,371 位难民看诊。",
     },
     subtitle: {
       en: "331 babies were vaccinated against serious disease threats.",
