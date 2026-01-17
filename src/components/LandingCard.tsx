@@ -53,14 +53,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       const handleInteraction = () => {
         tryPlay();
         events.forEach((e) =>
-          document.removeEventListener(e, handleInteraction)
+          document.removeEventListener(e, handleInteraction),
         );
       };
       events.forEach((e) =>
         document.addEventListener(e, handleInteraction, {
           once: false,
           passive: true,
-        })
+        }),
       );
     });
   }, []);
@@ -157,7 +157,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <br />
                 Church Planting.
                 <br />
-                Mission.
+                Missions.
               </>
             ) : (
               <>建堂。植堂。宣教。</>

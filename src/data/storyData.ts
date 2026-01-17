@@ -49,8 +49,8 @@ export const stories: Story[] = [
     type: "hero",
     title: { en: "You didn't just attend church.", cn: "你不只是来聚会，" },
     subtitle: {
-      en: "You built one.",
-      cn: "而是建立一间教会。",
+      en: "You were part of building one.",
+      cn: "而是参与建立了一间教会。",
     },
   },
 
@@ -58,7 +58,7 @@ export const stories: Story[] = [
     id: "hero-3",
     type: "hero",
     title: {
-      en: "Last year, 9784 people walked through the doors.",
+      en: "Last year, 9,784 people walked through our doors.",
       cn: "去年，共有 9,784 人走进了这扇大门。",
     },
     subtitle: {
@@ -82,8 +82,8 @@ export const stories: Story[] = [
       cn: "其中 273 人第一次的到访，改变了他们一切。",
     },
     subtitle: {
-      en: "They accepted Christ.",
-      cn: "他们决志信主了。",
+      en: "They came to know Jesus personally.",
+      cn: "他们亲身认识了耶稣。",
     },
   },
 
@@ -91,8 +91,8 @@ export const stories: Story[] = [
     id: "hero-churches",
     type: "hero",
     title: {
-      en: "Your giving didn't just build one church.",
-      cn: "你的奉献不仅仅是建立了一间教会。",
+      en: "Your giving didn't just go towards one church.",
+      cn: "你的奉献不仅仅是帮助一间教会。",
     },
     subtitle: {
       en: "It supported 17 churches across 7 countries.",
@@ -191,11 +191,11 @@ export const stories: Story[] = [
     id: "hero-9",
     type: "hero",
     title: {
-      en: "We cannot list it all. ",
+      en: "We cannot list them all. ",
       cn: "还有更多无法尽述。",
     },
     subtitle: {
-      en: "But you made it all happen.",
+      en: "But you were part of making them happen.",
       cn: "但皆因有你而成就。",
     },
   },
