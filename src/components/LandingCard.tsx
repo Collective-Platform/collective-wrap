@@ -25,7 +25,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   const effectiveRef = donationCardRef || localDonationCardRef;
   const videoRef = useRef<HTMLVideoElement>(null);
   const totalTarget = 1500000;
-  const raised = 1269910;
+  const raised = 0;
   const percentage = (raised / totalTarget) * 100;
   const [displayRaised, setDisplayRaised] = useState(0);
   const [displayPercentage, setDisplayPercentage] = useState(0);
@@ -52,9 +52,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       const events = ["click", "touchstart", "keydown", "scroll"];
       const handleInteraction = () => {
         tryPlay();
-        events.forEach((e) => document.removeEventListener(e, handleInteraction));
+        events.forEach((e) =>
+          document.removeEventListener(e, handleInteraction)
+        );
       };
-      events.forEach((e) => document.addEventListener(e, handleInteraction, { once: false, passive: true }));
+      events.forEach((e) =>
+        document.addEventListener(e, handleInteraction, {
+          once: false,
+          passive: true,
+        })
+      );
     });
   }, []);
 
@@ -163,7 +170,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           >
             {lang === "en"
               ? "Next year, we pay off our building loan. Join us to cross the finish line and fuel what's next: more churches, more missions, more lives reached."
-              : "明年，我们将还清建堂贷款。加入我们一起跨越终点线，为未来注入动力：建立更多教会、拓展更多宣教、触动更多生命。"}
+              : "明年，我们将还清建筑的贷款。诚邀你与我们共同跨过终点，助力未来：建立更多教会、拓展更多宣教、接触更多生命。"}
           </p>
         </div>
       </section>
@@ -216,8 +223,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               }`}
             >
               {lang === "en"
-                ? "117 people have just contributed"
-                : "已有117人认献"}
+                ? "0 people have just contributed"
+                : "已有 0 人认献"}
             </p>
           </div>
 
@@ -246,7 +253,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 lang === "cn" ? "font-chinese-body" : ""
               }`}
             >
-              {lang === "en" ? "Last year, together we:" : "去年，我们一起："}
+              {lang === "en" ? "Last year, together we:" : "去年，我们共同："}
             </p>
             <div className="flex flex-col text-lg md:text-xl text-text-accent">
               <h4 className="font-anton text-5xl md:text-7xl mt-4">
@@ -264,7 +271,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   lang === "cn" ? "font-chinese-body" : ""
                 }`}
               >
-                {lang === "en" ? "raised" : "筹集"}
+                {lang === "en" ? "raised" : "筹募"}
               </p>
               <h4 className="font-anton text-5xl md:text-7xl mt-8">
                 <CountingNumber
@@ -281,7 +288,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   lang === "cn" ? "font-chinese-body" : ""
                 }`}
               >
-                {lang === "en" ? "lives reached" : "生命触及"}
+                {lang === "en" ? "lives reached" : "生命接触"}
               </p>
               {/* <div className="flex items-center justify-center gap-2 mt-8">
                 <span className="text-5xl md:text-7xl text-text-accent font-anton">
@@ -304,7 +311,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             >
               {lang === "en"
                 ? "This year, we continue the mission."
-                : "今年，我们继续使命。"}
+                : "今年，让我们延续这使命。"}
             </p>
           </motion.div>
         </div>

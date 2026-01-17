@@ -47,7 +47,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
           >
             {lang === "en"
               ? "Every gift will be put to work immediately. If needed, we'll prioritise projects that can be completed with the funds raised. For any urgent projects, we'll launch specific fundraising efforts to meet those needs."
-              : "每一份奉献都会立即投入使用。如有需要，我们会优先完成筹集资金可支持的项目。对于任何紧急项目，我们会发起专门的筹款活动来满足需求。"}
+              : "每一笔奉献将立即使用。如果有必要，这笔资金将优先开展能完成的项目。针对任何紧急项目，我们会另外启动专项筹款以满足相关需求。"}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2" className="border-text-on-dark">
@@ -60,7 +60,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
           >
             {lang === "en"
               ? "What if we exceed the goal?"
-              : "如果我们超过目标怎么办？"}
+              : "如果所筹的资金必预期更多，将会如何使用？"}
           </AccordionTrigger>
           <AccordionContent
             className={`text-sm text-text-on-dark/70 leading-normal ${
@@ -69,7 +69,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
           >
             {lang === "en"
               ? "If we're blessed to exceed our goal, any additional funds will continue to support our three priorities—church planting, building, and missions—extending the reach and impact of this campaign."
-              : "如果我们有幸超过目标，任何额外资金将继续支持我们的三大优先事项——植堂、建堂和宣教——扩大这次活动的影响力。"}
+              : "如果我们达到比预期的目标更多，任何额外资金将继续支持我们的三大优先事项（植堂、建堂和宣教），为扩大这次活动的影响力。"}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3" className="border-text-on-dark">

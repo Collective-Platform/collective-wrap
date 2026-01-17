@@ -26,6 +26,11 @@ const locale = Astro.currentLocale ?? "cn";
     <link rel="icon" type="image/svg+xml" href="/favicon.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>未来 2026</title>
+    <meta property="og:title" content="未来 2026" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-image-cn.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/og-image-cn.webp" />
   </head>
   <body>
     <ChurchWrap client:only="react" locale={locale} />

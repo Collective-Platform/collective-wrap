@@ -47,10 +47,10 @@ export const stories: Story[] = [
   {
     id: "hero-2",
     type: "hero",
-    title: { en: "You didn't just attend church.", cn: "你不仅仅是来聚会，" },
+    title: { en: "You didn't just attend church.", cn: "你不只是来聚会，" },
     subtitle: {
       en: "You built one.",
-      cn: "更是建立了一间教会。",
+      cn: "而是建立一间教会。",
     },
   },
 
@@ -63,7 +63,7 @@ export const stories: Story[] = [
     },
     subtitle: {
       en: "That's the capacity of Stadium Negara.",
-      cn: "这相当于整个国家体育馆的容量。",
+      cn: "这相当于整个国家体育馆的席位。",
     },
   },
 
@@ -79,7 +79,7 @@ export const stories: Story[] = [
     type: "hero",
     title: {
       en: "For 273 of them, the visit changed everything. ",
-      cn: "对于其中的 273 人来说，这一次到访改变了一切。",
+      cn: "其中273人第一次的到访，改变了他们一切。",
     },
     subtitle: {
       en: "They accepted Christ.",
@@ -96,7 +96,7 @@ export const stories: Story[] = [
     },
     subtitle: {
       en: "It supported 17 churches across 7 countries.",
-      cn: "它支持了遍布 7 个国家的 17 间教会。",
+      cn: "它帮助了遍布七个国家的17间教会。",
     },
   },
 
@@ -152,7 +152,7 @@ export const stories: Story[] = [
     type: "hero",
     title: {
       en: "You subsidised doctors' visits <br/> for 4,371 refugees.",
-      cn: "你资助了 4,371 位难民看诊。",
+      cn: "你资助了4,371位难民看诊。",
     },
     subtitle: {
       en: "331 babies were vaccinated against serious disease threats.",
@@ -176,7 +176,7 @@ export const stories: Story[] = [
     },
     subtitle: {
       en: "You kept 5 hostels running for 180 of them.",
-      cn: "你维持了 5 间宿舍的运作，成为了 180 位孩子的避风港。",
+      cn: "你维持了五间宿舍的运作，帮助了180个孩子。",
     },
   },
 
@@ -192,11 +192,11 @@ export const stories: Story[] = [
     type: "hero",
     title: {
       en: "We cannot list it all. ",
-      cn: "我们要感谢的还有很多，无法一一列举。",
+      cn: "还有更多无法尽述。",
     },
     subtitle: {
       en: "But you made it all happen.",
-      cn: "但这一切之所以发生，都是因为你。",
+      cn: "但皆因有你而成就。",
     },
   },
 
@@ -205,11 +205,11 @@ export const stories: Story[] = [
     type: "hero",
     title: {
       en: "No single person did this.",
-      cn: "这不是一个人完成的。",
+      cn: "这并非一人之功。",
     },
     subtitle: {
       en: "It took 432 of us.",
-      cn: "这是我们 432 人共同努力的成果。",
+      cn: "而是432人共同努力。",
     },
   },
 
