@@ -58,7 +58,7 @@ export const stories: Story[] = [
     id: "hero-3",
     type: "hero",
     title: {
-      en: "Last year, 9,784 people walked through our doors.",
+      en: "Last year 9,784 people walked through our doors.",
       cn: "去年，共有 9,784 人走进了这扇大门。",
     },
     subtitle: {

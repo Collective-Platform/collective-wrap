@@ -255,8 +255,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             >
               {lang === "en" ? "Last year, together we:" : "去年，我们共同："}
             </p>
-            <div className="flex flex-col text-lg md:text-xl text-text-accent">
-              <h4 className="font-anton text-5xl md:text-7xl mt-4">
+            <div className="flex flex-col text-lg text-center md:text-xl text-text-accent">
+              <p
+                className={`text-sm md:text-base text-text-primary mt-4 ${
+                  lang === "cn" ? "font-chinese-body" : ""
+                }`}
+              >
+                {lang === "en" ? "raised" : "筹募了"}
+              </p>
+              <h4 className="font-anton text-5xl md:text-7xl mt-1">
                 RM{" "}
                 <CountingNumber
                   number={1082842}
@@ -266,14 +273,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   className="text-text-accent tabular-nums"
                 />
               </h4>
+
               <p
-                className={`text-sm md:text-base text-text-primary/80 mt-1 ${
+                className={`text-sm md:text-base text-text-primary mt-9 ${
                   lang === "cn" ? "font-chinese-body" : ""
                 }`}
               >
-                {lang === "en" ? "raised" : "筹募"}
+                {lang === "en" ? "and reached" : "和接触了"}
               </p>
-              <h4 className="font-anton text-5xl md:text-7xl mt-8">
+              <h4 className="font-anton text-5xl md:text-7xl mt-1">
                 <CountingNumber
                   number={20000}
                   decimalPlaces={0}
@@ -284,12 +292,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 +
               </h4>
               <p
-                className={`text-sm md:text-base text-text-primary/80 mt-1 ${
+                className={`text-sm md:text-base text-text-primary mt-1 ${
                   lang === "cn" ? "font-chinese-body" : ""
                 }`}
               >
-                {lang === "en" ? "lives reached" : "生命接触"}
+                {lang === "en" ? "lives." : "生命。"}
               </p>
+
               {/* <div className="flex items-center justify-center gap-2 mt-8">
                 <span className="text-5xl md:text-7xl text-text-accent font-anton">
                   RM 50 = 1 <span className="text-4xl align-middle">x</span>
