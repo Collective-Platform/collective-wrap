@@ -219,7 +219,7 @@ export const stories: Story[] = [
     category: { en: "2026", cn: "2026年" },
     title: { en: "Our goal this year is to raise", cn: "我们今年的筹款目标是" },
     value: "RM 1,500,000",
-    label: { en: "Join Us", cn: "加入我们" },
+    label: { en: "Give Now", cn: "立即奉献" },
     subtitle: {
       en: "Let's build together",
       cn: "让我们一起建造",

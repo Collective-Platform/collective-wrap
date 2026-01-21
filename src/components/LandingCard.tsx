@@ -282,14 +282,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               >
                 {lang === "en" ? "raised" : "筹募了"}
               </p>
-              <h4 className="font-anton text-5xl md:text-7xl mt-1">
+              <h4 className="font-anton text-text-primary/80 text-5xl md:text-7xl mt-1">
                 RM{" "}
                 <CountingNumber
                   number={1082842}
                   decimalPlaces={0}
                   useThousandsSeparator={true}
                   locale="en-MY"
-                  className="text-text-accent tabular-nums"
+                  className="tabular-nums"
                 />
               </h4>
 
@@ -300,13 +300,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               >
                 {lang === "en" ? "and reached" : "和接触了"}
               </p>
-              <h4 className="font-anton text-5xl md:text-7xl mt-1">
+              <h4 className="font-anton text-text-primary/80 text-5xl md:text-7xl mt-1">
                 <CountingNumber
                   number={20000}
                   decimalPlaces={0}
                   useThousandsSeparator={true}
                   locale="en-MY"
-                  className="text-text-accent tabular-nums"
+                  className="tabular-nums"
                 />
                 +
               </h4>
@@ -371,7 +371,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             >
               {lang === "en"
                 ? "Scroll to see what we've done in 2025"
-                : "滚动查看我们在2025年所做的"}
+                : "往下滑，看看2025年我们都做了什么"}
             </p>
             <motion.div
               animate={{ y: [0, 10, 0] }}
