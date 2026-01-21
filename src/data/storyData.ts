@@ -151,7 +151,7 @@ export const stories: Story[] = [
     id: "hero-7",
     type: "hero",
     title: {
-      en: "You subsidised doctors' visits <br/> for 4,371 refugees.",
+      en: "You subsidised doctors' visits <br/> for 4,922 refugees.",
       cn: "你资助了 4,371 位难民看诊。",
     },
     subtitle: {
