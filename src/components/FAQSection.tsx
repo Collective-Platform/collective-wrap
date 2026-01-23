@@ -29,7 +29,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
         <AccordionItem value="item-1" className="border-text-on-dark">
           <AccordionTrigger
             className={`text-left 
-              text-lg md:text-2xl 
+              text-sm md:text-lg
               text-text-on-dark hover:no-underline hover:text-text-accent ${
                 lang === "cn"
                   ? "font-chinese-body tracking-widest"
@@ -41,7 +41,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
               : "如果我们没有达到目标，我的奉献将如何使用？"}
           </AccordionTrigger>
           <AccordionContent
-            className={`text-sm md:text-lg text-text-on-dark/70 leading-normal ${
+            className={`text-[12px] md:text-base text-text-on-dark/70 leading-normal ${
               lang === "cn" ? "font-chinese-body tracking-widest" : ""
             }`}
           >
@@ -53,7 +53,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
         <AccordionItem value="item-2" className="border-text-on-dark">
           <AccordionTrigger
             className={`text-left 
-              text-lg md:text-2xl 
+              text-sm md:text-lg
               font-normal text-text-on-dark hover:no-underline hover:text-text-accent ${
                 lang === "cn" ? "font-chinese-body tracking-widest" : ""
               }`}
@@ -63,7 +63,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
               : "如果所筹的资金必预期更多，将会如何使用？"}
           </AccordionTrigger>
           <AccordionContent
-            className={`text-sm md:text-lg text-text-on-dark/70 leading-normal ${
+            className={`text-[12px] md:text-base text-text-on-dark/70 leading-normal ${
               lang === "cn" ? "font-chinese-body tracking-widest" : ""
             }`}
           >
@@ -74,7 +74,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
         </AccordionItem>
         <AccordionItem value="item-3" className="border-text-on-dark">
           <AccordionTrigger
-            className={`text-left text-text-on-dark text-lg md:text-2xl 
+            className={`text-left text-text-on-dark text-sm md:text-lg 
               font-normal hover:no-underline hover:text-text-accent ${
                 lang === "cn" ? "font-chinese-body tracking-widest" : ""
               }`}
@@ -84,7 +84,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
               : "我可以指定我的奉献用于植堂、建堂或宣教吗？"}
           </AccordionTrigger>
           <AccordionContent
-            className={`text-sm md:text-lg text-text-on-dark/70 leading-normal ${
+            className={`text-[12px] md:text-base text-text-on-dark/70 leading-normal ${
               lang === "cn" ? "font-chinese-body tracking-widest" : ""
             }`}
           >
