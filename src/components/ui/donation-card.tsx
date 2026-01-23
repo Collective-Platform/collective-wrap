@@ -14,7 +14,7 @@ interface DonationCardProps {
 const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
   (
     {
-      presetAmounts = [20000, 5000, 500, 50],
+      presetAmounts = [20000, 10000, 5000, 500],
       currency = "RM",
       onAmountChange,
       className,
