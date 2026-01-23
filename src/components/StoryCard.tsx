@@ -130,7 +130,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
             });
             onGiveClick?.();
           }}
-          className={`px-12 py-2 bg-btn-primary-bg text-btn-primary-text text-xl font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 relative z-10 cursor-pointer ${
+          className={`px-8 py-3 bg-btn-primary-bg text-btn-primary-text text-xl font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 relative z-10 cursor-pointer ${
             lang === "cn" ? "font-chinese-body" : ""
           }`}
         >
