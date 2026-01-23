@@ -14,16 +14,16 @@ interface DonationCardProps {
 const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
   (
     {
-      presetAmounts = [50000, 5000, 500, 50],
+      presetAmounts = [20000, 5000, 500, 50],
       currency = "RM",
       onAmountChange,
       className,
       lang = "en",
     },
-    ref
+    ref,
   ) => {
     const [selectedPreset, setSelectedPreset] = React.useState<number | null>(
-      null
+      null,
     );
     const [customAmount, setCustomAmount] = React.useState<string>("");
 
@@ -34,7 +34,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
     };
 
     const handleCustomAmountChange = (
-      e: React.ChangeEvent<HTMLInputElement>
+      e: React.ChangeEvent<HTMLInputElement>,
     ) => {
       const rawValue = e.target.value.replace(/,/g, "");
       if (rawValue === "" || /^\d*$/.test(rawValue)) {
@@ -68,13 +68,13 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
         ref={ref}
         className={cn(
           "rounded-lg border border-border-subtle/20 bg-bg-card text-text-on-dark p-8 space-y-3",
-          className
+          className,
         )}
       >
         <p
           className={cn(
             "text-lg md:text-2xl text-text-on-dark tracking-wide  font-normal text-center text-balance",
-            lang === "cn" && "font-chinese-body"
+            lang === "cn" && "font-chinese-body",
           )}
         >
           {lang === "en" ? "I would love to give" : "我想奉献"}
@@ -91,7 +91,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
                 "px-4 py-4 rounded-md border border-border-subtle/20 text-sm transition-all",
                 selectedPreset === amount
                   ? "bg-text-on-dark text-text-primary"
-                  : "text-btn-secondary-text hover:bg-btn-secondary-hover"
+                  : "text-btn-secondary-text hover:bg-btn-secondary-hover",
               )}
             >
               RM {formatAmount(amount)}
@@ -111,7 +111,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
             className={cn(
               "flex-1 min-w-0 bg-transparent text-sm font-light text-right",
               "placeholder:text-text-muted text-text-on-dark",
-              "focus:outline-none"
+              "focus:outline-none",
             )}
           />
         </div>
@@ -127,7 +127,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
               currentAmount !== null && currentAmount > 0
                 ? "bg-text-accent text-text-on-dark hover:bg-text-accent/90"
                 : "bg-text-accent/60 text-text-on-dark/60 cursor-not-allowed",
-              lang === "cn" && "font-chinese-body"
+              lang === "cn" && "font-chinese-body",
             )}
           >
             {lang === "en" ? "Give Now" : "立即奉献"}
@@ -137,7 +137,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
         <p
           className={cn(
             "text-center text-[12px] md:text-base text-text-on-dark/80 mt-6",
-            lang === "cn" && "font-chinese-body"
+            lang === "cn" && "font-chinese-body",
           )}
         >
           {lang === "en"
@@ -146,7 +146,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
         </p>
       </div>
     );
-  }
+  },
 );
 
 DonationCard.displayName = "DonationCard";
