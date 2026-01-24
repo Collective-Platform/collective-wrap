@@ -169,7 +169,7 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
           >
             {lang === "en"
               ? `For larger contributions, please transfer directly to:`
-              : "对于较大额的奉献，请通过以下方式直接转账以帮助我们节省处理费用："}
+              : "对于较大额的奉献，请通过以下方式直接转账："}
           </p>
 
           <p
