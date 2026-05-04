@@ -34,7 +34,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     contributorCount: 0,
   });
 
-  const raised = stats.totalRaised / 100;
+  const OFFLINE_CONTRIBUTION = 30800; // RM amount not captured by API
+  const OFFLINE_CONTRIBUTORS = 3; // contributors not captured by API
+  const raised = stats.totalRaised / 100 + OFFLINE_CONTRIBUTION;
+  const contributorCount = stats.contributorCount + OFFLINE_CONTRIBUTORS;
   const percentage = (raised / totalTarget) * 100;
 
   useEffect(() => {
@@ -232,7 +235,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
           </motion.div>
 
-          {stats.contributorCount > 0 && (
+          {contributorCount > 0 && (
             <div className="flex items-center justify-center gap-2">
               <TrendingUp className="w-6 h-6 text-text-accent" />
               <p
@@ -241,8 +244,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 }`}
               >
                 {lang === "en"
-                  ? `${stats.contributorCount} people have contributed`
-                  : `已有 ${stats.contributorCount} 人认献`}
+                  ? `${contributorCount} people have contributed`
+                  : `已有 ${contributorCount} 人认献`}
               </p>
             </div>
           )}
