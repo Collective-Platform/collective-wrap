@@ -34,8 +34,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     contributorCount: 0,
   });
 
-  const OFFLINE_CONTRIBUTION = 30800; // as of Apr 8, 2026
-  const OFFLINE_CONTRIBUTORS = 3; // as of Apr 8, 2026
+  const OFFLINE_CONTRIBUTION = 31350; // as of Apr 8, 2026
+  const OFFLINE_CONTRIBUTORS = 5; // as of Apr 11, 2026
   const raised = stats.totalRaised / 100 + OFFLINE_CONTRIBUTION;
   const contributorCount = stats.contributorCount + OFFLINE_CONTRIBUTORS;
   const percentage = (raised / totalTarget) * 100;
