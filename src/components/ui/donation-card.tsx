@@ -145,43 +145,6 @@ const DonationCard = React.forwardRef<HTMLDivElement, DonationCardProps>(
             : "此基金由长老会监督。"}
         </p>
 
-        <div className="mt-8 pt-6 border-t border-border-subtle/10">
-          <p
-            className={cn(
-              "text-xs md:text-sm text-text-on-dark/60 tracking-wide text-center font-bold",
-              lang === "cn" && "font-chinese-body font-normal",
-            )}
-          >
-            {lang === "en" ? (
-              "Giving more than RM20,000?"
-            ) : (
-              <>
-                奉献超过 <span className="font-sans">RM20,000?</span>
-              </>
-            )}
-          </p>
-
-          <p
-            className={cn(
-              "text-center text-[10px] md:text-xs text-text-on-dark/50 whitespace-pre-line leading-relaxed",
-              lang === "cn" && "font-chinese-body",
-            )}
-          >
-            {lang === "en"
-              ? `For larger contributions, please transfer directly to:`
-              : "对于较大额的奉献，请通过以下方式直接转账："}
-          </p>
-
-          <p
-            className={cn(
-              "text-center text-[10px] md:text-xs text-text-on-dark/50 mt-3 whitespace-pre-line leading-relaxed",
-            )}
-          >
-            {lang === "en"
-              ? `Bank Name: Public Bank\nAccount Name: Collective\nAccount No: 3128732036`
-              : "Bank: Public Bank\nAccount Name: Collective\nAccount No: 3128732036"}
-          </p>
-        </div>
       </div>
     );
   },
