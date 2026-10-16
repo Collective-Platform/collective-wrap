@@ -1,0 +1,65 @@
+---
+// Parked reference: 2025 Wrapped as a WebGL page-flip magazine. Kept as a
+// starting point for the 2026 wrap / report. Unlinked and noindexed on
+// purpose — not part of the live site. Source lives in src/reference/.
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.jpg" />
+    <title>Collective — 2025 Wrapped</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      html, body { margin: 0; height: 100%; background: #ede4d8; color: #1b1918; }
+      body {
+        display: grid; place-items: center;
+        font: 13px/1.4 "JetBrains Mono", ui-monospace, monospace;
+      }
+      #magazine {
+        position: relative;
+        aspect-ratio: 1.44753;
+        width: min(100vw, calc((100svh - 80px) * 1.44753));
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: pan-y pinch-zoom;
+      }
+      /* Portrait: one page at a time, earlier pages fold behind (main.js
+         SINGLE_QUERY must match). */
+      @media (max-aspect-ratio: 1/1) {
+        #magazine { aspect-ratio: auto; width: 100vw; height: calc(100svh - 64px); }
+        footer { bottom: 16px; }
+      }
+      #magazine canvas {
+        display: block; width: 100%; height: 100%;
+        opacity: 0; transition: opacity 0.6s ease;
+        cursor: grab;
+      }
+      #magazine canvas:active { cursor: grabbing; }
+      #magazine[data-state="ready"] canvas { opacity: 1; }
+      footer {
+        position: fixed; left: 0; right: 0; bottom: 20px;
+        display: flex; justify-content: center; gap: 24px; color: #8a8a86;
+      }
+      #page { color: #141414; min-width: 7ch; text-align: center; }
+    </style>
+  </head>
+  <body>
+    <div id="magazine"></div>
+    <footer>
+      <span>click · drag · hold</span>
+      <span id="page"></span>
+      <span>← →</span>
+    </footer>
+    <script>
+      import "../../reference/wrap-2025-magazine/main.js";
+    </script>
+  </body>
+</html>
